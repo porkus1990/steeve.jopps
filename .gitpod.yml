@@ -1,5 +1,5 @@
 checkoutLocation: .
-workspaceLocation: .
+workspaceLocation: ./dm-jobs
 
 image:
   file: .gitpod.Dockerfile
@@ -21,8 +21,8 @@ tasks:
 
   - name: Start devserver
     openMode: split-right
-    init: echo "initializing ..."
-    command: echo "starting command"
+    init: yarn install && yarn rw generate types
+    command: yarn rw dev
 
 
 ports:
