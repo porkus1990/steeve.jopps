@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+concurrency:
+  group: steve-jobs-${{ github.head_ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.0.0
+        with:
+          node-version: '16.14.0'
+
+      - name: 💿 Cache
+        id: cache-dep
+        uses: actions/cache@v2
+        with:
+          path: |
+            os/node_modules
+            */*/node_modules
+          key: ${{ runner.os }}-steve-jobs-${{ hashFiles('**/package.json') }}
+
+      - name: init
+        if: steps.cache-dep.outputs.cache-hit != 'true'
+        run: |
+          cd os
+          yarn install
+
+      - name: test
+        run: |
+          cd os
+          yarn rw test --no-watch --outputFile=test_result.json --json
+
+      - name: lint
+        if: always()
+        run: |
+          cd os
+          yarn rw lint
