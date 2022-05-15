@@ -29,23 +29,23 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-            os/node_modules
+            dm-jobs/node_modules
             */*/node_modules
-          key: ${{ runner.os }}-steve-jobs-${{ hashFiles('**/package.json') }}
+          key: ${{ runner.dm-jobs }}-steve-jobs-${{ hashFiles('**/package.json') }}
 
       - name: init
         if: steps.cache-dep.outputs.cache-hit != 'true'
         run: |
-          cd os
+          cd dm-jobs
           yarn install
 
       - name: test
         run: |
-          cd os
+          cd dm-jobs
           yarn rw test --no-watch --outputFile=test_result.json --json
 
       - name: lint
         if: always()
         run: |
-          cd os
+          cd dm-jobs
           yarn rw lint
