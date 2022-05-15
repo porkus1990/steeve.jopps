@@ -15,6 +15,7 @@
       - bidding system (?)
 
 implementation:
+ - authentication 
  - what3words.com
  - jobs are marked on the map
    - customizinng?
