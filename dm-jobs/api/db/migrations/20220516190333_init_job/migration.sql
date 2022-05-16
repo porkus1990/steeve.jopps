@@ -1,5 +1,5 @@
 -- CreateTable
-CREATE TABLE "Jobs" (
+CREATE TABLE "Job" (
     "id" SERIAL NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "title" TEXT NOT NULL,
@@ -12,5 +12,5 @@ CREATE TABLE "Jobs" (
     "timeout" TIMESTAMP(3),
     "additionalAddressInformation" TEXT,
 
-    CONSTRAINT "Jobs_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Job_pkey" PRIMARY KEY ("id")
 );
