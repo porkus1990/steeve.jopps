@@ -1,4 +1,6 @@
-# workingtitle
+# steeve.jopps
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1ef9b0ab-f383-49ec-8858-201ab43bf9a0/deploy-status)](https://app.netlify.com/sites/delicate-halva-eadc4f/deploys)
 
 ## Goal
 - first live: simple to control jobs
