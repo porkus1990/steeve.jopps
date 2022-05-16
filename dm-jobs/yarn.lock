@@ -4313,6 +4313,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@redwoodjs/record@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "@redwoodjs/record@npm:1.4.0"
+  dependencies:
+    "@prisma/client": 3.13.0
+    core-js: 3.22.4
+  checksum: 32e6047dc3ecc590de57674cf574b697398b458647cf2abc0f7a84069c3ad1f55caed6eb176ff18e6f46c5592100e39409ac8c5e5ebeee3b279e4f2d0e5e21d2
+  languageName: node
+  linkType: hard
+
 "@redwoodjs/router@npm:1.4.0":
   version: 1.4.0
   resolution: "@redwoodjs/router@npm:1.4.0"
@@ -7697,6 +7707,7 @@ __metadata:
   dependencies:
     "@redwoodjs/api": 1.4.0
     "@redwoodjs/graphql-server": 1.4.0
+    "@redwoodjs/record": ^1.4.0
   languageName: unknown
   linkType: soft
 

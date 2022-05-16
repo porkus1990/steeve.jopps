@@ -15,7 +15,7 @@ model RW_DataMigration {
   finishedAt DateTime
 }
 
-model Jobs {
+model Job {
   id                           Int  @id @default(autoincrement())
   createdAt                    DateTime @default(now())
   title                        String
