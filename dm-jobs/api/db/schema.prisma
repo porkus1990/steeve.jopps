@@ -14,3 +14,17 @@ model RW_DataMigration {
   startedAt  DateTime
   finishedAt DateTime
 }
+
+model Jobs {
+  id                           Int  @id @default(autoincrement())
+  createdAt                    DateTime @default(now())
+  title                        String
+  description                  String?
+  price                        Int
+  longitude                    String
+  latitude                     String
+  threeWords                   String
+  status                       String
+  timeout                      DateTime?
+  additionalAddressInformation String?
+}
