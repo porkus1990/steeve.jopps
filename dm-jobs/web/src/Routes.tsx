@@ -4,6 +4,10 @@ import JobsLayout from 'src/layouts/JobsLayout'
 const Routes = () => {
   return (
     <Router>
+      <Route path="/login" page={LoginPage} name="login" />
+      <Route path="/signup" page={SignupPage} name="signup" />
+      <Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />
+      <Route path="/reset-password" page={ResetPasswordPage} name="resetPassword" />
       <Set wrap={JobsLayout}>
         <Route path="/jobs/new" page={JobNewJobPage} name="newJob" />
         <Route path="/jobs/{id:Int}/edit" page={JobEditJobPage} name="editJob" />
