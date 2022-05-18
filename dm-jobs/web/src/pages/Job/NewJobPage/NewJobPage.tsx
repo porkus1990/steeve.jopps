@@ -1,7 +1,7 @@
-import NewJob from 'src/components/Job/NewJob'
+import NewJob from 'src/components/Job/NewJob';
 
 const NewJobPage = () => {
-  return <NewJob />
-}
+  return <NewJob />;
+};
 
-export default NewJobPage
+export default NewJobPage;

@@ -1,7 +1,7 @@
-import JobsCell from 'src/components/Job/JobsCell'
+import JobsCell from 'src/components/Job/JobsCell';
 
 const JobsPage = () => {
-  return <JobsCell />
-}
+  return <JobsCell />;
+};
 
-export default JobsPage
+export default JobsPage;

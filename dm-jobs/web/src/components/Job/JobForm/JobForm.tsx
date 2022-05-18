@@ -7,49 +7,18 @@ import {
   NumberField,
   DatetimeLocalField,
   Submit,
-} from '@redwoodjs/forms'
-
+} from '@redwoodjs/forms';
 
 const formatDatetime = (value) => {
   if (value) {
-    return value.replace(/:\d{2}\.\d{3}\w/, '')
+    return value.replace(/:\d{2}\.\d{3}\w/, '');
   }
-}
-
+};
 
 const JobForm = (props) => {
   const onSubmit = (data) => {
-
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    props.onSave(data, props?.job?.id)
-  }
+    props.onSave(data, props?.job?.id);
+  };
 
   return (
     <div className="rw-form-wrapper">
@@ -60,7 +29,7 @@ const JobForm = (props) => {
           titleClassName="rw-form-error-title"
           listClassName="rw-form-error-list"
         />
-      
+
         <Label
           name="title"
           className="rw-label"
@@ -68,15 +37,14 @@ const JobForm = (props) => {
         >
           Title
         </Label>
-        
-          <TextField
-            name="title"
-            defaultValue={props.job?.title}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
-          />
-        
+
+        <TextField
+          name="title"
+          defaultValue={props.job?.title}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
 
         <FieldError name="title" className="rw-field-error" />
 
@@ -87,14 +55,13 @@ const JobForm = (props) => {
         >
           Description
         </Label>
-        
-          <TextField
-            name="description"
-            defaultValue={props.job?.description}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-          />
-        
+
+        <TextField
+          name="description"
+          defaultValue={props.job?.description}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+        />
 
         <FieldError name="description" className="rw-field-error" />
 
@@ -105,15 +72,14 @@ const JobForm = (props) => {
         >
           Price
         </Label>
-        
-          <NumberField
-            name="price"
-            defaultValue={props.job?.price}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
-          />
-        
+
+        <NumberField
+          name="price"
+          defaultValue={props.job?.price}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
 
         <FieldError name="price" className="rw-field-error" />
 
@@ -124,15 +90,14 @@ const JobForm = (props) => {
         >
           Longitude
         </Label>
-        
-          <TextField
-            name="longitude"
-            defaultValue={props.job?.longitude}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
-          />
-        
+
+        <TextField
+          name="longitude"
+          defaultValue={props.job?.longitude}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
 
         <FieldError name="longitude" className="rw-field-error" />
 
@@ -143,15 +108,14 @@ const JobForm = (props) => {
         >
           Latitude
         </Label>
-        
-          <TextField
-            name="latitude"
-            defaultValue={props.job?.latitude}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
-          />
-        
+
+        <TextField
+          name="latitude"
+          defaultValue={props.job?.latitude}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
 
         <FieldError name="latitude" className="rw-field-error" />
 
@@ -162,15 +126,14 @@ const JobForm = (props) => {
         >
           Three words
         </Label>
-        
-          <TextField
-            name="threeWords"
-            defaultValue={props.job?.threeWords}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
-          />
-        
+
+        <TextField
+          name="threeWords"
+          defaultValue={props.job?.threeWords}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
 
         <FieldError name="threeWords" className="rw-field-error" />
 
@@ -181,15 +144,14 @@ const JobForm = (props) => {
         >
           Status
         </Label>
-        
-          <TextField
-            name="status"
-            defaultValue={props.job?.status}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
-          />
-        
+
+        <TextField
+          name="status"
+          defaultValue={props.job?.status}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
 
         <FieldError name="status" className="rw-field-error" />
 
@@ -200,14 +162,13 @@ const JobForm = (props) => {
         >
           Timeout
         </Label>
-        
-          <DatetimeLocalField
-            name="timeout"
-            defaultValue={formatDatetime(props.job?.timeout)}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-          />
-        
+
+        <DatetimeLocalField
+          name="timeout"
+          defaultValue={formatDatetime(props.job?.timeout)}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+        />
 
         <FieldError name="timeout" className="rw-field-error" />
 
@@ -218,28 +179,27 @@ const JobForm = (props) => {
         >
           Additional address information
         </Label>
-        
-          <TextField
-            name="additionalAddressInformation"
-            defaultValue={props.job?.additionalAddressInformation}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-          />
-        
 
-        <FieldError name="additionalAddressInformation" className="rw-field-error" />
+        <TextField
+          name="additionalAddressInformation"
+          defaultValue={props.job?.additionalAddressInformation}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+        />
+
+        <FieldError
+          name="additionalAddressInformation"
+          className="rw-field-error"
+        />
 
         <div className="rw-button-group">
-          <Submit
-            disabled={props.loading}
-            className="rw-button rw-button-blue"
-          >
+          <Submit disabled={props.loading} className="rw-button rw-button-blue">
             Save
           </Submit>
         </div>
       </Form>
     </div>
-  )
-}
+  );
+};
 
-export default JobForm
+export default JobForm;

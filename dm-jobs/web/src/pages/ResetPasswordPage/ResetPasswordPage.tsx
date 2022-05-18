@@ -1,58 +1,59 @@
-import { useEffect, useRef, useState } from 'react'
-import { useAuth } from '@redwoodjs/auth'
-import { navigate, routes } from '@redwoodjs/router'
-import { MetaTags } from '@redwoodjs/web'
-import { toast, Toaster } from '@redwoodjs/web/toast'
+import { useEffect, useRef, useState } from 'react';
+import { useAuth } from '@redwoodjs/auth';
+import { navigate, routes } from '@redwoodjs/router';
+import { MetaTags } from '@redwoodjs/web';
+import { toast, Toaster } from '@redwoodjs/web/toast';
 import {
   Form,
   Label,
   PasswordField,
   Submit,
   FieldError,
-} from '@redwoodjs/forms'
+} from '@redwoodjs/forms';
 
 const ResetPasswordPage = ({ resetToken }) => {
-  const { isAuthenticated, reauthenticate, validateResetToken, resetPassword } = useAuth()
-  const [enabled, setEnabled] = useState(true)
+  const { isAuthenticated, reauthenticate, validateResetToken, resetPassword } =
+    useAuth();
+  const [enabled, setEnabled] = useState(true);
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate(routes.home())
+      navigate(routes.home());
     }
-  }, [isAuthenticated])
+  }, [isAuthenticated]);
 
   useEffect(() => {
     const validateToken = async () => {
-      const response = await validateResetToken(resetToken)
+      const response = await validateResetToken(resetToken);
       if (response.error) {
-        setEnabled(false)
-        toast.error(response.error)
+        setEnabled(false);
+        toast.error(response.error);
       } else {
-        setEnabled(true)
+        setEnabled(true);
       }
-    }
-    validateToken()
-  }, [])
+    };
+    validateToken();
+  }, []);
 
-  const passwordRef = useRef<HTMLInputElement>()
+  const passwordRef = useRef<HTMLInputElement>();
   useEffect(() => {
-    passwordRef.current.focus()
-  }, [])
+    passwordRef.current.focus();
+  }, []);
 
   const onSubmit = async (data) => {
     const response = await resetPassword({
       resetToken,
       password: data.password,
-    })
+    });
 
     if (response.error) {
-      toast.error(response.error)
+      toast.error(response.error);
     } else {
-      toast.success('Password changed!')
-      await reauthenticate()
-      navigate(routes.login())
+      toast.success('Password changed!');
+      await reauthenticate();
+      navigate(routes.login());
     }
-  }
+  };
 
   return (
     <>
@@ -112,7 +113,7 @@ const ResetPasswordPage = ({ resetToken }) => {
         </div>
       </main>
     </>
-  )
-}
+  );
+};
 
-export default ResetPasswordPage
+export default ResetPasswordPage;

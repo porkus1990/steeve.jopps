@@ -1,11 +1,11 @@
-import JobCell from 'src/components/Job/JobCell'
+import JobCell from 'src/components/Job/JobCell';
 
 type JobPageProps = {
-  id: number
-}
+  id: number;
+};
 
 const JobPage = ({ id }: JobPageProps) => {
-  return <JobCell id={id} />
-}
+  return <JobCell id={id} />;
+};
 
-export default JobPage
+export default JobPage;

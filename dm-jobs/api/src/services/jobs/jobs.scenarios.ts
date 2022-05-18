@@ -1,4 +1,4 @@
-import type { Prisma } from '@prisma/client'
+import type { Prisma } from '@prisma/client';
 
 export const standard = defineScenario<Prisma.JobCreateArgs>({
   job: {
@@ -23,6 +23,6 @@ export const standard = defineScenario<Prisma.JobCreateArgs>({
       },
     },
   },
-})
+});
 
-export type StandardScenario = typeof standard
+export type StandardScenario = typeof standard;

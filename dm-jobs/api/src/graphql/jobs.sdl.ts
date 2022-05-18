@@ -47,4 +47,4 @@ export const schema = gql`
     updateJob(id: Int!, input: UpdateJobInput!): Job! @requireAuth
     deleteJob(id: Int!): Job! @requireAuth
   }
-`
+`;

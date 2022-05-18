@@ -1,5 +1,5 @@
-import { Private, Set, Router, Route } from '@redwoodjs/router'
-import JobsLayout from 'src/layouts/JobsLayout'
+import { Private, Set, Router, Route } from '@redwoodjs/router';
+import JobsLayout from 'src/layouts/JobsLayout';
 
 const Routes = () => {
   return (
@@ -19,7 +19,7 @@ const Routes = () => {
       <Route path="/" page={HomePage} name="home" />
       <Route notfound page={NotFoundPage} />
     </Router>
-  )
-}
+  );
+};
 
-export default Routes
+export default Routes;

@@ -22,9 +22,11 @@ const HomePage = () => {
             Logout
           </button>
         </div>
-      ) : (<div>not logged in</div>)}
+      ) : (
+        <div>not logged in</div>
+      )}
     </>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;

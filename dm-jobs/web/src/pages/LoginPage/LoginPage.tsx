@@ -1,5 +1,5 @@
-import { Link, navigate, routes } from '@redwoodjs/router'
-import { useRef } from 'react'
+import { Link, navigate, routes } from '@redwoodjs/router';
+import { useRef } from 'react';
 import {
   Form,
   Label,
@@ -7,37 +7,37 @@ import {
   PasswordField,
   Submit,
   FieldError,
-} from '@redwoodjs/forms'
-import { useAuth } from '@redwoodjs/auth'
-import { MetaTags } from '@redwoodjs/web'
-import { toast, Toaster } from '@redwoodjs/web/toast'
-import { useEffect } from 'react'
+} from '@redwoodjs/forms';
+import { useAuth } from '@redwoodjs/auth';
+import { MetaTags } from '@redwoodjs/web';
+import { toast, Toaster } from '@redwoodjs/web/toast';
+import { useEffect } from 'react';
 
 const LoginPage = () => {
-  const { isAuthenticated, logIn } = useAuth()
+  const { isAuthenticated, logIn } = useAuth();
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate(routes.home())
+      navigate(routes.home());
     }
-  }, [isAuthenticated])
+  }, [isAuthenticated]);
 
-  const emailRef = useRef<HTMLInputElement>()
+  const emailRef = useRef<HTMLInputElement>();
   useEffect(() => {
-    emailRef.current.focus()
-  }, [])
+    emailRef.current.focus();
+  }, []);
 
   const onSubmit = async (data) => {
-    const response = await logIn({ ...data })
+    const response = await logIn({ ...data });
 
     if (response.message) {
-      toast(response.message)
+      toast(response.message);
     } else if (response.error) {
-      toast.error(response.error)
+      toast.error(response.error);
     } else {
-      toast.success('Welcome back!')
+      toast.success('Welcome back!');
     }
-  }
+  };
 
   return (
     <>
@@ -97,7 +97,10 @@ const LoginPage = () => {
                   />
 
                   <div className="rw-forgot-link">
-                    <Link to={routes.forgotPassword()} className="rw-forgot-link">
+                    <Link
+                      to={routes.forgotPassword()}
+                      className="rw-forgot-link"
+                    >
                       Forgot Password?
                     </Link>
                   </div>
@@ -120,7 +123,7 @@ const LoginPage = () => {
         </div>
       </main>
     </>
-  )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;
