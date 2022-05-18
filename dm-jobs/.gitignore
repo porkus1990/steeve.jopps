@@ -17,8 +17,3 @@ api/types/graphql.d.ts
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
-../.cache
-../.cargo
-../.config
-../.gitpod
-../.vscode-remote
