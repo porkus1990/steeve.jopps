@@ -4500,6 +4500,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@stencil/core@npm:^2.13.0":
+  version: 2.15.2
+  resolution: "@stencil/core@npm:2.15.2"
+  bin:
+    stencil: bin/stencil
+  checksum: 88fe7a318b9841c73f88937b70fa896517429047333911dcb880bcf6e32e2f78ccdc3fb7191050aaaeb9aaaf9ff9c44bc2390cf7e6ea3d4b517c059f4d7ef506
+  languageName: node
+  linkType: hard
+
 "@storybook/addon-a11y@npm:6.4.22":
   version: 6.4.22
   resolution: "@storybook/addon-a11y@npm:6.4.22"
@@ -7256,6 +7265,40 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@what3words/api@npm:^3.3.6":
+  version: 3.3.6
+  resolution: "@what3words/api@npm:3.3.6"
+  dependencies:
+    axios: ^0.21.1
+  checksum: 70c52eb617c9dafa58b8f681525e8b7e3ab532eec4580fdc50402e8fd39aad1bdfa116c7bbd492ecd077dc1c582c652ba1a2e5f7b2b487136df312f5263958c0
+  languageName: node
+  linkType: hard
+
+"@what3words/javascript-components@npm:^4.0.6":
+  version: 4.0.6
+  resolution: "@what3words/javascript-components@npm:4.0.6"
+  dependencies:
+    "@stencil/core": ^2.13.0
+    "@what3words/api": ^3.3.6
+    axios: ^0.21.1
+    querystring: ^0.2.1
+    uuid: ^8.3.2
+  checksum: 08fe4e70c9f8594475ea588d57f2d17c2effbd11d20c791efbaa7715859f73302584f5d3679b5fce3cbebf2c0b90a19371a7d361617bed3403d524dedc7517dd
+  languageName: node
+  linkType: hard
+
+"@what3words/react-components@npm:^4.0.6":
+  version: 4.0.6
+  resolution: "@what3words/react-components@npm:4.0.6"
+  dependencies:
+    "@what3words/javascript-components": ^4.0.6
+  peerDependencies:
+    react: ^16.7.0
+    react-dom: ^16.7.0
+  checksum: 184610e69d410db5f5aeb9b0d36a97866d60cb3614cdff20e94dda3fd418031917adb2c1fabc884ba5113cdd84485d1df450379d364003211d53a535242458de
+  languageName: node
+  linkType: hard
+
 "@wry/context@npm:^0.6.0":
   version: 0.6.1
   resolution: "@wry/context@npm:0.6.1"
@@ -8134,6 +8177,15 @@ __metadata:
   version: 4.4.2
   resolution: "axe-core@npm:4.4.2"
   checksum: ea3086f9ed4e13ab9c6a75c6b49c689a27ee7da2555d14ca51dc957814dbb20678dbf18613e04b2193f30c90b738542cc43c409d84a78717eec9c91b48be5703
+  languageName: node
+  linkType: hard
+
+"axios@npm:^0.21.1":
+  version: 0.21.4
+  resolution: "axios@npm:0.21.4"
+  dependencies:
+    follow-redirects: ^1.14.0
+  checksum: fbcff55ec68f71f02d3773d467db2fcecdf04e749826c82c2427a232f9eba63242150a05f15af9ef15818352b814257541155de0281f8fb2b7e8a5b79f7f2142
   languageName: node
   linkType: hard
 
@@ -13290,7 +13342,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.0.0":
+"follow-redirects@npm:^1.0.0, follow-redirects@npm:^1.14.0":
   version: 1.15.0
   resolution: "follow-redirects@npm:1.15.0"
   peerDependenciesMeta:
@@ -20263,7 +20315,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"querystring@npm:^0.2.0":
+"querystring@npm:^0.2.0, querystring@npm:^0.2.1":
   version: 0.2.1
   resolution: "querystring@npm:0.2.1"
   checksum: 6841b32bec4f16ffe7f5b5e4373b47ad451f079cde3a7f45e63e550f0ecfd8f8189ef81fb50079413b3fc1c59b06146e4c98192cb74ed7981aca72090466cd94
@@ -21320,6 +21372,7 @@ __metadata:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@redwoodjs/core": 1.4.0
+    "@what3words/react-components": ^4.0.6
   languageName: unknown
   linkType: soft
 
