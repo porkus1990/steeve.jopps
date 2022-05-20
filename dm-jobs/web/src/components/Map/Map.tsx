@@ -1,4 +1,5 @@
 import { useMutation } from '@redwoodjs/web';
+import { useAuth } from '@redwoodjs/auth';
 import { toast } from '@redwoodjs/web/toast';
 import * as classes from './Map.css';
 import {
@@ -15,19 +16,29 @@ const CREATE_JOB_MUTATION = gql`
   }
 `;
 
+const CREATE_JOB_USER_MUTATION = gql`
+  mutation CreateJobUserMutation($input: CreateJobUserInput!) {
+    createJobUser(input: $input) {
+      id
+    }
+  }
+`;
+
 export const Map = () => {
   const [createJob, { loading, error }] = useMutation(CREATE_JOB_MUTATION, {
     onError: (error) => {
       toast.error(error.message);
     },
   });
+  const { currentUser } = useAuth();
+  const [createJobUser] = useMutation(CREATE_JOB_USER_MUTATION);
   const [value, setValue] = React.useState('');
   const [coordinates, setCoordinates] = React.useState(null);
   const onChange = (event: React.FormEvent<HTMLInputElement>) => {
     setValue(event.currentTarget.value);
   };
 
-  const onCoordinatesChanged = React.useCallback(({ detail }) => {
+  const onCoordinatesChanged = React.useCallback(async ({ detail }) => {
     console.log(detail);
     const input = {
       additionalAddressInformation: 'additional',
@@ -40,9 +51,18 @@ export const Map = () => {
       status: 'pending',
     };
     setCoordinates(detail.coordinates);
-    createJob({
+    const { data: job } = await createJob({
       variables: {
         input,
+      },
+    });
+    console.log(job);
+    createJobUser({
+      variables: {
+        input: {
+          jobId: job.createJob.id,
+          userId: currentUser.sub,
+        },
       },
     });
   }, []);

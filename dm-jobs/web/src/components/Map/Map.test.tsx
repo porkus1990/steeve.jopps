@@ -1,6 +1,6 @@
-import { render } from '@redwoodjs/testing/web'
+import { render } from '@redwoodjs/testing/web';
 
-import Map from './Map'
+import Map from './Map';
 
 //   Improve this test with help from the Redwood Testing Doc:
 //    https://redwoodjs.com/docs/testing#testing-components
@@ -8,7 +8,7 @@ import Map from './Map'
 describe('Map', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<Map />)
-    }).not.toThrow()
-  })
-})
+      render(<Map />);
+    }).not.toThrow();
+  });
+});

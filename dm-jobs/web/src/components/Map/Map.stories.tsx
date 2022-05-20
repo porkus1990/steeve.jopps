@@ -1,7 +1,7 @@
-import Map from './Map'
+import Map from './Map';
 
 export const generated = () => {
-  return <Map />
-}
+  return <Map />;
+};
 
-export default { title: 'Components/Map' }
+export default { title: 'Components/Map' };
