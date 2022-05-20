@@ -1,15 +1,17 @@
 import { Link, navigate, routes } from '@redwoodjs/router';
 import { useRef } from 'react';
-import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import TextField from '@mui/material/TextField';
+import {
+  Button,
+  Box,
+  Container,
+  CssBaseline,
+  Grid,
+  TextField,
+  Typography,
+} from '@mui/material';
 import { useAuth } from '@redwoodjs/auth';
 import { MetaTags } from '@redwoodjs/web';
 import { toast, Toaster } from '@redwoodjs/web/toast';
-import Typography from '@mui/material/Typography';
 import { useEffect } from 'react';
 
 const SignupPage = () => {
