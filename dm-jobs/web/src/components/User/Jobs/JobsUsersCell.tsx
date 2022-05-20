@@ -1,4 +1,4 @@
-import UserJob from './UserJob';
+import JobsUsers from './JobsUsers';
 
 export const QUERY = gql`
   query jobUsersByUser($userId: String!) {
@@ -11,5 +11,5 @@ export const QUERY = gql`
 export const Loading = () => <div>Loading your jobs ...</div>;
 
 export const Success = ({ jobUsersByUser }) => {
-  return <UserJob userJobs={jobUsersByUser} />;
+  return <JobsUsers userJobs={jobUsersByUser} />;
 };

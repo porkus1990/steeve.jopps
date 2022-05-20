@@ -1,10 +1,10 @@
 import { useAuth } from '@redwoodjs/auth';
-import UserJobsCell from 'src/components/User/Jobs/UserJobsCell';
+import JobsUsersCell from 'src/components/User/Jobs/JobsUsersCell';
 
 const JobsPage = () => {
   const { currentUser } = useAuth();
 
-  return <UserJobsCell userId={currentUser.sub} />;
+  return <JobsUsersCell userId={currentUser.sub} />;
 };
 
 export default JobsPage;

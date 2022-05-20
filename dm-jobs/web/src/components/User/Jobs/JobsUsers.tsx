@@ -1,16 +1,16 @@
-interface UserJob {
+interface JobsUsers {
   jobId: string;
 }
 
-const UserJob = ({ userJobs }) => {
+const JobsUsers = ({ userJobs }) => {
   console.log(userJobs);
   return (
     <>
-      {userJobs.map((uj: UserJob) => (
+      {userJobs.map((uj: JobsUsers) => (
         <p key={uj.jobId}>{uj.jobId}</p>
       ))}
     </>
   );
 };
 
-export default UserJob;
+export default JobsUsers;
