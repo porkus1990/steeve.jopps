@@ -1,3 +1,5 @@
+import JobCell from 'src/components/Job/JobCell/JobCell';
+
 interface JobsUsers {
   jobId: string;
 }
@@ -7,7 +9,7 @@ const JobsUsers = ({ userJobs }) => {
   return (
     <>
       {userJobs.map((uj: JobsUsers) => (
-        <p key={uj.jobId}>{uj.jobId}</p>
+        <JobCell key={uj.jobId} id={uj.jobId} />
       ))}
     </>
   );
