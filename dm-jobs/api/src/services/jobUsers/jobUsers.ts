@@ -5,6 +5,14 @@ export const jobUsers: QueryResolvers['jobUsers'] = () => {
   return db.jobUser.findMany();
 };
 
+export const jobUsersByUser: QueryResolvers['jobUsersByUser'] = ({
+  userId,
+}) => {
+  return db.jobUser.findMany({
+    where: { userId },
+  });
+};
+
 export const jobUser: QueryResolvers['jobUser'] = ({ id }) => {
   return db.jobUser.findUnique({
     where: { id },
