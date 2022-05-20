@@ -1,3 +1,5 @@
+import { useMutation } from '@redwoodjs/web';
+import { toast } from '@redwoodjs/web/toast';
 import * as classes from './Map.css';
 import {
   What3wordsAddress,
@@ -5,7 +7,20 @@ import {
   What3wordsSymbol,
 } from '@what3words/react-components';
 
+const CREATE_JOB_MUTATION = gql`
+  mutation CreateJobMutation($input: CreateJobInput!) {
+    createJob(input: $input) {
+      id
+    }
+  }
+`;
+
 export const Map = () => {
+  const [createJob, { loading, error }] = useMutation(CREATE_JOB_MUTATION, {
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
   const [value, setValue] = React.useState('');
   const [coordinates, setCoordinates] = React.useState(null);
   const onChange = (event: React.FormEvent<HTMLInputElement>) => {
@@ -13,7 +28,23 @@ export const Map = () => {
   };
 
   const onCoordinatesChanged = React.useCallback(({ detail }) => {
+    console.log(detail);
+    const input = {
+      additionalAddressInformation: 'additional',
+      title: 'title',
+      description: 'desc',
+      price: 123,
+      longitude: detail.coordinates.lng.toString(),
+      latitude: detail.coordinates.lat.toString(),
+      threeWords: value,
+      status: 'pending',
+    };
     setCoordinates(detail.coordinates);
+    createJob({
+      variables: {
+        input,
+      },
+    });
   }, []);
 
   return (

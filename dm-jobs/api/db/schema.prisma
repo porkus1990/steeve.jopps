@@ -28,3 +28,9 @@ model Job {
   timeout                      DateTime?
   additionalAddressInformation String?
 }
+
+model JobUser {
+  id     Int  @id @default(autoincrement())
+  jobId  Int
+  userId String
+}
