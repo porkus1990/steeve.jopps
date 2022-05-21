@@ -11,7 +11,6 @@ import {
   MenuItem,
   OutlinedInput,
   Select,
-  SelectChangeEvent,
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
@@ -34,19 +33,12 @@ export const Failure = ({
   <div style={{ color: 'red' }}>Error: {error.message}</div>
 );
 
-export const Success = ({ jobCategories }: CellSuccessProps<JobCategory>) => {
+export const Success = ({
+  jobCategories,
+  handleChange,
+  value,
+}: CellSuccessProps<any>) => {
   const { t } = useTranslation();
-  const [jobCategory, setJobCategory] = React.useState<string[]>([]);
-
-  const handleChange = (event: SelectChangeEvent<typeof jobCategory>) => {
-    const {
-      target: { value },
-    } = event;
-    setJobCategory(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value
-    );
-  };
 
   return (
     <div>
@@ -56,7 +48,7 @@ export const Success = ({ jobCategories }: CellSuccessProps<JobCategory>) => {
           id="categories"
           labelId="category-select"
           multiple
-          value={jobCategory}
+          value={value}
           onChange={handleChange}
           input={<OutlinedInput label={t('categorySelect')} />}
         >
