@@ -9,6 +9,8 @@ import {
   Submit,
 } from '@redwoodjs/forms';
 
+import { SelectChangeEvent } from '@mui/material';
+
 import JobCategoryCell from 'src/components/JobCategoryCell/JobCategoryCell';
 
 const formatDatetime = (value) => {
