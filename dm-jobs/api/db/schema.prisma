@@ -27,10 +27,27 @@ model Job {
   status                       String
   timeout                      DateTime?
   additionalAddressInformation String?
+  categories                   JobCategoriesOnJobs[]
 }
 
 model JobUser {
   id     Int  @id @default(autoincrement())
   jobId  Int
   userId String
+}
+
+model JobCategory {
+  id                           Int  @id @default(autoincrement())
+  type String
+  jobs JobCategoriesOnJobs[]
+}
+
+model JobCategoriesOnJobs {
+  job Job @relation(fields: [jobId], references: [id])
+  jobId Int
+  category JobCategory @relation(fields: [categoryId], references: [id])
+  categoryId Int
+  assigendAt DateTime @default(now())
+
+  @@id([jobId, categoryId])
 }

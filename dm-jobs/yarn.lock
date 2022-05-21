@@ -1810,6 +1810,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.14.5, @babel/runtime@npm:^7.14.6":
+  version: 7.18.0
+  resolution: "@babel/runtime@npm:7.18.0"
+  dependencies:
+    regenerator-runtime: ^0.13.4
+  checksum: 6d392c4e76a581610b471e599999f35a0e6c69df2b19b4fdabf8c79760695c98d82ddd1706121be6a6ffcbc6023776c44f99ae8c5d68d34a01b87cc375250312
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.12.7, @babel/template@npm:^7.16.7, @babel/template@npm:^7.3.3":
   version: 7.16.7
   resolution: "@babel/template@npm:7.16.7"
@@ -3396,6 +3405,52 @@ __metadata:
   version: 1.6.22
   resolution: "@mdx-js/util@npm:1.6.22"
   checksum: 2ee8da6afea0f42297ea31f52b1d50d228744d2895cce7cc9571b7d5ce97c7c96037c80b6dbcded9caa8099c9a994eda62980099eabe1c000aaa792816c66f10
+  languageName: node
+  linkType: hard
+
+"@messageformat/core@npm:^3.0.0":
+  version: 3.0.1
+  resolution: "@messageformat/core@npm:3.0.1"
+  dependencies:
+    "@messageformat/date-skeleton": ^1.0.0
+    "@messageformat/number-skeleton": ^1.0.0
+    "@messageformat/parser": ^5.0.0
+    "@messageformat/runtime": ^3.0.1
+    make-plural: ^7.0.0
+    safe-identifier: ^0.4.1
+  checksum: b31fa81153aa4078d810e6b632d24ce5ea39f9594e7f76b13233bd0e4078d12989ed4cb507219b5806e8c31aaa62d57a4c8daa7e191535192b9c0bdfb4dc4dfc
+  languageName: node
+  linkType: hard
+
+"@messageformat/date-skeleton@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@messageformat/date-skeleton@npm:1.0.0"
+  checksum: fc8a35252f1d861b4c024b463d27209b310e6972374128ba4e5e93a546c63a1536f7a4ad3597d4b372c4e0cc75d7b742928b7552fe468d95b6aad305fbe73d63
+  languageName: node
+  linkType: hard
+
+"@messageformat/number-skeleton@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@messageformat/number-skeleton@npm:1.0.0"
+  checksum: 09d540ff4965344d07d3bc0b0b77b71814838052f80bb4c2393b6c2fbddc7bed173e7d356c5d5b5175bc8bf101de2e1af2f6ac586b36cbdce5bf32cf5e81ef53
+  languageName: node
+  linkType: hard
+
+"@messageformat/parser@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@messageformat/parser@npm:5.0.0"
+  dependencies:
+    moo: ^0.5.1
+  checksum: 701dd3594fb28b0d5bee267ece58940b85ce2e34d38e615fb39bf7fa99036986abd113666fbf6ff94163ff513fc183902a99e383b250e9ed80c2b90feacfcefb
+  languageName: node
+  linkType: hard
+
+"@messageformat/runtime@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "@messageformat/runtime@npm:3.0.1"
+  dependencies:
+    make-plural: ^7.0.0
+  checksum: a236279da66a138f7860d4a190070b00d752cc5b5aed877ec3b0f6dce708e7e3bd5b290e4f4ec30b97a4213f069fb70dbda9af49f849a106da227d41a9e19581
   languageName: node
   linkType: hard
 
@@ -8789,6 +8844,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"boolean@npm:^3.1.4":
+  version: 3.2.0
+  resolution: "boolean@npm:3.2.0"
+  checksum: 6a0dc9668f6f3dda42a53c181fcbdad223169c8d87b6c4011b87a8b14a21770efb2934a778f063d7ece17280f8c06d313c87f7b834bb1dd526a867ffcd00febf
+  languageName: node
+  linkType: hard
+
 "boxen@npm:5.1.2, boxen@npm:^5.0.0, boxen@npm:^5.1.2":
   version: 5.1.2
   resolution: "boxen@npm:5.1.2"
@@ -12952,6 +13014,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fast-printf@npm:^1.6.9":
+  version: 1.6.9
+  resolution: "fast-printf@npm:1.6.9"
+  dependencies:
+    boolean: ^3.1.4
+  checksum: 0196827f4c125e147e0dab1201355146f04159ea6c6f19c6f8e44476cf1d88e58a3b3aa83ec33e5b2315a53e2cb7b2e518ce28bdb7b0f8d0d01774286e670f4f
+  languageName: node
+  linkType: hard
+
 "fast-redact@npm:^3.0.0":
   version: 3.1.1
   resolution: "fast-redact@npm:3.1.1"
@@ -14488,7 +14559,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"html-escaper@npm:^2.0.0":
+"html-escaper@npm:^2.0.0, html-escaper@npm:^2.0.2":
   version: 2.0.2
   resolution: "html-escaper@npm:2.0.2"
   checksum: 208e8a12de1a6569edbb14544f4567e6ce8ecc30b9394fcaa4e7bb1e60c12a7c9a1ed27e31290817157e8626f3a4f29e76c8747030822eb84a6abb15c255f0a0
@@ -14526,6 +14597,15 @@ __metadata:
   bin:
     html-minifier-terser: cli.js
   checksum: 1aa4e4f01cf7149e3ac5ea84fb7a1adab86da40d38d77a6fff42852b5ee3daccb78b615df97264e3a6a5c33e57f0c77f471d607ca1e1debd1dab9b58286f4b5a
+  languageName: node
+  linkType: hard
+
+"html-parse-stringify@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "html-parse-stringify@npm:3.0.1"
+  dependencies:
+    void-elements: 3.1.0
+  checksum: 159292753d48b84d216d61121054ae5a33466b3db5b446e2ffc093ac077a411a99ce6cbe0d18e55b87cf25fa3c5a86c4d8b130b9719ec9b66623259000c72c15
   languageName: node
   linkType: hard
 
@@ -14738,6 +14818,38 @@ __metadata:
   dependencies:
     decamelize: ^2.0.0
   checksum: a0ed69264b5069137afb369b46e18e8dbeb67edc7fb2ad1de18554108943e2fc59155f898013fb7a2f03522879adad7c9a93f1c88428844bcbee006c98db8f0a
+  languageName: node
+  linkType: hard
+
+"i18n@npm:^0.15.0":
+  version: 0.15.0
+  resolution: "i18n@npm:0.15.0"
+  dependencies:
+    "@messageformat/core": ^3.0.0
+    debug: ^4.3.3
+    fast-printf: ^1.6.9
+    make-plural: ^7.0.0
+    math-interval-parser: ^2.0.1
+    mustache: ^4.2.0
+  checksum: 32401b150fdf19ae511b5d677aff7c3696f8f46eef7128b158ea2c2274dd8d53e1bdb1cd4345e74fee9430a2bdf775e9a16c5d49b72d1379c26c28bec6adcde9
+  languageName: node
+  linkType: hard
+
+"i18next-browser-languagedetector@npm:^6.1.4":
+  version: 6.1.4
+  resolution: "i18next-browser-languagedetector@npm:6.1.4"
+  dependencies:
+    "@babel/runtime": ^7.14.6
+  checksum: 192d54fedc0bb545a208082620d943b7d8af13e4f33acdfab00e5a2983c24c98515cbb37f3d4c01afb9bee97313665b54a0b52c508da4830015262295762d8c2
+  languageName: node
+  linkType: hard
+
+"i18next@npm:^21.8.3":
+  version: 21.8.3
+  resolution: "i18next@npm:21.8.3"
+  dependencies:
+    "@babel/runtime": ^7.17.2
+  checksum: b2d31afdfcc3d3ba451b4a0eb4c0c970661b7865ed8515218cfe46ca9501fefc11ca6ca405e9f71db7e012184ed80d46cb6f4808562f5d6ac6161c6753816468
   languageName: node
   linkType: hard
 
@@ -17455,6 +17567,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"make-plural@npm:^7.0.0":
+  version: 7.1.0
+  resolution: "make-plural@npm:7.1.0"
+  checksum: 0d832cce722e38f0aff4dc9c6b908bf4ad9261d7a9425f0a92c0425af909a90414547ecd4b5c4d5a80b6172526d18dbdaf24415da8249e6d10eb68f2bb77e4b1
+  languageName: node
+  linkType: hard
+
 "makeerror@npm:1.0.12":
   version: 1.0.12
   resolution: "makeerror@npm:1.0.12"
@@ -17509,6 +17628,13 @@ __metadata:
   peerDependencies:
     react: ">= 0.14.0"
   checksum: 2473c94cebf93503bfc62662614c511b1e21893cbd7f2a4d64d77f186ae0d9febfabfe620a25dc4311e98eaaa3c1956d9139a0e4dd8636aaa83060aa7d5d89c5
+  languageName: node
+  linkType: hard
+
+"math-interval-parser@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "math-interval-parser@npm:2.0.1"
+  checksum: 7e58389f603a4c3303d691e4feacea981c83c7bfc332741c8e5abc49a3e9b7364d8a141dc5ca822287c99d8cb9b76b6d5d1511662dae02faf126e2521da8348e
   languageName: node
   linkType: hard
 
@@ -17996,6 +18122,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"moo@npm:^0.5.1":
+  version: 0.5.1
+  resolution: "moo@npm:0.5.1"
+  checksum: 2a4f2557463c3a71cf5bf06362d13ed3de065fa366e72dbc8ae1af500b7077a3d66e5c893ce24d643a81dcbf46f966f45e749ab303ccc0c56fbce3c15e941b34
+  languageName: node
+  linkType: hard
+
 "move-concurrently@npm:^1.0.1":
   version: 1.0.1
   resolution: "move-concurrently@npm:1.0.1"
@@ -18096,6 +18229,15 @@ __metadata:
     arrify: ^2.0.1
     minimatch: ^3.0.4
   checksum: 08e6b71ea2eee2feba17bb4159d247b78d26f9a9b556abddc136c05baa5eba9d80717986e494972284947e9c0e26a19eba3fe20851463fa3dbb770e289f7a0b8
+  languageName: node
+  linkType: hard
+
+"mustache@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "mustache@npm:4.2.0"
+  bin:
+    mustache: bin/mustache
+  checksum: 1f8197e8a19e63645a786581d58c41df7853da26702dbc005193e2437c98ca49b255345c173d50c08fe4b4dbb363e53cb655ecc570791f8deb09887248dd34a2
   languageName: node
   linkType: hard
 
@@ -20537,6 +20679,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-i18next@npm:^11.16.9":
+  version: 11.16.9
+  resolution: "react-i18next@npm:11.16.9"
+  dependencies:
+    "@babel/runtime": ^7.14.5
+    html-escaper: ^2.0.2
+    html-parse-stringify: ^3.0.1
+  peerDependencies:
+    i18next: ">= 19.0.0"
+    react: ">= 16.8.0"
+  peerDependenciesMeta:
+    react-dom:
+      optional: true
+    react-native:
+      optional: true
+  checksum: f2355fad3c992fdf83ab68ca412d1cc9da60edad6cfd9727296e83b34a490d4ee712a6beb903e58d935ef6006bcb4364078ba9841b4242ff71dab62d730635cc
+  languageName: node
+  linkType: hard
+
 "react-inspector@npm:^5.1.0":
   version: 5.1.1
   resolution: "react-inspector@npm:5.1.1"
@@ -21451,6 +21612,13 @@ __metadata:
   version: 5.2.1
   resolution: "safe-buffer@npm:5.2.1"
   checksum: 6501914237c0a86e9675d4e51d89ca3c21ffd6a31642efeba25ad65720bce6921c9e7e974e5be91a786b25aa058b5303285d3c15dbabf983a919f5f630d349f3
+  languageName: node
+  linkType: hard
+
+"safe-identifier@npm:^0.4.1":
+  version: 0.4.2
+  resolution: "safe-identifier@npm:0.4.2"
+  checksum: a6b0cdb5347e48c5ea4ddf4cdca5359b12529a11a7368225c39f882fcc0e679c81e82e3b13e36bd27ba7bdec9286f4cc062e3e527464d93ba61290b6e0bc6747
   languageName: node
   linkType: hard
 
@@ -24282,6 +24450,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"void-elements@npm:3.1.0":
+  version: 3.1.0
+  resolution: "void-elements@npm:3.1.0"
+  checksum: 0b8686f9f9aa44012e9bd5eabf287ae0cde409b9a2854c5a2335cb83920c957668ac5876e3f0d158dd424744ac411a7270e64128556b451ed3bec875ef18534d
+  languageName: node
+  linkType: hard
+
 "vscode-jsonrpc@npm:8.0.1":
   version: 8.0.1
   resolution: "vscode-jsonrpc@npm:8.0.1"
@@ -24455,9 +24630,13 @@ __metadata:
     "@redwoodjs/router": 1.4.0
     "@redwoodjs/web": 1.4.0
     "@supabase/supabase-js": ^1.35.3
+    i18n: ^0.15.0
+    i18next: ^21.8.3
+    i18next-browser-languagedetector: ^6.1.4
     prop-types: 15.8.1
     react: 17.0.2
     react-dom: 17.0.2
+    react-i18next: ^11.16.9
   languageName: unknown
   linkType: soft
 
