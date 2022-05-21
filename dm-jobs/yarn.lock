@@ -3512,9 +3512,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/icons-material@npm:^5.6.2":
-  version: 5.6.2
-  resolution: "@mui/icons-material@npm:5.6.2"
+"@mui/icons-material@npm:^5.8.0":
+  version: 5.8.0
+  resolution: "@mui/icons-material@npm:5.8.0"
   dependencies:
     "@babel/runtime": ^7.17.2
   peerDependencies:
@@ -3524,7 +3524,7 @@ __metadata:
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 56dfbe53c939b1537993fd3320f0da357f392d54e621b99480fedee581d02c3b45b4e387e04b3388efea74921a8bcb4cef5c675fdaea1177bb5059794ad6c32d
+  checksum: ead31f08e4ea26a8fd72a23fc191f58ed3315c6dd3ee8d8641cedefdc7587d09a373bd5e60e1673f30ca11184d67c6be979917ee342a0dfc24a7150b07fed696
   languageName: node
   linkType: hard
 
@@ -24623,7 +24623,7 @@ __metadata:
   dependencies:
     "@emotion/react": ^11.9.0
     "@emotion/styled": ^11.8.1
-    "@mui/icons-material": ^5.6.2
+    "@mui/icons-material": ^5.8.0
     "@mui/material": ^5.7.0
     "@redwoodjs/auth": 1.4.0
     "@redwoodjs/forms": 1.4.0
