@@ -8,7 +8,9 @@ RedwoodRecord.db = db;
 RedwoodRecord.schema = datamodel;
 
 import Job from 'src/models/Job';
+import JobUser from 'src/models/JobUser';
 
 Job.requiredModels = [];
+JobUser.requiredModels = [];
 
-export { Job };
+export { Job, JobUser };
