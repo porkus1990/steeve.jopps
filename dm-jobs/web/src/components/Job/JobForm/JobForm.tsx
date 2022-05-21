@@ -9,6 +9,8 @@ import {
   Submit,
 } from '@redwoodjs/forms';
 
+import JobCategoryCell from 'src/components/JobCategoryCell/JobCategoryCell';
+
 const formatDatetime = (value) => {
   if (value) {
     return value.replace(/:\d{2}\.\d{3}\w/, '');
@@ -191,7 +193,7 @@ const JobForm = (props) => {
           name="additionalAddressInformation"
           className="rw-field-error"
         />
-
+        <JobCategoryCell />
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">
             Save

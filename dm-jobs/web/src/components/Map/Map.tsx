@@ -49,18 +49,6 @@ export const Map = () => {
       latitude: detail.coordinates.lat.toString(),
       threeWords: value,
       status: 'pending',
-      categories: {
-        create: [
-          {
-            assignedBy: currentUser.sub,
-            category: {
-              connect: {
-                id: 1,
-              },
-            },
-          },
-        ],
-      },
     };
     setCoordinates(detail.coordinates);
     const { data: job } = await createJob({
