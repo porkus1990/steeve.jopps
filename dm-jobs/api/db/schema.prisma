@@ -49,4 +49,6 @@ model JobCategoriesOnJob {
   category JobCategory @relation(fields: [categoryId], references: [id])
   categoryId Int
   assigendAt DateTime @default(now())
+
+  @@unique([jobId, categoryId])
 }

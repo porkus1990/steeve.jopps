@@ -53,7 +53,7 @@ export const Success = ({
           input={<OutlinedInput label={t('categorySelect')} />}
         >
           {jobCategories.map((category) => (
-            <MenuItem key={category.id} value={category.type}>
+            <MenuItem key={category.id} value={category.id}>
               {t(category.type)}
             </MenuItem>
           ))}
