@@ -1,8 +1,8 @@
-import i18n from 'i18next'
-import { initReactI18next } from 'react-i18next'
-import LanguageDetector from 'i18next-browser-languagedetector'
-import fr from './locales/fr.json'
-import en from './locales/en.json'
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
+import de from './locales/de.json';
+import en from './locales/en.json';
 
 // This is a simple i18n configuration with English and French translations.
 // You can find the translations in web/src/locales/{language}.json
@@ -41,12 +41,12 @@ i18n
     interpolation: { escapeValue: false }, // React already does escaping
     fallbackLng: 'en',
     resources: {
+      de: {
+        translation: de,
+      },
       en: {
         translation: en,
       },
-      fr: {
-        translation: fr,
-      },
     },
-  })
-export default i18n
+  });
+export default i18n;

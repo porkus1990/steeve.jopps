@@ -27,7 +27,7 @@ model Job {
   status                       String
   timeout                      DateTime?
   additionalAddressInformation String?
-  categories                   JobCategoriesOnJobs[]
+  categories                   JobCategoriesOnJob[]
 }
 
 model JobUser {
@@ -39,15 +39,14 @@ model JobUser {
 model JobCategory {
   id                           Int  @id @default(autoincrement())
   type String
-  jobs JobCategoriesOnJobs[]
+  jobs JobCategoriesOnJob[]
 }
 
-model JobCategoriesOnJobs {
+model JobCategoriesOnJob {
+  id                           Int  @id @default(autoincrement())
   job Job @relation(fields: [jobId], references: [id])
   jobId Int
   category JobCategory @relation(fields: [categoryId], references: [id])
   categoryId Int
   assigendAt DateTime @default(now())
-
-  @@id([jobId, categoryId])
 }
