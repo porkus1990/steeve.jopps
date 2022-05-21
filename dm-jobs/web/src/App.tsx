@@ -8,6 +8,7 @@ import Routes from 'src/Routes';
 
 import './scaffold.css';
 import './index.css';
+import './i18n';
 
 const supabaseClient = createClient(
   process.env.SUPABASE_URL,

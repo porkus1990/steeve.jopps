@@ -15,15 +15,19 @@
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
-    "@mui/icons-material": "^5.6.2",
+    "@mui/icons-material": "^5.8.0",
     "@mui/material": "^5.7.0",
     "@redwoodjs/auth": "1.4.0",
     "@redwoodjs/forms": "1.4.0",
     "@redwoodjs/router": "1.4.0",
     "@redwoodjs/web": "1.4.0",
     "@supabase/supabase-js": "^1.35.3",
+    "i18n": "^0.15.0",
+    "i18next": "^21.8.3",
+    "i18next-browser-languagedetector": "^6.1.4",
     "prop-types": "15.8.1",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-i18next": "^11.16.9"
   }
 }

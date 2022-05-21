@@ -38,8 +38,14 @@ export const Map = () => {
     setValue(event.currentTarget.value);
   };
 
+  const map = new google.maps.Map(document.getElementById('map'), {
+    center: { lat: 51.52086, lng: -0.195499 },
+    zoom: 13,
+    mapTypeId: 'roadmap',
+  });
+
   const onCoordinatesChanged = React.useCallback(async ({ detail }) => {
-    console.log(detail);
+    console.log(currentUser);
     const input = {
       additionalAddressInformation: 'additional',
       title: 'title',

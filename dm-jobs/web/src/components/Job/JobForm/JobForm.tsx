@@ -9,6 +9,10 @@ import {
   Submit,
 } from '@redwoodjs/forms';
 
+import { SelectChangeEvent } from '@mui/material';
+
+import JobCategoryCell from 'src/components/JobCategoryCell/JobCategoryCell';
+
 const formatDatetime = (value) => {
   if (value) {
     return value.replace(/:\d{2}\.\d{3}\w/, '');
@@ -16,8 +20,23 @@ const formatDatetime = (value) => {
 };
 
 const JobForm = (props) => {
+  const [jobCategory, setJobCategory] = React.useState<string[]>([]);
+
+  const handleChange = (event: SelectChangeEvent<typeof jobCategory>) => {
+    const {
+      target: { value },
+    } = event;
+    setJobCategory(
+      // On autofill we get a stringified value.
+      typeof value === 'string' ? value.split(',') : value
+    );
+  };
   const onSubmit = (data) => {
-    props.onSave(data, props?.job?.id);
+    const dataWithCategories = {
+      data,
+      jobCategory,
+    };
+    props.onSave(dataWithCategories, props?.job?.id);
   };
 
   return (
@@ -191,7 +210,7 @@ const JobForm = (props) => {
           name="additionalAddressInformation"
           className="rw-field-error"
         />
-
+        <JobCategoryCell handleChange={handleChange} value={jobCategory} />
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">
             Save
