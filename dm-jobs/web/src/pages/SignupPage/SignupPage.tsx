@@ -29,8 +29,13 @@ const SignupPage = () => {
     emailRef.current.focus();
   }, []);
 
-  const onSubmit = async (data) => {
-    const response = await signUp({ ...data });
+  const passwordRef = useRef<HTMLInputElement>();
+
+  const onSubmit = async () => {
+    const response = await signUp({
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    });
 
     if (response.message) {
       toast(response.message);
@@ -60,12 +65,7 @@ const SignupPage = () => {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box
-            component="form"
-            onSubmit={onSubmit}
-            sx={{ mt: 3 }}
-            className="rw-form-wrapper"
-          >
+          <Box component="div" sx={{ mt: 3 }} className="rw-form-wrapper">
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
@@ -75,6 +75,7 @@ const SignupPage = () => {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  inputRef={emailRef}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -86,7 +87,7 @@ const SignupPage = () => {
                   type="password"
                   id="password"
                   autoComplete="new-password"
-                  ref={emailRef}
+                  inputRef={passwordRef}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -95,6 +96,7 @@ const SignupPage = () => {
                   fullWidth
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
+                  onClick={onSubmit}
                 >
                   Sign Up
                 </Button>

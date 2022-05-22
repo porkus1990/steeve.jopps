@@ -1,13 +1,14 @@
 import { Link, navigate, routes } from '@redwoodjs/router';
 import { useRef } from 'react';
 import {
-  Form,
-  Label,
+  Button,
+  Box,
+  Container,
+  CssBaseline,
+  Grid,
   TextField,
-  PasswordField,
-  Submit,
-  FieldError,
-} from '@redwoodjs/forms';
+  Typography,
+} from '@mui/material';
 import { useAuth } from '@redwoodjs/auth';
 import { MetaTags } from '@redwoodjs/web';
 import { toast, Toaster } from '@redwoodjs/web/toast';
@@ -27,9 +28,14 @@ const LoginPage = () => {
     emailRef.current.focus();
   }, []);
 
-  const onSubmit = async (data) => {
-    const response = await logIn({ ...data });
+  const passwordRef = useRef<HTMLInputElement>();
 
+  const onSubmit = async () => {
+
+    const response = await logIn({
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    });
     if (response.message) {
       toast(response.message);
     } else if (response.error) {
@@ -43,85 +49,74 @@ const LoginPage = () => {
     <>
       <MetaTags title="Login" />
 
-      <main className="rw-main">
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
         <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
-        <div className="rw-scaffold rw-login-container">
-          <div className="rw-segment">
-            <header className="rw-segment-header">
-              <h2 className="rw-heading rw-heading-secondary">Login</h2>
-            </header>
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <Box component="div" sx={{ mt: 3 }} className="rw-form-wrapper">
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  inputRef={emailRef}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                  inputRef={passwordRef}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <div className="rw-forgot-link">
+                  <Link to={routes.forgotPassword()} className="rw-forgot-link">
+                    Forgot Password?
+                  </Link>
+                </div>
+              </Grid>
 
-            <div className="rw-segment-main">
-              <div className="rw-form-wrapper">
-                <Form onSubmit={onSubmit} className="rw-form-wrapper">
-                  <Label
-                    name="email"
-                    className="rw-label"
-                    errorClassName="rw-label rw-label-error"
-                  >
-                    email
-                  </Label>
-                  <TextField
-                    name="email"
-                    className="rw-input"
-                    errorClassName="rw-input rw-input-error"
-                    ref={emailRef}
-                    validation={{
-                      required: {
-                        value: true,
-                        message: 'email is required',
-                      },
-                    }}
-                  />
-
-                  <FieldError name="email" className="rw-field-error" />
-
-                  <Label
-                    name="password"
-                    className="rw-label"
-                    errorClassName="rw-label rw-label-error"
-                  >
-                    Password
-                  </Label>
-                  <PasswordField
-                    name="password"
-                    className="rw-input"
-                    errorClassName="rw-input rw-input-error"
-                    autoComplete="current-password"
-                    validation={{
-                      required: {
-                        value: true,
-                        message: 'Password is required',
-                      },
-                    }}
-                  />
-
-                  <div className="rw-forgot-link">
-                    <Link
-                      to={routes.forgotPassword()}
-                      className="rw-forgot-link"
-                    >
-                      Forgot Password?
-                    </Link>
-                  </div>
-
-                  <FieldError name="password" className="rw-field-error" />
-
-                  <div className="rw-button-group">
-                    <Submit className="rw-button rw-button-blue">Login</Submit>
-                  </div>
-                </Form>
-              </div>
-            </div>
-          </div>
+              <Grid item xs={12}>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                  onClick={onSubmit}
+                >
+                  Sign in
+                </Button>
+              </Grid>
+            </Grid>
+          </Box>
           <div className="rw-login-link">
             <span>Don&apos;t have an account?</span>{' '}
             <Link to={routes.signup()} className="rw-link">
               Sign up!
             </Link>
           </div>
-        </div>
-      </main>
+        </Box>
+      </Container>
     </>
   );
 };
