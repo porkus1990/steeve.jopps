@@ -57,15 +57,6 @@ const HomePage = () => {
       </Box>
       <p />
       <Map />
-      {isAuthenticated ? (
-        <div>
-          <button type="button" onClick={logOut}>
-            Logout
-          </button>
-        </div>
-      ) : (
-        <div>not logged in</div>
-      )}
     </>
   );
 };
