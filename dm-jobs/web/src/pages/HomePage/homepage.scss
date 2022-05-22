@@ -1,8 +1,10 @@
-.homepage__login {
+.homepage {
   color: white;
   text-decoration: none;
 
-  &:visited {
-    color: white;
+  &___login {
+    &:visited {
+      color: white;
+    }
   }
 }
