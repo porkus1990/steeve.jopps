@@ -24,7 +24,11 @@ export const Failure = ({
   <div style={{ color: 'red' }}>Error: {error.message}</div>
 );
 
-export const Success = ({ jobTags, handleClick, tags }: CellSuccessProps<any>) => {
+export const Success = ({
+  jobTags,
+  handleClick,
+  tags,
+}: CellSuccessProps<any>) => {
   const { t } = useTranslation();
 
   return (
@@ -47,7 +51,7 @@ export const Success = ({ jobTags, handleClick, tags }: CellSuccessProps<any>) =
             <Tooltip title={tag.description}>
               <Chip
                 label={t(tag.name)}
-                color={tags.includes(tag.id) ? 'primary' : 'secondary'}
+                color={tags.includes(tag.id) ? 'success' : 'primary'}
                 onClick={() => handleClick(tag.id)}
               />
             </Tooltip>
