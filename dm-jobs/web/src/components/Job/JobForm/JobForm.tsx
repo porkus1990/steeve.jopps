@@ -47,6 +47,7 @@ const JobForm = (props) => {
     const dataWithCategories = {
       data,
       jobCategory,
+      jobTag: jobTags,
     };
     props.onSave(dataWithCategories, props?.job?.id);
   };

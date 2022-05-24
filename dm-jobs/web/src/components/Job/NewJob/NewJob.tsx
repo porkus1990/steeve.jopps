@@ -19,6 +19,14 @@ const CREATE_JOB_CATEGORY_CONNECTION = gql`
   }
 `;
 
+const CREATE_JOB_TAG_CONNECTION = gql`
+  mutation CreateJobTagMutation($input: CreateJobTagsOnJobInput!) {
+    createJobTagsOnJob(input: $input) {
+      id
+    }
+  }
+`;
+
 const NewJob = () => {
   const [createJob, { loading, error }] = useMutation(CREATE_JOB_MUTATION, {
     onCompleted: () => {
@@ -33,6 +41,8 @@ const NewJob = () => {
     CREATE_JOB_CATEGORY_CONNECTION
   );
 
+  const [createJobTagsOnJob] = useMutation(CREATE_JOB_TAG_CONNECTION);
+
   const onSave = async (input) => {
     const { data: newJob } = await createJob({
       variables: { input: input.data },
@@ -46,6 +56,19 @@ const NewJob = () => {
           input: {
             jobId: newJob.createJob.id,
             categoryId: category,
+          },
+        },
+      });
+    });
+
+    const { jobTag } = input;
+
+    jobTag.forEach(async (tag) => {
+      await createJobTagsOnJob({
+        variables: {
+          input: {
+            jobId: newJob.createJob.id,
+            jobTagId: tag,
           },
         },
       });

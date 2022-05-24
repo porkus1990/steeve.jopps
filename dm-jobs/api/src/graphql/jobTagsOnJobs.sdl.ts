@@ -16,7 +16,6 @@ export const schema = gql`
   input CreateJobTagsOnJobInput {
     jobId: Int!
     jobTagId: Int!
-    assigendAt: DateTime!
   }
 
   input UpdateJobTagsOnJobInput {
