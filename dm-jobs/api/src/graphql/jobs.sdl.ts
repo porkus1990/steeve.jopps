@@ -12,6 +12,7 @@ export const schema = gql`
     timeout: DateTime
     additionalAddressInformation: String
     categories: [JobCategoriesOnJob]!
+    tags: [JobTagsOnJob]!
   }
 
   type Query {

@@ -24,7 +24,7 @@ describe('jobs', () => {
     const result = await createJob({
       input: {
         title: 'String',
-        price: 3669689,
+        price: 341302,
         longitude: 'String',
         latitude: 'String',
         threeWords: 'String',
@@ -33,7 +33,7 @@ describe('jobs', () => {
     });
 
     expect(result.title).toEqual('String');
-    expect(result.price).toEqual(3669689);
+    expect(result.price).toEqual(341302);
     expect(result.longitude).toEqual('String');
     expect(result.latitude).toEqual('String');
     expect(result.threeWords).toEqual('String');
