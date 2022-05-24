@@ -13,8 +13,8 @@ import { useState } from 'react';
 
 import { SelectChangeEvent } from '@mui/material';
 
-import JobCategoryCell from 'src/components/JobCategoryCell/JobCategoryCell';
-import JobTagCell from 'src/components/JobTagCell/JobTagCell';
+import JobCategory from 'src/components/JobCategory/JobCategory';
+import JobTag from 'src/components/JobTag/JobTag';
 
 const formatDatetime = (value) => {
   if (value) {
@@ -223,8 +223,8 @@ const JobForm = (props) => {
           name="additionalAddressInformation"
           className="rw-field-error"
         />
-        <JobCategoryCell handleChange={handleChange} value={jobCategory} />
-        <JobTagCell handleClick={handleTagClick} tags={jobTags} />
+        <JobCategory handleChange={handleChange} value={jobCategory} />
+        <JobTag handleClick={handleTagClick} tags={jobTags} />
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">
             Save

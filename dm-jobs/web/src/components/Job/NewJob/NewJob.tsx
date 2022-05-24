@@ -11,22 +11,6 @@ const CREATE_JOB_MUTATION = gql`
   }
 `;
 
-const CREATE_JOB_CATEGORY_CONNECTION = gql`
-  mutation CreateJobCategoryMutation($input: CreateJobCategoriesOnJobInput!) {
-    createJobCategoriesOnJob(input: $input) {
-      id
-    }
-  }
-`;
-
-const CREATE_JOB_TAG_CONNECTION = gql`
-  mutation CreateJobTagMutation($input: CreateJobTagsOnJobInput!) {
-    createJobTagsOnJob(input: $input) {
-      id
-    }
-  }
-`;
-
 const NewJob = () => {
   const [createJob, { loading, error }] = useMutation(CREATE_JOB_MUTATION, {
     onCompleted: () => {
@@ -37,42 +21,42 @@ const NewJob = () => {
       toast.error(error.message);
     },
   });
-  const [createJobCategoriesOnJob] = useMutation(
-    CREATE_JOB_CATEGORY_CONNECTION
-  );
+  //const [createJobCategoriesOnJob] = useMutation(
+  //  CREATE_JOB_CATEGORY_CONNECTION
+  //);
 
-  const [createJobTagsOnJob] = useMutation(CREATE_JOB_TAG_CONNECTION);
+  // const [createJobTagsOnJob] = useMutation(CREATE_JOB_TAG_CONNECTION);
 
   const onSave = async (input) => {
     const { data: newJob } = await createJob({
       variables: { input: input.data },
     });
 
-    const { jobCategory } = input;
-
-    jobCategory.forEach(async (category) => {
-      await createJobCategoriesOnJob({
-        variables: {
-          input: {
-            jobId: newJob.createJob.id,
-            categoryId: category,
-          },
-        },
-      });
-    });
-
-    const { jobTag } = input;
-
-    jobTag.forEach(async (tag) => {
-      await createJobTagsOnJob({
-        variables: {
-          input: {
-            jobId: newJob.createJob.id,
-            jobTagId: tag,
-          },
-        },
-      });
-    });
+    //const { jobCategory } = input;
+    //
+    //jobCategory.forEach(async (category) => {
+    //  await createJobCategoriesOnJob({
+    //    variables: {
+    //      input: {
+    //        jobId: newJob.createJob.id,
+    //        categoryId: category,
+    //      },
+    //    },
+    //  });
+    //});
+    //
+    //const { jobTag } = input;
+    //
+    //jobTag.forEach(async (tag) => {
+    //  await createJobTagsOnJob({
+    //    variables: {
+    //      input: {
+    //        jobId: newJob.createJob.id,
+    //        jobTagId: tag,
+    //      },
+    //    },
+    //  });
+    //});
   };
 
   return (

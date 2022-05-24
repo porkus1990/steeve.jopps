@@ -11,8 +11,17 @@ export const schema = gql`
     status: String!
     timeout: DateTime
     additionalAddressInformation: String
-    categories: [JobCategoriesOnJob]!
-    tags: [JobTagsOnJob]!
+    categories: [JobCategory]!
+    tags: [JobTag]!
+  }
+
+  enum JobCategory {
+    buying
+    pawn
+  }
+  enum JobTag {
+    car
+    extra_tip
   }
 
   type Query {
@@ -30,6 +39,8 @@ export const schema = gql`
     status: String!
     timeout: DateTime
     additionalAddressInformation: String
+    categories: [JobCategory]!
+    tags: [JobTag]!
   }
 
   input UpdateJobInput {
@@ -42,6 +53,8 @@ export const schema = gql`
     status: String
     timeout: DateTime
     additionalAddressInformation: String
+    categories: [JobCategory]!
+    tags: [JobTag]!
   }
 
   type Mutation {
