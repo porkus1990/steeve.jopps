@@ -24,36 +24,36 @@ export const Failure = ({
   <div style={{ color: 'red' }}>Error: {error.message}</div>
 );
 
-export const Success = ({
-  jobTags,
-}: CellSuccessProps<FindJobTagQueryVariables>) => {
+export const Success = ({ jobTags, handleClick, tags }: CellSuccessProps<any>) => {
   const { t } = useTranslation();
 
   return (
     <div>
       <h2>Tags</h2>
-      <p>
-        <Paper
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-            listStyle: 'none',
-            width: 'fit-content',
-            p: 0.5,
-            m: 0,
-          }}
-          component="ul"
-        >
-          {jobTags.map((tag) => (
-            <ListItem key={tag.id} style={{ width: 'fit-content' }}>
-              <Tooltip title={tag.description}>
-                <Chip label={t(tag.name)} color="primary" />
-              </Tooltip>
-            </ListItem>
-          ))}
-        </Paper>
-      </p>
+      <Paper
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          flexWrap: 'wrap',
+          listStyle: 'none',
+          width: 'fit-content',
+          p: 0.5,
+          m: 0,
+        }}
+        component="ul"
+      >
+        {jobTags.map((tag) => (
+          <ListItem key={tag.id} style={{ width: 'fit-content' }}>
+            <Tooltip title={tag.description}>
+              <Chip
+                label={t(tag.name)}
+                color={tags.includes(tag.id) ? 'primary' : 'secondary'}
+                onClick={() => handleClick(tag.id)}
+              />
+            </Tooltip>
+          </ListItem>
+        ))}
+      </Paper>
     </div>
   );
 };
