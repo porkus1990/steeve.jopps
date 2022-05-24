@@ -1,5 +1,7 @@
 {
   "buying": "Einkaufen",
   "categorySelect": "Kategorie",
-  "pawn": "Pfand"
+  "pawn": "Pfand",
+  "car": "Auto benötigt",
+  "extra_tip": "extra Tringeld"
 }

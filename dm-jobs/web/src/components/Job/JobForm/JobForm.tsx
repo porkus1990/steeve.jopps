@@ -12,6 +12,7 @@ import {
 import { SelectChangeEvent } from '@mui/material';
 
 import JobCategoryCell from 'src/components/JobCategoryCell/JobCategoryCell';
+import JobTagCell from 'src/components/JobTagCell/JobTagCell';
 
 const formatDatetime = (value) => {
   if (value) {
@@ -211,6 +212,7 @@ const JobForm = (props) => {
           className="rw-field-error"
         />
         <JobCategoryCell handleChange={handleChange} value={jobCategory} />
+        <JobTagCell />
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">
             Save
