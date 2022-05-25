@@ -27,7 +27,8 @@ model Job {
   status                       String
   timeout                      DateTime?
   additionalAddressInformation String?
-  categories                   JobCategoriesOnJob[]
+  categories                   JobCategory[]
+  tags                         JobTag[]
 }
 
 model JobUser {
@@ -36,19 +37,12 @@ model JobUser {
   userId String
 }
 
-model JobCategory {
-  id                           Int  @id @default(autoincrement())
-  type String
-  jobs JobCategoriesOnJob[]
+enum JobCategory {
+  buying
+  pawn
 }
 
-model JobCategoriesOnJob {
-  id                           Int  @id @default(autoincrement())
-  job Job @relation(fields: [jobId], references: [id])
-  jobId Int
-  category JobCategory @relation(fields: [categoryId], references: [id])
-  categoryId Int
-  assigendAt DateTime @default(now())
-
-  @@unique([jobId, categoryId])
+enum JobTag {
+  car
+  extra_tip
 }

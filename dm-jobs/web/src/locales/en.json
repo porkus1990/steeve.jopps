@@ -1,5 +1,7 @@
 {
   "buying": "shopping",
   "categorySelect": "Category",
-  "pawn": "pawn"
+  "pawn": "pawn",
+  "car": "car required",
+  "extra_tip": "extra tip"
 }

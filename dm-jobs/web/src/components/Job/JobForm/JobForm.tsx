@@ -9,9 +9,12 @@ import {
   Submit,
 } from '@redwoodjs/forms';
 
+import { useState } from 'react';
+
 import { SelectChangeEvent } from '@mui/material';
 
-import JobCategoryCell from 'src/components/JobCategoryCell/JobCategoryCell';
+import JobCategory from 'src/components/JobCategory/JobCategory';
+import JobTag from 'src/components/JobTag/JobTag';
 
 const formatDatetime = (value) => {
   if (value) {
@@ -20,7 +23,16 @@ const formatDatetime = (value) => {
 };
 
 const JobForm = (props) => {
-  const [jobCategory, setJobCategory] = React.useState<string[]>([]);
+  const [jobCategory, setJobCategory] = useState<string[]>([]);
+  const [jobTags, updateTags] = useState<number[]>([]);
+
+  const handleTagClick = (id) => {
+    if (!jobTags.includes(id)) {
+      updateTags([...jobTags, id]);
+    } else {
+      updateTags(jobTags.filter((t) => t !== id));
+    }
+  };
 
   const handleChange = (event: SelectChangeEvent<typeof jobCategory>) => {
     const {
@@ -35,6 +47,7 @@ const JobForm = (props) => {
     const dataWithCategories = {
       data,
       jobCategory,
+      jobTag: jobTags,
     };
     props.onSave(dataWithCategories, props?.job?.id);
   };
@@ -210,7 +223,8 @@ const JobForm = (props) => {
           name="additionalAddressInformation"
           className="rw-field-error"
         />
-        <JobCategoryCell handleChange={handleChange} value={jobCategory} />
+        <JobCategory handleChange={handleChange} value={jobCategory} />
+        <JobTag handleClick={handleTagClick} tags={jobTags} />
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">
             Save

@@ -5,7 +5,7 @@ export const standard = defineScenario<Prisma.JobCreateArgs>({
     one: {
       data: {
         title: 'String',
-        price: 5355560,
+        price: 7319315,
         longitude: 'String',
         latitude: 'String',
         threeWords: 'String',
@@ -15,7 +15,7 @@ export const standard = defineScenario<Prisma.JobCreateArgs>({
     two: {
       data: {
         title: 'String',
-        price: 8940464,
+        price: 6457299,
         longitude: 'String',
         latitude: 'String',
         threeWords: 'String',
