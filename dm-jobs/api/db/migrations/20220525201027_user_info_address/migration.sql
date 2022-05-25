@@ -10,7 +10,7 @@ CREATE TABLE "UserInformation" (
 );
 
 -- CreateTable
-CREATE TABLE "UserAdress" (
+CREATE TABLE "UserAddress" (
     "id" SERIAL NOT NULL,
     "town" TEXT NOT NULL,
     "street" TEXT NOT NULL,
@@ -18,5 +18,5 @@ CREATE TABLE "UserAdress" (
     "zipCode" TEXT NOT NULL,
     "userId" INTEGER NOT NULL,
 
-    CONSTRAINT "UserAdress_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "UserAddress_pkey" PRIMARY KEY ("id")
 );

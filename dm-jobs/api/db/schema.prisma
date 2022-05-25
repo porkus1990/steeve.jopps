@@ -23,7 +23,7 @@ model UserInformation {
   createdAt  DateTime @default(now())
 }
 
-model UserAdress {
+model UserAddress {
   id      Int  @id @default(autoincrement())
   town    String
   street  String
