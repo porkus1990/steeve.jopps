@@ -1,4 +1,5 @@
 import { Fragment, useState } from 'react';
+import { Link, routes } from '@redwoodjs/router';
 import { useAuth } from '@redwoodjs/auth';
 import {
   Avatar,
@@ -72,14 +73,18 @@ const TopMenu = () => {
           <Avatar /> Profile
         </MenuItem>
         <MenuItem>
-          <Avatar /> My account
+          <Link to={routes.userAccount()}>
+            <Avatar /> My account
+          </Link>
         </MenuItem>
         <Divider />
         <MenuItem>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          Settings
+          <Link to={routes.userSettings()}>
+            <ListItemIcon>
+              <Settings fontSize="small" />
+            </ListItemIcon>
+            Settings
+          </Link>
         </MenuItem>
         <MenuItem onClick={logOut}>
           <ListItemIcon>

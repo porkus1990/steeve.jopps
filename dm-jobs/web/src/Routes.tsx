@@ -15,6 +15,8 @@ const Routes = () => {
           <Route path="/jobs/{id:Int}" page={JobJobPage} name="job" />
           <Route path="/jobs" page={JobJobsPage} name="jobs" />
           <Route path="/user/jobs" page={User} name="jobsPage" />
+          <Route path="/user/account" page={UserAccountPage} name="userAccount" />
+          <Route path="/user/settings" page={UserSettingsPage} name="userSettings" />
         </Private>
         <Route path="/" page={HomePage} name="home" />
         <Route notfound page={NotFoundPage} />
