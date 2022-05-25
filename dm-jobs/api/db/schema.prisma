@@ -15,6 +15,23 @@ model RW_DataMigration {
   finishedAt DateTime
 }
 
+model UserInformation {
+  id         Int  @id @default(autoincrement())
+  userAuthId String
+  firstName  String
+  lastName   String
+  createdAt  DateTime @default(now())
+}
+
+model UserAdress {
+  id      Int  @id @default(autoincrement())
+  town    String
+  street  String
+  number  String
+  zipCode String
+  userId  Int
+}
+
 model Job {
   id                           Int  @id @default(autoincrement())
   createdAt                    DateTime @default(now())
