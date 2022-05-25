@@ -72,20 +72,20 @@ const TopMenu = () => {
         <MenuItem>
           <Avatar /> Profile
         </MenuItem>
-        <MenuItem>
-          <Link to={routes.userAccount()}>
+        <Link to={routes.userAccount()}>
+          <MenuItem>
             <Avatar /> My account
-          </Link>
-        </MenuItem>
+          </MenuItem>
+        </Link>
         <Divider />
-        <MenuItem>
-          <Link to={routes.userSettings()}>
+        <Link to={routes.userSettings()}>
+          <MenuItem>
             <ListItemIcon>
               <Settings fontSize="small" />
             </ListItemIcon>
             Settings
-          </Link>
-        </MenuItem>
+          </MenuItem>
+        </Link>
         <MenuItem onClick={logOut}>
           <ListItemIcon>
             <Logout fontSize="small" />
