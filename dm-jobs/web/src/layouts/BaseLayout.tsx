@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { Link, routes } from '@redwoodjs/router';
 import { useAuth } from '@redwoodjs/auth';
 import { AppBar, Box, IconButton, Toolbar, Typography } from '@mui/material';
@@ -7,7 +8,7 @@ import TopMenu from '../components/User/TopMenu/TopMenu';
 const BaseLayout = ({ children }) => {
   const { isAuthenticated } = useAuth();
   return (
-    <div>
+    <Fragment>
       <header>
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">
@@ -38,7 +39,7 @@ const BaseLayout = ({ children }) => {
         </Box>
       </header>
       <main className="rw-main">{children}</main>
-    </div>
+    </Fragment>
   );
 };
 
