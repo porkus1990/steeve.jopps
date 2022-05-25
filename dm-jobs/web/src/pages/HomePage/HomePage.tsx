@@ -2,14 +2,15 @@ import { Link, routes } from '@redwoodjs/router';
 import { MetaTags } from '@redwoodjs/web';
 import { useAuth } from '@redwoodjs/auth';
 import {
+  Avatar,
   AppBar,
-  Button,
   Box,
   IconButton,
   Toolbar,
   Typography,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import TopMenu from '../../components/User/TopMenu/TopMenu';
 import { Map } from '../../components/Map';
 import './homepage.scss';
 
@@ -35,16 +36,7 @@ const HomePage = () => {
               Steeve.jopps
             </Typography>
             {isAuthenticated ? (
-              <Button onClick={logOut}>
-                <Typography
-                  variant="h6"
-                  component="div"
-                  sx={{ flexGrow: 1 }}
-                  className="homepage homepage__logout"
-                >
-                  Logout
-                </Typography>
-              </Button>
+              <TopMenu />
             ) : (
               <Link to={routes.login()} className="homepage homepage__login">
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
