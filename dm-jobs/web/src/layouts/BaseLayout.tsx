@@ -1,13 +1,6 @@
 import { Link, routes } from '@redwoodjs/router';
 import { useAuth } from '@redwoodjs/auth';
-import {
-  Avatar,
-  AppBar,
-  Box,
-  IconButton,
-  Toolbar,
-  Typography,
-} from '@mui/material';
+import { AppBar, Box, IconButton, Toolbar, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import TopMenu from '../components/User/TopMenu/TopMenu';
 
