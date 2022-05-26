@@ -26,12 +26,12 @@ model UserInformation {
 }
 
 model UserAddress {
-  id      Int  @id @default(autoincrement())
-  town    String
-  street  String
-  number  String
-  zipCode String
-  userId  Int
+  id         Int  @id @default(autoincrement())
+  town       String
+  street     String
+  number     String
+  zipCode    String
+  userAuthId String
 }
 
 model Job {
