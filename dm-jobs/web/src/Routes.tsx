@@ -14,6 +14,7 @@ const Routes = () => {
           <Route path="/jobs/{id:Int}/edit" page={JobEditJobPage} name="editJob" />
           <Route path="/jobs/{id:Int}" page={JobJobPage} name="job" />
           <Route path="/jobs" page={JobJobsPage} name="jobs" />
+          <Route path="/user/profile" page={UserProfilePage} name="userProfile" />
           <Route path="/user/jobs" page={User} name="jobsPage" />
           <Route path="/user/account" page={UserAccountPage} name="userAccount" />
           <Route path="/user/settings" page={UserSettingsPage} name="userSettings" />
