@@ -2,6 +2,7 @@ import { MetaTags } from '@redwoodjs/web';
 import { useLazyQuery } from '@apollo/client';
 import { useAuth } from '@redwoodjs/auth';
 import {
+  Button,
   CssBaseline,
   Paper,
   Table,
@@ -49,7 +50,9 @@ const UserProfilePage = () => {
     setAddresses(data.userAddresses);
   }
 
-  console.log(data);
+  const edit = (id) => {
+    console.log(id);
+  };
 
   return (
     <>
@@ -67,6 +70,7 @@ const UserProfilePage = () => {
               <TableCell>Street</TableCell>
               <TableCell>Number</TableCell>
               <TableCell>Zipcode</TableCell>
+              <TableCell>Edit</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -81,6 +85,9 @@ const UserProfilePage = () => {
                 <TableCell>{address.street}</TableCell>
                 <TableCell>{address.number}</TableCell>
                 <TableCell>{address.zipCode}</TableCell>
+                <TableCell>
+                  <Button onClick={() => edit(address.id)}>Edit</Button>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
