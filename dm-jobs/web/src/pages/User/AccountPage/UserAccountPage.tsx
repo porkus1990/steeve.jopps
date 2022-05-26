@@ -72,6 +72,10 @@ const UserAccountPage = () => {
     const firstName = firstNameRef.current.value;
     const lastName = lastNameRef.current.value;
 
+    if (!firstName || !lastName) {
+      console.error('both names required');
+    }
+
     const resp = await createUserInfo({
       variables: {
         input: {
@@ -140,6 +144,9 @@ const UserAccountPage = () => {
               <Grid item xs={12}>
                 <TextField
                   required
+                  disabled={
+                    userInformationData?.data?.userInformation?.firstName
+                  }
                   fullWidth
                   id="firstName"
                   label="Firstname"
@@ -153,6 +160,9 @@ const UserAccountPage = () => {
               <Grid item xs={12}>
                 <TextField
                   required
+                  disabled={
+                    userInformationData?.data?.userInformation?.lastName ?? ''
+                  }
                   fullWidth
                   id="lastName"
                   label="Lastname"
@@ -166,6 +176,10 @@ const UserAccountPage = () => {
               <Grid item xs={12}>
                 <Button
                   type="button"
+                  disabled={
+                    userInformationData?.data?.userInformation?.firstname ||
+                    userInformationData?.data?.userInformation?.lastName
+                  }
                   fullWidth
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
