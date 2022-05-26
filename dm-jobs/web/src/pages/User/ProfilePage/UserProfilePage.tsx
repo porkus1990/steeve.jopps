@@ -1,15 +1,26 @@
 import { MetaTags } from '@redwoodjs/web';
 import { useLazyQuery } from '@apollo/client';
 import { useAuth } from '@redwoodjs/auth';
-import { Box, Container, CssBaseline, Grid, Typography } from '@mui/material';
+import {
+  CssBaseline,
+  Paper,
+  Table,
+  TableHead,
+  TableCell,
+  TableContainer,
+  TableRow,
+  Typography,
+  TableBody,
+} from '@mui/material';
 import { useEffect, useState } from 'react';
 
 const GET_USER_ADDRESSES_QUERY = gql`
-  query userAddressesByUserAuth($userAuthId: String!) {
+  query userAddressesByUserAuthProfile($userAuthId: String!) {
     userAddresses: userAddressesByUserAuth(userAuthId: $userAuthId) {
       id
       number
       street
+      town
       zipCode
     }
   }
@@ -45,16 +56,36 @@ const UserProfilePage = () => {
       <MetaTags title="Account overview" />
       <CssBaseline />
 
-      <Container component="main" maxWidth="xs">
-        <Typography component="h1" variant="h5">
-          Account overview
-        </Typography>
-        {addresses.map((address) => (
-          <div key={address.id}>
-            {address.street} {address.number} {address.zipCode}
-          </div>
-        ))}
-      </Container>
+      <Typography component="h1" variant="h5">
+        Account overview
+      </Typography>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 600 }} size="medium">
+          <TableHead>
+            <TableRow>
+              <TableCell>Town</TableCell>
+              <TableCell>Street</TableCell>
+              <TableCell>Number</TableCell>
+              <TableCell>Zipcode</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {addresses.map((address) => (
+              <TableRow
+                key={address.id}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {address.town}
+                </TableCell>
+                <TableCell>{address.street}</TableCell>
+                <TableCell>{address.number}</TableCell>
+                <TableCell>{address.zipCode}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </>
   );
 };
