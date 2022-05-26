@@ -43,6 +43,14 @@ const CREATE_USER_ADDRESS_MUTATION = gql`
   }
 `;
 
+const GET_USER_ADDRESSES_QUERY = gql`
+  query userAddressesByUserAuth($userAuthId: String!) {
+    userAddresses: userAddressesByUserAuth(userAuthId: $userAuthId) {
+      id
+    }
+  }
+`;
+
 const UserAccountPage = () => {
   const { currentUser } = useAuth();
   const currentUserId = currentUser.sub;
@@ -52,6 +60,14 @@ const UserAccountPage = () => {
       userAuthId: currentUserId,
     },
   });
+
+  const userAddresses = useQuery(GET_USER_ADDRESSES_QUERY, {
+    variables: {
+      userAuthId: currentUserId,
+    },
+  });
+
+  console.log(userAddresses);
 
   const firstNameRef = useRef<HTMLInputElement>();
   const lastNameRef = useRef<HTMLInputElement>();
@@ -146,6 +162,8 @@ const UserAccountPage = () => {
                   required
                   disabled={
                     userInformationData?.data?.userInformation?.firstName
+                      ? true
+                      : true
                   }
                   fullWidth
                   id="firstName"
@@ -161,7 +179,9 @@ const UserAccountPage = () => {
                 <TextField
                   required
                   disabled={
-                    userInformationData?.data?.userInformation?.lastName ?? ''
+                    userInformationData?.data?.userInformation?.lastName
+                      ? true
+                      : false
                   }
                   fullWidth
                   id="lastName"

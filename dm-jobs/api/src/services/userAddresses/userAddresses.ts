@@ -5,6 +5,13 @@ export const userAddresses: QueryResolvers['userAddresses'] = () => {
   return db.userAddress.findMany();
 };
 
+export const userAddressesByUserAuth: QueryResolvers['userAddressesByUserAuth'] =
+  ({ userAuthId }) => {
+    return db.userAddress.findMany({
+      where: { userAuthId },
+    });
+  };
+
 export const userAddress: QueryResolvers['userAddress'] = ({ id }) => {
   return db.userAddress.findUnique({
     where: { id },

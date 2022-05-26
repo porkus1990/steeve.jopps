@@ -11,6 +11,7 @@ export const schema = gql`
   type Query {
     userAddresses: [UserAddress!]! @requireAuth
     userAddress(id: Int!): UserAddress @requireAuth
+    userAddressesByUserAuth(userAuthId: String!): [UserAddress!]! @requireAuth
   }
 
   input CreateUserAddressInput {
