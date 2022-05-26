@@ -10,6 +10,7 @@ export const schema = gql`
   type Query {
     userInformations: [UserInformation!]! @requireAuth
     userInformation(id: Int!): UserInformation @requireAuth
+    userInformationAuthId(userAuthId: String!): UserInformation @requireAuth
   }
 
   input CreateUserInformationInput {

@@ -8,17 +8,72 @@ import {
   Typography,
 } from '@mui/material';
 import { useRef } from 'react';
-import { MetaTags } from '@redwoodjs/web';
+import { MetaTags, useMutation, useQuery } from '@redwoodjs/web';
+import { useAuth } from '@redwoodjs/auth';
+
+import {
+  createUserInformation,
+  CreateUserInformationInput,
+} from 'types/graphql';
+
+const CREATE_NAME_MUTATION = gql`
+  mutation CreateUserInformation($input: CreateUserInformationInput!) {
+    createUserInformation(input: $input) {
+      id
+    }
+  }
+`;
+
+const GET_CURRENT_USER_INFO_QUERY = gql`
+  query userInfoByAuthId($userAuthId: String!) {
+    userInformation: userInformationAuthId(userAuthId: $userAuthId) {
+      id
+      firstName
+      lastName
+    }
+  }
+`;
 
 const UserAccountPage = () => {
+  const { currentUser } = useAuth();
+  const currentUserId = currentUser.sub;
+
+  const userInformationData = useQuery(GET_CURRENT_USER_INFO_QUERY, {
+    variables: {
+      userAuthId: currentUserId,
+    },
+  });
+
   const firstNameRef = useRef<HTMLInputElement>();
   const lastNameRef = useRef<HTMLInputElement>();
+
+  const [createUserInfo] =
+    useMutation<CreateUserInformationInput>(CREATE_NAME_MUTATION);
 
   const townRef = useRef<HTMLInputElement>();
   const streetRef = useRef<HTMLInputElement>();
   const zipCodeRef = useRef<HTMLInputElement>();
 
-  const onSubmit = () => {};
+  const submitBasicUserInfo = async () => {
+    const firstName = firstNameRef.current.value;
+    const lastName = lastNameRef.current.value;
+
+    const resp = await createUserInfo({
+      variables: {
+        input: {
+          firstName,
+          lastName,
+          userAuthId: currentUserId,
+        },
+      },
+    });
+
+    console.log(resp);
+  };
+
+  const onSubmit = () => {
+    submitBasicUserInfo();
+  };
   return (
     <>
       <MetaTags title="Account settings" />
@@ -46,6 +101,9 @@ const UserAccountPage = () => {
                   label="Firstname"
                   name="firstName"
                   inputRef={firstNameRef}
+                  value={
+                    userInformationData?.data?.userInformation?.firstName ?? ''
+                  }
                 />
               </Grid>
               <Grid item xs={12}>
@@ -56,6 +114,9 @@ const UserAccountPage = () => {
                   label="Lastname"
                   name="lastName"
                   inputRef={lastNameRef}
+                  value={
+                    userInformationData?.data?.userInformation?.lastName ?? ''
+                  }
                 />
               </Grid>
             </Grid>

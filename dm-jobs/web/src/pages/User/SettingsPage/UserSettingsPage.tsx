@@ -1,13 +1,26 @@
-import { Grid } from '@mui/material';
+import { Box, Container, CssBaseline, Typography } from '@mui/material';
+import { MetaTags } from '@redwoodjs/web';
 
 const UserSettingsPage = () => {
   return (
     <>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={12}>
-          User
-        </Grid>
-      </Grid>
+      <MetaTags title="User settings" />
+
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Typography component="h1" variant="h5">
+            Your settings
+          </Typography>
+        </Box>
+      </Container>
     </>
   );
 };

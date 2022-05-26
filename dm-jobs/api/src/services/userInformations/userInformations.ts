@@ -11,6 +11,14 @@ export const userInformation: QueryResolvers['userInformation'] = ({ id }) => {
   });
 };
 
+export const userInformationAuthId: QueryResolvers['userInformationAuthId'] = ({
+  userAuthId,
+}) => {
+  return db.userInformation.findUnique({
+    where: { userAuthId },
+  });
+};
+
 export const createUserInformation: MutationResolvers['createUserInformation'] =
   ({ input }) => {
     return db.userInformation.create({

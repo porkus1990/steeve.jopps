@@ -21,6 +21,8 @@ model UserInformation {
   firstName  String
   lastName   String
   createdAt  DateTime @default(now())
+
+  @@unique([userAuthId])
 }
 
 model UserAddress {
