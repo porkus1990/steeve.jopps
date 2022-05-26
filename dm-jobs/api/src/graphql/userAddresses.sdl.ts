@@ -5,7 +5,7 @@ export const schema = gql`
     street: String!
     number: String!
     zipCode: String!
-    userId: Int!
+    userAuthId: String!
   }
 
   type Query {
@@ -18,7 +18,7 @@ export const schema = gql`
     street: String!
     number: String!
     zipCode: String!
-    userId: Int!
+    userAuthId: String!
   }
 
   input UpdateUserAddressInput {
@@ -26,7 +26,7 @@ export const schema = gql`
     street: String
     number: String
     zipCode: String
-    userId: Int
+    userAuthId: String
   }
 
   type Mutation {

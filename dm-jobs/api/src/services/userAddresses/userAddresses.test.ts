@@ -36,7 +36,7 @@ describe('userAddresses', () => {
         street: 'String',
         number: 'String',
         zipCode: 'String',
-        userId: 1816043,
+        userAuthId: 'String',
       },
     });
 
@@ -44,7 +44,7 @@ describe('userAddresses', () => {
     expect(result.street).toEqual('String');
     expect(result.number).toEqual('String');
     expect(result.zipCode).toEqual('String');
-    expect(result.userId).toEqual(1816043);
+    expect(result.userAuthId).toEqual('String');
   });
 
   scenario('updates a userAddress', async (scenario: StandardScenario) => {

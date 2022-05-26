@@ -8,7 +8,7 @@ export const standard = defineScenario<Prisma.UserAddressCreateArgs>({
         street: 'String',
         number: 'String',
         zipCode: 'String',
-        userId: 1968040,
+        userAuthId: 'String',
       },
     },
     two: {
@@ -17,7 +17,7 @@ export const standard = defineScenario<Prisma.UserAddressCreateArgs>({
         street: 'String',
         number: 'String',
         zipCode: 'String',
-        userId: 429124,
+        userAuthId: 'String',
       },
     },
   },

@@ -14,6 +14,7 @@ import { useAuth } from '@redwoodjs/auth';
 import {
   createUserInformation,
   CreateUserInformationInput,
+  CreateUserAddressInput,
 } from 'types/graphql';
 
 const CREATE_NAME_MUTATION = gql`
@@ -34,6 +35,14 @@ const GET_CURRENT_USER_INFO_QUERY = gql`
   }
 `;
 
+const CREATE_USER_ADDRESS_MUTATION = gql`
+  mutation CreateUserAddress($input: CreateUserAddressInput!) {
+    createUserAddress(input: $input) {
+      id
+    }
+  }
+`;
+
 const UserAccountPage = () => {
   const { currentUser } = useAuth();
   const currentUserId = currentUser.sub;
@@ -50,8 +59,13 @@ const UserAccountPage = () => {
   const [createUserInfo] =
     useMutation<CreateUserInformationInput>(CREATE_NAME_MUTATION);
 
+  const [createUserAddress] = useMutation<CreateUserAddressInput>(
+    CREATE_USER_ADDRESS_MUTATION
+  );
+
   const townRef = useRef<HTMLInputElement>();
   const streetRef = useRef<HTMLInputElement>();
+  const numberRef = useRef<HTMLInputElement>();
   const zipCodeRef = useRef<HTMLInputElement>();
 
   const submitBasicUserInfo = async () => {
@@ -71,9 +85,39 @@ const UserAccountPage = () => {
     console.log(resp);
   };
 
-  const onSubmit = () => {
+  const submitUserAddress = async () => {
+    const street = streetRef.current.value;
+    const town = townRef.current.value;
+    const number = numberRef.current.value;
+    const zipCode = zipCodeRef.current.value;
+
+    if (!street || !town || !number || !zipCode) {
+      return;
+    }
+
+    const resp = createUserAddress({
+      variables: {
+        input: {
+          town,
+          street,
+          number,
+          zipCode,
+          userAuthId: currentUserId,
+        },
+      },
+    });
+
+    console.log(resp);
+  };
+
+  const onSubmitName = () => {
     submitBasicUserInfo();
   };
+
+  const onSubmitAddress = () => {
+    submitUserAddress();
+  };
+
   return (
     <>
       <MetaTags title="Account settings" />
@@ -119,6 +163,17 @@ const UserAccountPage = () => {
                   }
                 />
               </Grid>
+              <Grid item xs={12}>
+                <Button
+                  type="button"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                  onClick={onSubmitName}
+                >
+                  Save
+                </Button>
+              </Grid>
             </Grid>
           </Box>
         </Box>
@@ -160,25 +215,35 @@ const UserAccountPage = () => {
                 <TextField
                   required
                   fullWidth
+                  id="number"
+                  label="House number"
+                  name="number"
+                  inputRef={numberRef}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
                   id="zipCode"
                   label="Zip code"
                   name="zipCode"
                   inputRef={zipCodeRef}
                 />
               </Grid>
+              <Grid item xs={12}>
+                <Button
+                  type="button"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                  onClick={onSubmitAddress}
+                >
+                  Save
+                </Button>
+              </Grid>
             </Grid>
           </Box>
-          <Grid item xs={12}>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              onClick={onSubmit}
-            >
-              Save
-            </Button>
-          </Grid>
         </Box>
       </Container>
     </>
