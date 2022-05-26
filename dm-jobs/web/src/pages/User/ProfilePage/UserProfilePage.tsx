@@ -20,12 +20,12 @@ const UserProfilePage = () => {
   const [addresses, setAddresses] = useState([]);
   const currentUserId = currentUser.sub;
 
-  const [a, { loading, data }] = useLazyQuery(GET_USER_ADDRESSES_QUERY);
-
-  console.log(a);
+  const [loadAddresses, { loading, data }] = useLazyQuery(
+    GET_USER_ADDRESSES_QUERY
+  );
 
   useEffect(() => {
-    a({
+    loadAddresses({
       variables: {
         userAuthId: currentUserId,
       },
