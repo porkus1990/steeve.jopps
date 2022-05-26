@@ -2,7 +2,7 @@ import { MetaTags } from '@redwoodjs/web';
 import { useLazyQuery } from '@apollo/client';
 import { useAuth } from '@redwoodjs/auth';
 import { Box, Container, CssBaseline, Grid, Typography } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const GET_USER_ADDRESSES_QUERY = gql`
   query userAddressesByUserAuth($userAuthId: String!) {
@@ -10,6 +10,7 @@ const GET_USER_ADDRESSES_QUERY = gql`
       id
       number
       street
+      zipCode
     }
   }
 `;
@@ -23,6 +24,14 @@ const UserProfilePage = () => {
 
   console.log(a);
 
+  useEffect(() => {
+    a({
+      variables: {
+        userAuthId: currentUserId,
+      },
+    });
+  }, []);
+
   if (loading) return <p>Loading ...</p>;
 
   if (data && data.userAddresses && !addresses.length) {
@@ -35,17 +44,6 @@ const UserProfilePage = () => {
     <>
       <MetaTags title="Account overview" />
       <CssBaseline />
-      <button
-        onClick={() =>
-          a({
-            variables: {
-              userAuthId: currentUserId,
-            },
-          })
-        }
-      >
-        b
-      </button>
 
       <Container component="main" maxWidth="xs">
         <Typography component="h1" variant="h5">
@@ -53,7 +51,7 @@ const UserProfilePage = () => {
         </Typography>
         {addresses.map((address) => (
           <div key={address.id}>
-            {address.street} {address.number}
+            {address.street} {address.number} {address.zipCode}
           </div>
         ))}
       </Container>
