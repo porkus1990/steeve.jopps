@@ -1,7 +1,7 @@
-import UserAddresses from './UserAddresses'
+import UserAddresses from './UserAddresses';
 
 export const generated = () => {
-  return <UserAddresses />
-}
+  return <UserAddresses />;
+};
 
-export default { title: 'Components/UserAddresses' }
+export default { title: 'Components/UserAddresses' };

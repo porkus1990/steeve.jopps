@@ -1,6 +1,6 @@
-import { render } from '@redwoodjs/testing/web'
+import { render } from '@redwoodjs/testing/web';
 
-import UserAddresses from './UserAddresses'
+import UserAddresses from './UserAddresses';
 
 //   Improve this test with help from the Redwood Testing Doc:
 //    https://redwoodjs.com/docs/testing#testing-components
@@ -8,7 +8,7 @@ import UserAddresses from './UserAddresses'
 describe('UserAddresses', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<UserAddresses />)
-    }).not.toThrow()
-  })
-})
+      render(<UserAddresses />);
+    }).not.toThrow();
+  });
+});
