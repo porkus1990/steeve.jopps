@@ -1,6 +1,3 @@
-import { useMutation } from '@redwoodjs/web';
-import { toast } from '@redwoodjs/web/toast';
-import { Link, routes, navigate } from '@redwoodjs/router';
 import {
   Paper,
   Table,
@@ -10,14 +7,6 @@ import {
   TableRow,
   TableBody,
 } from '@mui/material';
-
-const DELETE_JOB_MUTATION = gql`
-  mutation DeleteJobMutation($id: Int!) {
-    deleteJob(id: $id) {
-      id
-    }
-  }
-`;
 
 const timeTag = (datetime) => {
   return (
@@ -30,22 +19,6 @@ const timeTag = (datetime) => {
 };
 
 const Job = ({ job }) => {
-  const [deleteJob] = useMutation(DELETE_JOB_MUTATION, {
-    onCompleted: () => {
-      toast.success('Job deleted');
-      navigate(routes.jobs());
-    },
-    onError: (error) => {
-      toast.error(error.message);
-    },
-  });
-
-  const onDeleteClick = (id) => {
-    if (confirm('Are you sure you want to delete job ' + id + '?')) {
-      deleteJob({ variables: { id } });
-    }
-  };
-
   return (
     <>
       <TableContainer component={Paper}>
