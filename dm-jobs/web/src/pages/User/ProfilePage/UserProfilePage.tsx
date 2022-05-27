@@ -86,16 +86,16 @@ const UserProfilePage = () => {
       <CssBaseline />
       <Box
         sx={{
+          padding: 5,
           marginTop: 8,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
         }}
       >
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" sx={{ marginBottom: 2 }}>
           Account overview
         </Typography>
-
         <UserAddressEditCell
           id={editAddressId}
           open={open}

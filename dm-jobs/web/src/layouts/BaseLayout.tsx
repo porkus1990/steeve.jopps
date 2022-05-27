@@ -38,7 +38,7 @@ const BaseLayout = ({ children }) => {
           </AppBar>
         </Box>
       </header>
-      <main className="rw-main">{children}</main>
+      <main className="main-content">{children}</main>
     </Fragment>
   );
 };
