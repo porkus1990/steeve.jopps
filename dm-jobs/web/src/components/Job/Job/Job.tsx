@@ -1,6 +1,15 @@
 import { useMutation } from '@redwoodjs/web';
 import { toast } from '@redwoodjs/web/toast';
 import { Link, routes, navigate } from '@redwoodjs/router';
+import {
+  Paper,
+  Table,
+  TableHead,
+  TableCell,
+  TableContainer,
+  TableRow,
+  TableBody,
+} from '@mui/material';
 
 const DELETE_JOB_MUTATION = gql`
   mutation DeleteJobMutation($id: Int!) {
@@ -39,76 +48,34 @@ const Job = ({ job }) => {
 
   return (
     <>
-      <div className="rw-segment">
-        <header className="rw-segment-header">
-          <h2 className="rw-heading rw-heading-secondary">
-            Job {job.id} Detail
-          </h2>
-        </header>
-        <table className="rw-table">
-          <tbody>
-            <tr>
-              <th>Id</th>
-              <td>{job.id}</td>
-            </tr>
-            <tr>
-              <th>Created at</th>
-              <td>{timeTag(job.createdAt)}</td>
-            </tr>
-            <tr>
-              <th>Title</th>
-              <td>{job.title}</td>
-            </tr>
-            <tr>
-              <th>Description</th>
-              <td>{job.description}</td>
-            </tr>
-            <tr>
-              <th>Price</th>
-              <td>{job.price}</td>
-            </tr>
-            <tr>
-              <th>Longitude</th>
-              <td>{job.longitude}</td>
-            </tr>
-            <tr>
-              <th>Latitude</th>
-              <td>{job.latitude}</td>
-            </tr>
-            <tr>
-              <th>Three words</th>
-              <td>{job.threeWords}</td>
-            </tr>
-            <tr>
-              <th>Status</th>
-              <td>{job.status}</td>
-            </tr>
-            <tr>
-              <th>Timeout</th>
-              <td>{timeTag(job.timeout)}</td>
-            </tr>
-            <tr>
-              <th>Additional address information</th>
-              <td>{job.additionalAddressInformation}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <nav className="rw-button-group">
-        <Link
-          to={routes.editJob({ id: job.id })}
-          className="rw-button rw-button-blue"
-        >
-          Edit
-        </Link>
-        <button
-          type="button"
-          className="rw-button rw-button-red"
-          onClick={() => onDeleteClick(job.id)}
-        >
-          Delete
-        </button>
-      </nav>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 600 }} size="medium">
+          <TableHead sx={{ backgroundColor: 'black' }}>
+            <TableRow>
+              <TableCell sx={{ color: 'white' }}>Title</TableCell>
+              <TableCell sx={{ color: 'white' }}>Description</TableCell>
+              <TableCell sx={{ color: 'white' }}>Price</TableCell>
+              <TableCell sx={{ color: 'white' }}>Three words</TableCell>
+              <TableCell sx={{ color: 'white' }}>Status</TableCell>
+              <TableCell sx={{ color: 'white' }}>Timeout</TableCell>
+              <TableCell sx={{ color: 'white' }}>
+                Additional address information
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell>{job.title}</TableCell>
+              <TableCell>{job.description}</TableCell>
+              <TableCell>{job.price}</TableCell>
+              <TableCell>{job.threeWords}</TableCell>
+              <TableCell>{job.status}</TableCell>
+              <TableCell>{timeTag(job.timeout)}</TableCell>
+              <TableCell>{job.additionalAddressInformation}</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
     </>
   );
 };
