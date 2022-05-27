@@ -57,6 +57,18 @@ const UserProfilePage = () => {
     setOpen(true);
   };
 
+  const handleCloseCallback = async (updatedAddress) => {
+    let updated = [...addresses];
+
+    const replaceIndex = updated.findIndex((el) => el.id === updatedAddress.id);
+
+    updated.splice(replaceIndex, 1);
+    updated.push(updatedAddress);
+    updated = updated.sort((a, b) => (a.id < b.id ? 1 : -1));
+    console.log(addresses);
+    setAddresses(updated);
+  };
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -73,6 +85,7 @@ const UserProfilePage = () => {
       <UserAddressEditCell
         id={editAddressId}
         open={open}
+        calback={handleCloseCallback}
         handleClose={handleClose}
       />
       <Typography component="h1" variant="h5">

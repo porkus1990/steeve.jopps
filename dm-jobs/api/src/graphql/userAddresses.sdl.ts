@@ -27,7 +27,6 @@ export const schema = gql`
     street: String
     number: String
     zipCode: String
-    userAuthId: String
   }
 
   type Mutation {

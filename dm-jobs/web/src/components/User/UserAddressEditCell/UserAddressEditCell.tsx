@@ -3,7 +3,11 @@ import type {
   FindUserAddressEditQueryVariables,
 } from 'types/graphql';
 import { useRef } from 'react';
-import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web';
+import {
+  CellSuccessProps,
+  CellFailureProps,
+  useMutation,
+} from '@redwoodjs/web';
 import {
   Box,
   Button,
@@ -27,6 +31,14 @@ export const QUERY = gql`
   }
 `;
 
+const UPDATE_USER_ADDRESS_QUERY = gql`
+  mutation UpdateUserAddress($id: Int!, $input: UpdateUserAddressInput!) {
+    updateUserAddress(id: $id, input: $input) {
+      id
+    }
+  }
+`;
+
 export const Loading = () => '';
 
 export const Failure = ({
@@ -38,15 +50,44 @@ export const Failure = ({
 export const Success = ({
   userAddressEdit,
   open,
+  calback,
   handleClose,
 }: CellSuccessProps<any>) => {
-  if (!userAddressEdit) {
-    return '';
-  }
   const townRef = useRef<HTMLInputElement>();
   const streetRef = useRef<HTMLInputElement>();
   const numberRef = useRef<HTMLInputElement>();
   const zipCodeRef = useRef<HTMLInputElement>();
+
+  const [updateUserAddress] = useMutation(UPDATE_USER_ADDRESS_QUERY);
+
+  if (!userAddressEdit) {
+    return '';
+  }
+
+  const onUpdate = async () => {
+    const input = {
+      town: townRef.current.value,
+      street: streetRef.current.value,
+      number: numberRef.current.value,
+      zipCode: zipCodeRef.current.value,
+    };
+
+    const resp = await updateUserAddress({
+      variables: {
+        id: userAddressEdit.id,
+        input,
+      },
+    });
+
+    console.log(resp);
+    await calback({
+      ...input,
+      id: userAddressEdit.id,
+    });
+
+    handleClose();
+  };
+
   return (
     <>
       <Dialog open={open} onClose={handleClose}>
@@ -58,7 +99,7 @@ export const Success = ({
                 <TextField
                   required
                   fullWidth
-                  value={userAddressEdit.town}
+                  defaultValue={userAddressEdit.town}
                   id="town"
                   label="Town"
                   name="town"
@@ -69,7 +110,7 @@ export const Success = ({
                 <TextField
                   required
                   fullWidth
-                  value={userAddressEdit.street}
+                  defaultValue={userAddressEdit.street}
                   id="street"
                   label="Street"
                   name="street"
@@ -80,7 +121,7 @@ export const Success = ({
                 <TextField
                   required
                   fullWidth
-                  value={userAddressEdit.number}
+                  defaultValue={userAddressEdit.number}
                   id="number"
                   label="Number"
                   name="number"
@@ -91,7 +132,7 @@ export const Success = ({
                 <TextField
                   required
                   fullWidth
-                  value={userAddressEdit.zipCode}
+                  defaultValue={userAddressEdit.zipCode}
                   id="zipCode"
                   label="Zipcode"
                   name="zipCode"
@@ -101,7 +142,7 @@ export const Success = ({
             </Grid>
           </Box>
           <DialogActions>
-            <Button onClick={() => handleClose()}>Update</Button>
+            <Button onClick={() => onUpdate()}>Update</Button>
           </DialogActions>
         </DialogContent>
       </Dialog>
