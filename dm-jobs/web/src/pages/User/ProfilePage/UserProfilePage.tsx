@@ -47,7 +47,7 @@ const UserProfilePage = () => {
     });
   }, []);
 
-  if (loading) return <p>Loading ...</p>;
+  if (loading) return <p>Loading ... replace me with a spinner</p>;
 
   if (data && data.userAddresses && !addresses.length) {
     setAddresses(data.userAddresses);

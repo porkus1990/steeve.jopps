@@ -152,10 +152,10 @@ const UserAccountPage = () => {
             alignItems: 'center',
           }}
         >
-          <Typography component="h1" variant="h5">
-            Basic account information
-          </Typography>
           <Box component="div" sx={{ mt: 3 }} className="rw-form-wrapper">
+            <Typography component="h1" variant="h5">
+              Basic account information
+            </Typography>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField

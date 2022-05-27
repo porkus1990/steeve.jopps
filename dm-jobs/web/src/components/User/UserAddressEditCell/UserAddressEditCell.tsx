@@ -27,9 +27,7 @@ export const QUERY = gql`
   }
 `;
 
-export const Loading = () => <div>Loading...</div>;
-
-export const Empty = () => <div>Empty</div>;
+export const Loading = () => '';
 
 export const Failure = ({
   error,
@@ -42,6 +40,9 @@ export const Success = ({
   open,
   handleClose,
 }: CellSuccessProps<any>) => {
+  if (!userAddressEdit) {
+    return '';
+  }
   const townRef = useRef<HTMLInputElement>();
   const streetRef = useRef<HTMLInputElement>();
   const numberRef = useRef<HTMLInputElement>();
