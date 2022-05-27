@@ -1,8 +1,8 @@
 import JobsUsers from './JobsUsers';
 
 export const QUERY = gql`
-  query jobUsersByUser($userId: String!) {
-    jobUsersByUser: jobUsersByUser(userId: $userId) {
+  query jobUsersByUser($userAuthId: String!) {
+    jobUsersByUser: jobUsersByUser(userAuthId: $userAuthId) {
       jobId
     }
   }

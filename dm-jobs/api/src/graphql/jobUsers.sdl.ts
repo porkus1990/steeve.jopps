@@ -7,7 +7,7 @@ export const schema = gql`
 
   type Query {
     jobUsers: [JobUser!]! @requireAuth
-    jobUsersByUser(userId: String!): [JobUser!]! @requireAuth
+    jobUsersByUser(userAuthId: String!): [JobUser!]! @requireAuth
     jobUser(id: Int!): JobUser @requireAuth
   }
 

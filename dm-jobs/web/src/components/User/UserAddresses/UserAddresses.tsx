@@ -7,6 +7,7 @@ import {
   TableContainer,
   TableRow,
   TableBody,
+  Typography,
 } from '@mui/material';
 import { useAuth } from '@redwoodjs/auth';
 import { useLazyQuery } from '@apollo/client';
@@ -77,6 +78,9 @@ const UserAddresses = () => {
 
   return (
     <>
+      <Typography component="h2" variant="h5" sx={{ marginBottom: 2 }}>
+        Your addresses
+      </Typography>
       <UserAddressEditCell
         id={editAddressId}
         open={open}
