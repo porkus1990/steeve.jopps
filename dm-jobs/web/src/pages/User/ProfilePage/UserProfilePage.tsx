@@ -2,7 +2,9 @@ import { MetaTags } from '@redwoodjs/web';
 import { useLazyQuery } from '@apollo/client';
 import { useAuth } from '@redwoodjs/auth';
 import {
+  Box,
   Button,
+  Container,
   CssBaseline,
   Paper,
   Table,
@@ -82,46 +84,56 @@ const UserProfilePage = () => {
     <>
       <MetaTags title="Account overview" />
       <CssBaseline />
-      <UserAddressEditCell
-        id={editAddressId}
-        open={open}
-        calback={handleCloseCallback}
-        handleClose={handleClose}
-      />
-      <Typography component="h1" variant="h5">
-        Account overview
-      </Typography>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 600 }} size="medium">
-          <TableHead>
-            <TableRow>
-              <TableCell>Town</TableCell>
-              <TableCell>Street</TableCell>
-              <TableCell>Number</TableCell>
-              <TableCell>Zipcode</TableCell>
-              <TableCell>Edit</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {addresses.map((address) => (
-              <TableRow
-                key={address.id}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {address.town}
-                </TableCell>
-                <TableCell>{address.street}</TableCell>
-                <TableCell>{address.number}</TableCell>
-                <TableCell>{address.zipCode}</TableCell>
-                <TableCell>
-                  <Button onClick={() => edit(address.id)}>Edit</Button>
-                </TableCell>
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Typography component="h1" variant="h5">
+          Account overview
+        </Typography>
+
+        <UserAddressEditCell
+          id={editAddressId}
+          open={open}
+          calback={handleCloseCallback}
+          handleClose={handleClose}
+        />
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 600 }} size="medium">
+            <TableHead sx={{ backgroundColor: 'black' }}>
+              <TableRow>
+                <TableCell sx={{ color: 'white' }}>Town</TableCell>
+                <TableCell sx={{ color: 'white' }}>Street</TableCell>
+                <TableCell sx={{ color: 'white' }}>Number</TableCell>
+                <TableCell sx={{ color: 'white' }}>Zipcode</TableCell>
+                <TableCell sx={{ color: 'white' }}></TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+            </TableHead>
+            <TableBody>
+              {addresses.map((address) => (
+                <TableRow
+                  key={address.id}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    {address.town}
+                  </TableCell>
+                  <TableCell>{address.street}</TableCell>
+                  <TableCell>{address.number}</TableCell>
+                  <TableCell>{address.zipCode}</TableCell>
+                  <TableCell>
+                    <Button onClick={() => edit(address.id)}>Edit</Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Box>
     </>
   );
 };
