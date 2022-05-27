@@ -15,12 +15,6 @@ describe('UserAddressEditCell', () => {
     }).not.toThrow();
   });
 
-  it('renders Empty successfully', async () => {
-    expect(() => {
-      render(<Empty />);
-    }).not.toThrow();
-  });
-
   it('renders Failure successfully', async () => {
     expect(() => {
       render(<Failure error={new Error('Oh no')} />);
@@ -35,7 +29,7 @@ describe('UserAddressEditCell', () => {
 
   it('renders Success successfully', async () => {
     expect(() => {
-      render(<Success userAddressEdit={standard().userAddressEdit} />);
+      render(<Success {...standard()} />);
     }).not.toThrow();
   });
 });
