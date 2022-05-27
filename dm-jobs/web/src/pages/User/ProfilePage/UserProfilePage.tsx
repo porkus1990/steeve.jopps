@@ -4,7 +4,6 @@ import { useAuth } from '@redwoodjs/auth';
 import {
   Box,
   Button,
-  Container,
   CssBaseline,
   Paper,
   Table,
@@ -99,7 +98,7 @@ const UserProfilePage = () => {
         <UserAddressEditCell
           id={editAddressId}
           open={open}
-          calback={handleCloseCallback}
+          callback={handleCloseCallback}
           handleClose={handleClose}
         />
         <TableContainer component={Paper}>

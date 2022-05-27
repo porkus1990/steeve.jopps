@@ -50,7 +50,7 @@ export const Failure = ({
 export const Success = ({
   userAddressEdit,
   open,
-  calback,
+  callback,
   handleClose,
 }: CellSuccessProps<any>) => {
   const townRef = useRef<HTMLInputElement>();
@@ -80,7 +80,7 @@ export const Success = ({
     });
 
     console.log(resp);
-    await calback({
+    await callback({
       ...input,
       id: userAddressEdit.id,
     });
