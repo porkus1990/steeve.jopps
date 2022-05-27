@@ -17,12 +17,16 @@ const UserProfilePage = () => {
         <Typography component="h1" variant="h5" sx={{ marginBottom: 2 }}>
           Account overview
         </Typography>
-        <p>
+        <Grid>
           <UserAddresses />
-        </p>
-        <p>
+        </Grid>
+        <Grid
+          sx={{
+            marginTop: 8,
+          }}
+        >
           <UserJobs />
-        </p>
+        </Grid>
       </Grid>
     </>
   );
