@@ -14,6 +14,7 @@ import {
   TableBody,
 } from '@mui/material';
 import { useEffect, useState } from 'react';
+import UserAddressEditCell from 'src/components/User/UserAddressEditCell/UserAddressEditCell';
 
 const GET_USER_ADDRESSES_QUERY = gql`
   query userAddressesByUserAuthProfile($userAuthId: String!) {
@@ -31,6 +32,8 @@ const UserProfilePage = () => {
   const { currentUser } = useAuth();
   const [addresses, setAddresses] = useState([]);
   const currentUserId = currentUser.sub;
+  const [open, setOpen] = useState(false);
+  const [editAddressId, setAddressEditId] = useState(0);
 
   const [loadAddresses, { loading, data }] = useLazyQuery(
     GET_USER_ADDRESSES_QUERY
@@ -50,15 +53,28 @@ const UserProfilePage = () => {
     setAddresses(data.userAddresses);
   }
 
-  const edit = (id) => {
-    console.log(id);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const edit = async (id) => {
+    await setAddressEditId(id);
+    handleClickOpen();
   };
 
   return (
     <>
       <MetaTags title="Account overview" />
       <CssBaseline />
-
+      <UserAddressEditCell
+        id={editAddressId}
+        open={open}
+        handleClose={handleClose}
+      />
       <Typography component="h1" variant="h5">
         Account overview
       </Typography>

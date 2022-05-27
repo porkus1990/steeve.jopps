@@ -69,9 +69,11 @@ const TopMenu = () => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem>
-          <Avatar /> Profile
-        </MenuItem>
+        <Link to={routes.userProfile()}>
+          <MenuItem>
+            <Avatar /> Profile
+          </MenuItem>
+        </Link>
         <Link to={routes.userAccount()}>
           <MenuItem>
             <Avatar /> My account
