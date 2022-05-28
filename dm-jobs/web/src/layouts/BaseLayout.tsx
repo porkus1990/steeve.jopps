@@ -16,6 +16,24 @@ import SideMenu from '../components/General/SideMenu';
 
 const drawerWidth = 240;
 
+const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
+  open?: boolean;
+}>(({ theme, open }) => ({
+  flexGrow: 1,
+  padding: 3,
+  transition: theme.transitions.create('margin', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    marginLeft: `${drawerWidth}px`,
+  }),
+}));
+
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
 }
@@ -80,7 +98,7 @@ const BaseLayout = ({ children }) => {
         </AppBar>
       </Box>
       <SideMenu open={sideMenuOpen} handleClose={handleSideMenuClose} />
-      <main className="main-content">{children}</main>
+      <Main open={sideMenuOpen}>{children}</Main>
     </Fragment>
   );
 };
