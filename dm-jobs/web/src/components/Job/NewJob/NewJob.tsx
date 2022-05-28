@@ -1,4 +1,6 @@
 import { useMutation } from '@redwoodjs/web';
+import { Typography } from '@mui/material';
+import { useAuth } from '@redwoodjs/auth';
 import { toast } from '@redwoodjs/web/toast';
 import { navigate, routes } from '@redwoodjs/router';
 import JobForm from 'src/components/Job/JobForm';
@@ -6,6 +8,14 @@ import JobForm from 'src/components/Job/JobForm';
 const CREATE_JOB_MUTATION = gql`
   mutation CreateJobMutation($input: CreateJobInput!) {
     createJob(input: $input) {
+      id
+    }
+  }
+`;
+
+const CREATE_JOB_USER_MUTATION = gql`
+  mutation CreateJobUserMutation($input: CreateJobUserInput!) {
+    createJobUser(input: $input) {
       id
     }
   }
@@ -21,53 +31,33 @@ const NewJob = () => {
       toast.error(error.message);
     },
   });
-  //const [createJobCategoriesOnJob] = useMutation(
-  //  CREATE_JOB_CATEGORY_CONNECTION
-  //);
+  const [createJobUser] = useMutation(CREATE_JOB_USER_MUTATION);
 
-  // const [createJobTagsOnJob] = useMutation(CREATE_JOB_TAG_CONNECTION);
+  const { currentUser } = useAuth();
 
   const onSave = async (input) => {
+    console.log(input);
     const { data: newJob } = await createJob({
-      variables: { input: input.data },
+      variables: { input },
     });
 
-    //const { jobCategory } = input;
-    //
-    //jobCategory.forEach(async (category) => {
-    //  await createJobCategoriesOnJob({
-    //    variables: {
-    //      input: {
-    //        jobId: newJob.createJob.id,
-    //        categoryId: category,
-    //      },
-    //    },
-    //  });
-    //});
-    //
-    //const { jobTag } = input;
-    //
-    //jobTag.forEach(async (tag) => {
-    //  await createJobTagsOnJob({
-    //    variables: {
-    //      input: {
-    //        jobId: newJob.createJob.id,
-    //        jobTagId: tag,
-    //      },
-    //    },
-    //  });
-    //});
+    createJobUser({
+      variables: {
+        input: {
+          jobId: newJob.createJob.id,
+          userId: currentUser.sub,
+        },
+      },
+    });
   };
 
   return (
-    <div className="rw-segment">
-      <header className="rw-segment-header">
-        <h2 className="rw-heading rw-heading-secondary">New Job</h2>
-      </header>
-      <div className="rw-segment-main">
-        <JobForm onSave={onSave} loading={loading} error={error} />
-      </div>
-    </div>
+    <>
+      <Typography component="h1" variant="h5">
+        New Job
+      </Typography>
+      <JobForm onSave={onSave} loading={loading} error={error} />
+    </>
   );
 };
 
