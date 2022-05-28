@@ -1,15 +1,14 @@
 import {
-  Form,
-  FormError,
-  FieldError,
-  Label,
+  Button,
+  Box,
+  Container,
+  CssBaseline,
+  Grid,
   TextField,
-  NumberField,
-  DatetimeLocalField,
-  Submit,
-} from '@redwoodjs/forms';
+  Typography,
+} from '@mui/material';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { SelectChangeEvent } from '@mui/material';
 
@@ -25,6 +24,16 @@ const formatDatetime = (value) => {
 const JobForm = (props) => {
   const [jobCategory, setJobCategory] = useState<string[]>([]);
   const [jobTags, updateTags] = useState<number[]>([]);
+
+  const titleRef = useRef<HTMLInputElement>();
+  const descriptionRef = useRef<HTMLInputElement>();
+  const priceRef = useRef<HTMLInputElement>();
+  const longitudeRef = useRef<HTMLInputElement>();
+  const latitudeRef = useRef<HTMLInputElement>();
+  const threeWordsRef = useRef<HTMLInputElement>();
+  const timeoutRef = useRef<HTMLInputElement>();
+  const statusRef = useRef<HTMLInputElement>();
+  const additionalAddressInformationRef = useRef<HTMLInputElement>();
 
   const handleTagClick = (id) => {
     if (!jobTags.includes(id)) {
@@ -43,195 +52,167 @@ const JobForm = (props) => {
       typeof value === 'string' ? value.split(',') : value
     );
   };
-  const onSubmit = (data) => {
+  const onSubmit = () => {
     const dataWithCategories = {
-      ...data,
+      title: titleRef.current.value,
+      price: parseInt(priceRef.current.value),
+      description: descriptionRef.current.value,
+      longitude: longitudeRef.current.value,
+      latitude: latitudeRef.current.value,
+      threeWords: threeWordsRef.current.value,
+      status: statusRef.current.value,
+      timeout: timeoutRef.current?.value ?? null,
+      additionalAddressInformation:
+        additionalAddressInformationRef.current.value,
       categories: [...jobCategory],
       tags: [...jobTags],
     };
+    if (!dataWithCategories.timeout) {
+      delete dataWithCategories.timeout;
+    }
     props.onSave(dataWithCategories, props?.job?.id);
   };
 
   return (
-    <div className="rw-form-wrapper">
-      <Form onSubmit={onSubmit} error={props.error}>
-        <FormError
-          error={props.error}
-          wrapperClassName="rw-form-error-wrapper"
-          titleClassName="rw-form-error-title"
-          listClassName="rw-form-error-list"
-        />
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Typography component="h1" variant="h5">
+          New job
+        </Typography>
 
-        <Label
-          name="title"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Title
-        </Label>
+        <Box component="div" sx={{ mt: 3 }} className="rw-form-wrapper">
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                name="title"
+                id="title"
+                label="Jobtitle"
+                defaultValue={props.job?.title}
+                required
+                inputRef={titleRef}
+              />
+            </Grid>
 
-        <TextField
-          name="title"
-          defaultValue={props.job?.title}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                name="description"
+                id="description"
+                label="Dscription"
+                defaultValue={props.job?.description}
+                className="rw-input"
+                inputRef={descriptionRef}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                name="price"
+                id="price"
+                label="Price"
+                defaultValue={props.job?.price}
+                required
+                inputRef={priceRef}
+              />
+            </Grid>
 
-        <FieldError name="title" className="rw-field-error" />
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                name="longitude"
+                id="longitude"
+                label="longitude"
+                defaultValue={props.job?.longitude}
+                required
+                inputRef={longitudeRef}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                name="latitude"
+                id="laitude"
+                label="laitude"
+                defaultValue={props.job?.latitude}
+                required
+                inputRef={latitudeRef}
+              />
+            </Grid>
 
-        <Label
-          name="description"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Description
-        </Label>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                name="threeWords"
+                id="threeWords"
+                label="threeWords"
+                defaultValue={props.job?.threeWords}
+                required
+                inputRef={threeWordsRef}
+              />
+            </Grid>
 
-        <TextField
-          name="description"
-          defaultValue={props.job?.description}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-        />
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                name="status"
+                id="status"
+                label="status"
+                defaultValue={props.job?.status}
+                required
+                inputRef={statusRef}
+              />
+            </Grid>
 
-        <FieldError name="description" className="rw-field-error" />
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                name="timeout"
+                id="timeout"
+                label="timeout"
+                defaultValue={formatDatetime(props.job?.timeout)}
+                inputRef={timeoutRef}
+              />
+            </Grid>
 
-        <Label
-          name="price"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Price
-        </Label>
-
-        <NumberField
-          name="price"
-          defaultValue={props.job?.price}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
-
-        <FieldError name="price" className="rw-field-error" />
-
-        <Label
-          name="longitude"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Longitude
-        </Label>
-
-        <TextField
-          name="longitude"
-          defaultValue={props.job?.longitude}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
-
-        <FieldError name="longitude" className="rw-field-error" />
-
-        <Label
-          name="latitude"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Latitude
-        </Label>
-
-        <TextField
-          name="latitude"
-          defaultValue={props.job?.latitude}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
-
-        <FieldError name="latitude" className="rw-field-error" />
-
-        <Label
-          name="threeWords"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Three words
-        </Label>
-
-        <TextField
-          name="threeWords"
-          defaultValue={props.job?.threeWords}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
-
-        <FieldError name="threeWords" className="rw-field-error" />
-
-        <Label
-          name="status"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Status
-        </Label>
-
-        <TextField
-          name="status"
-          defaultValue={props.job?.status}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
-
-        <FieldError name="status" className="rw-field-error" />
-
-        <Label
-          name="timeout"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Timeout
-        </Label>
-
-        <DatetimeLocalField
-          name="timeout"
-          defaultValue={formatDatetime(props.job?.timeout)}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-        />
-
-        <FieldError name="timeout" className="rw-field-error" />
-
-        <Label
-          name="additionalAddressInformation"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Additional address information
-        </Label>
-
-        <TextField
-          name="additionalAddressInformation"
-          defaultValue={props.job?.additionalAddressInformation}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-        />
-
-        <FieldError
-          name="additionalAddressInformation"
-          className="rw-field-error"
-        />
-        <JobCategory handleChange={handleChange} value={jobCategory} />
-        <JobTag handleClick={handleTagClick} tags={jobTags} />
-        <div className="rw-button-group">
-          <Submit disabled={props.loading} className="rw-button rw-button-blue">
-            Save
-          </Submit>
-        </div>
-      </Form>
-    </div>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                name="additionalAddressInformation"
+                id="additionalAddressInformation"
+                label="additionalAddressInformation"
+                defaultValue={props.job?.additionalAddressInformation}
+                inputRef={additionalAddressInformationRef}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <JobCategory handleChange={handleChange} value={jobCategory} />
+            </Grid>
+            <Grid item xs={12}></Grid>
+            <JobTag handleClick={handleTagClick} tags={jobTags} />
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              onClick={onSubmit}
+            >
+              Sign Up
+            </Button>
+          </Grid>
+        </Box>
+      </Box>
+    </Container>
   );
 };
 

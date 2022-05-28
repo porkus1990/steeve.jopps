@@ -1,4 +1,5 @@
 import { useMutation } from '@redwoodjs/web';
+import { Typography } from '@mui/material';
 import { useAuth } from '@redwoodjs/auth';
 import { toast } from '@redwoodjs/web/toast';
 import { navigate, routes } from '@redwoodjs/router';
@@ -51,14 +52,12 @@ const NewJob = () => {
   };
 
   return (
-    <div className="rw-segment">
-      <header className="rw-segment-header">
-        <h2 className="rw-heading rw-heading-secondary">New Job</h2>
-      </header>
-      <div className="rw-segment-main">
-        <JobForm onSave={onSave} loading={loading} error={error} />
-      </div>
-    </div>
+    <>
+      <Typography component="h1" variant="h5">
+        New Job
+      </Typography>
+      <JobForm onSave={onSave} loading={loading} error={error} />
+    </>
   );
 };
 
