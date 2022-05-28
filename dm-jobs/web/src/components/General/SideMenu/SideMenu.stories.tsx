@@ -5,7 +5,7 @@ export default {
   component: SideMenu,
 };
 
-export const Template = (args) => <SideMenu {...args}></SideMenu>;
+const Template = (args) => <SideMenu {...args}></SideMenu>;
 
 export const Menu = Template.bind({});
 
