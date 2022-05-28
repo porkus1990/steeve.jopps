@@ -1,7 +1,12 @@
-import SideMenu from './SideMenu'
+import SideMenu from './SideMenu';
 
-export const generated = () => {
-  return <SideMenu />
-}
+export default {
+  titile: 'SideMenu',
+  component: SideMenu,
+};
 
-export default { title: 'Components/SideMenu' }
+export const Template = (args) => <SideMenu {...args}></SideMenu>;
+
+export const Menu = Template.bind({});
+
+Menu.args = { open: true };
