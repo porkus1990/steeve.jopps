@@ -45,9 +45,9 @@ const JobForm = (props) => {
   };
   const onSubmit = (data) => {
     const dataWithCategories = {
-      data,
-      jobCategory,
-      jobTag: jobTags,
+      ...data,
+      categories: [...jobCategory],
+      tags: [...jobTags],
     };
     props.onSave(dataWithCategories, props?.job?.id);
   };
