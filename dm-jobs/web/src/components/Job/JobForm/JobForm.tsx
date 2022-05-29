@@ -90,7 +90,7 @@ const JobForm = (props) => {
 
         <Box component="div" sx={{ mt: 3 }} className="rw-form-wrapper">
           <Grid container spacing={2}>
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <TextField
                 fullWidth
                 name="title"
@@ -102,7 +102,7 @@ const JobForm = (props) => {
               />
             </Grid>
 
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <TextField
                 fullWidth
                 name="description"
@@ -113,7 +113,7 @@ const JobForm = (props) => {
                 inputRef={descriptionRef}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <TextField
                 fullWidth
                 name="price"
@@ -125,30 +125,7 @@ const JobForm = (props) => {
               />
             </Grid>
 
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                name="longitude"
-                id="longitude"
-                label="longitude"
-                defaultValue={props.job?.longitude}
-                required
-                inputRef={longitudeRef}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                name="latitude"
-                id="laitude"
-                label="laitude"
-                defaultValue={props.job?.latitude}
-                required
-                inputRef={latitudeRef}
-              />
-            </Grid>
-
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <TextField
                 fullWidth
                 name="threeWords"
@@ -160,7 +137,30 @@ const JobForm = (props) => {
               />
             </Grid>
 
-            <Grid item xs={12}>
+            <Grid item xs={6}>
+              <TextField
+                fullWidth
+                name="longitude"
+                id="longitude"
+                label="longitude"
+                defaultValue={props.job?.longitude}
+                required
+                inputRef={longitudeRef}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                fullWidth
+                name="latitude"
+                id="laitude"
+                label="laitude"
+                defaultValue={props.job?.latitude}
+                required
+                inputRef={latitudeRef}
+              />
+            </Grid>
+
+            <Grid item xs={6}>
               <TextField
                 fullWidth
                 name="status"
@@ -172,7 +172,7 @@ const JobForm = (props) => {
               />
             </Grid>
 
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <TextField
                 fullWidth
                 name="timeout"
@@ -183,7 +183,7 @@ const JobForm = (props) => {
               />
             </Grid>
 
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <TextField
                 fullWidth
                 name="additionalAddressInformation"
@@ -193,11 +193,12 @@ const JobForm = (props) => {
                 inputRef={additionalAddressInformationRef}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <JobCategory handleChange={handleChange} value={jobCategory} />
             </Grid>
-            <Grid item xs={12}></Grid>
-            <JobTag handleClick={handleTagClick} tags={jobTags} />
+            <Grid item xs={12}>
+              <JobTag handleClick={handleTagClick} tags={jobTags} />
+            </Grid>
           </Grid>
           <Grid item xs={12}>
             <Button
@@ -207,7 +208,7 @@ const JobForm = (props) => {
               sx={{ mt: 3, mb: 2 }}
               onClick={onSubmit}
             >
-              Sign Up
+              Submit new job
             </Button>
           </Grid>
         </Box>

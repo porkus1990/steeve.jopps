@@ -1,5 +1,5 @@
 import { MetaTags } from '@redwoodjs/web';
-import { Box, Container, CssBaseline, Grid, Typography } from '@mui/material';
+import { Container } from '@mui/material';
 import NewJob from 'src/components/Job/NewJob';
 
 const NewJobPage = () => {
