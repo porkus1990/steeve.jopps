@@ -5,14 +5,27 @@ import {
   Typography,
 } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
-
-import { QUERY } from 'src/components/Job/JobsCell';
+import { useState } from 'react';
 
 const JobsList = ({ jobs }) => {
+  const [expanded, setExpanded] = useState<string | false>(false);
+
+  const onAccordionChange =
+    (acc: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+      setExpanded(isExpanded ? acc : false);
+    };
+
   return (
     <div>
+      === platzhalter sorting/kategorien/etc === <br />
+      === display user created the job with rating (if exists with at least x
+      ratings)
       {jobs.map((job) => (
-        <Accordion key={job.id}>
+        <Accordion
+          key={job.id}
+          expanded={expanded === 'job' + job.id}
+          onChange={onAccordionChange('job' + job.id)}
+        >
           <AccordionSummary
             expandIcon={<ExpandMore />}
             aria-controls={'panel-' + job.id + '-content'}
@@ -26,7 +39,8 @@ const JobsList = ({ jobs }) => {
             <Typography>
               <p>{job.additionalAddressInformation}</p>
               <p>
-                {job.longitude} - {job.latitude}
+                {job.longitude} - {job.latitude} - open job detail on click with
+                or show here map
               </p>
             </Typography>
           </AccordionDetails>
