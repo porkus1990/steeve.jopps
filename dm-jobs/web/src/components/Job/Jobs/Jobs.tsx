@@ -3,6 +3,7 @@ import {
   AccordionSummary,
   AccordionDetails,
   Typography,
+  Button,
 } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
 import { useState } from 'react';
@@ -43,6 +44,7 @@ const JobsList = ({ jobs }) => {
                 or show here map
               </p>
             </Typography>
+            <Button>Pick it!</Button>
           </AccordionDetails>
         </Accordion>
       ))}
