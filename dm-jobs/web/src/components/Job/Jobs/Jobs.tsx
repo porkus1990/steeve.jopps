@@ -60,7 +60,6 @@ const JobsList = ({ jobs }) => {
       <table className="rw-table">
         <thead>
           <tr>
-            <th>Id</th>
             <th>Created at</th>
             <th>Title</th>
             <th>Description</th>
@@ -71,13 +70,11 @@ const JobsList = ({ jobs }) => {
             <th>Status</th>
             <th>Timeout</th>
             <th>Additional address information</th>
-            <th>&nbsp;</th>
           </tr>
         </thead>
         <tbody>
           {jobs.map((job) => (
             <tr key={job.id}>
-              <td>{truncate(job.id)}</td>
               <td>{timeTag(job.createdAt)}</td>
               <td>{truncate(job.title)}</td>
               <td>{truncate(job.description)}</td>
@@ -88,32 +85,6 @@ const JobsList = ({ jobs }) => {
               <td>{truncate(job.status)}</td>
               <td>{timeTag(job.timeout)}</td>
               <td>{truncate(job.additionalAddressInformation)}</td>
-              <td>
-                <nav className="rw-table-actions">
-                  <Link
-                    to={routes.job({ id: job.id })}
-                    title={'Show job ' + job.id + ' detail'}
-                    className="rw-button rw-button-small"
-                  >
-                    Show
-                  </Link>
-                  <Link
-                    to={routes.editJob({ id: job.id })}
-                    title={'Edit job ' + job.id}
-                    className="rw-button rw-button-small rw-button-blue"
-                  >
-                    Edit
-                  </Link>
-                  <button
-                    type="button"
-                    title={'Delete job ' + job.id}
-                    className="rw-button rw-button-small rw-button-red"
-                    onClick={() => onDeleteClick(job.id)}
-                  >
-                    Delete
-                  </button>
-                </nav>
-              </td>
             </tr>
           ))}
         </tbody>

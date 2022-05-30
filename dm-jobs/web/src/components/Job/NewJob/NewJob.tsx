@@ -1,8 +1,6 @@
 import { useMutation } from '@redwoodjs/web';
 import { Typography } from '@mui/material';
 import { useAuth } from '@redwoodjs/auth';
-import { toast } from '@redwoodjs/web/toast';
-import { navigate, routes } from '@redwoodjs/router';
 import JobForm from 'src/components/Job/JobForm';
 
 const CREATE_JOB_MUTATION = gql`
@@ -22,15 +20,7 @@ const CREATE_JOB_USER_MUTATION = gql`
 `;
 
 const NewJob = () => {
-  const [createJob, { loading, error }] = useMutation(CREATE_JOB_MUTATION, {
-    onCompleted: () => {
-      toast.success('Job created');
-      navigate(routes.jobs());
-    },
-    onError: (error) => {
-      toast.error(error.message);
-    },
-  });
+  const [createJob, { loading, error }] = useMutation(CREATE_JOB_MUTATION);
   const [createJobUser] = useMutation(CREATE_JOB_USER_MUTATION);
 
   const { currentUser } = useAuth();

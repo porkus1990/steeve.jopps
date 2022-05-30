@@ -16,6 +16,6 @@ export const config: SideMenuConfigInterface[] = [
   {
     name: 'Find jobs',
     icon: () => <LocationSearching />,
-    link: () => routes.home(),
+    link: () => routes.pickJob(),
   },
 ];

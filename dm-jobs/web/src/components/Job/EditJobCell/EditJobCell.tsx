@@ -2,8 +2,6 @@ import type { EditJobById } from 'types/graphql';
 
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web';
 import { useMutation } from '@redwoodjs/web';
-import { toast } from '@redwoodjs/web/toast';
-import { navigate, routes } from '@redwoodjs/router';
 
 import JobForm from 'src/components/Job/JobForm';
 
@@ -49,15 +47,7 @@ export const Failure = ({ error }: CellFailureProps) => (
 );
 
 export const Success = ({ job }: CellSuccessProps<EditJobById>) => {
-  const [updateJob, { loading, error }] = useMutation(UPDATE_JOB_MUTATION, {
-    onCompleted: () => {
-      toast.success('Job updated');
-      navigate(routes.jobs());
-    },
-    onError: (error) => {
-      toast.error(error.message);
-    },
-  });
+  const [updateJob, { loading, error }] = useMutation(UPDATE_JOB_MUTATION);
 
   const onSave = (input, id) => {
     updateJob({ variables: { id, input } });

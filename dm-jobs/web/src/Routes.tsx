@@ -2,6 +2,7 @@ import { Private, Set, Router, Route } from '@redwoodjs/router';
 import BaseLayout from 'src/layouts/BaseLayout';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { orange } from '@mui/material/colors';
+import PickJobPage from './pages/Job/PickJobPage/PickJobPage';
 
 const theme = createTheme({
   palette: {
@@ -16,6 +17,7 @@ const Routes = () => {
     <Router>
       <ThemeProvider theme={theme}>
         <Set wrap={BaseLayout}>
+          <Route path="/pick-job" page={PickJobPage} name="pickJob" />
           <Route path="/login" page={LoginPage} name="login" />
           <Route path="/signup" page={SignupPage} name="signup" />
           <Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />
@@ -23,8 +25,6 @@ const Routes = () => {
           <Private unauthenticated="home">
             <Route path="/jobs/new" page={JobNewJobPage} name="newJob" />
             <Route path="/jobs/{id:Int}/edit" page={JobEditJobPage} name="editJob" />
-            <Route path="/jobs/{id:Int}" page={JobJobPage} name="job" />
-            <Route path="/jobs" page={JobJobsPage} name="jobs" />
             <Route path="/user/profile" page={UserProfilePage} name="userProfile" />
             <Route path="/user/jobs" page={User} name="jobsPage" />
             <Route path="/user/account" page={UserAccountPage} name="userAccount" />
