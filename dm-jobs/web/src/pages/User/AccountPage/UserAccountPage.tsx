@@ -157,7 +157,7 @@ const UserAccountPage = () => {
           </Typography>
           <Box component="div" sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              <Grid item xs={12}>
+              <Grid item xs={6}>
                 <TextField
                   required
                   disabled={
@@ -175,7 +175,7 @@ const UserAccountPage = () => {
                   }
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={6}>
                 <TextField
                   required
                   disabled={
@@ -225,7 +225,7 @@ const UserAccountPage = () => {
           </Typography>
           <Box component="div" sx={{ mt: 3 }} className="rw-form-wrapper">
             <Grid container spacing={2}>
-              <Grid item xs={12}>
+              <Grid item xs={6}>
                 <TextField
                   required
                   fullWidth
@@ -235,7 +235,7 @@ const UserAccountPage = () => {
                   inputRef={townRef}
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={6}>
                 <TextField
                   required
                   fullWidth
@@ -245,7 +245,7 @@ const UserAccountPage = () => {
                   inputRef={streetRef}
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={6}>
                 <TextField
                   required
                   fullWidth
@@ -255,7 +255,7 @@ const UserAccountPage = () => {
                   inputRef={numberRef}
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={6}>
                 <TextField
                   required
                   fullWidth
