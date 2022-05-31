@@ -43,7 +43,7 @@ model Job {
   longitude                    String
   latitude                     String
   threeWords                   String
-  status                       String
+  status                       JobState
   timeout                      DateTime?
   additionalAddressInformation String?
   categories                   JobCategory[]
@@ -51,6 +51,12 @@ model Job {
 }
 
 model JobUser {
+  id     Int  @id @default(autoincrement())
+  jobId  Int
+  userId String
+}
+
+model JobUserPick {
   id     Int  @id @default(autoincrement())
   jobId  Int
   userId String
@@ -64,4 +70,11 @@ enum JobCategory {
 enum JobTag {
   car
   extra_tip
+}
+
+enum JobState {
+  pending
+  in_progress
+  finished
+  canceled
 }

@@ -8,13 +8,19 @@ export const schema = gql`
     longitude: String!
     latitude: String!
     threeWords: String!
-    status: String!
+    status: JobState!
     timeout: DateTime
     additionalAddressInformation: String
     categories: [JobCategory]!
     tags: [JobTag]!
   }
 
+  enum JobState {
+    pending
+    in_progress
+    finished
+    canceled
+  }
   enum JobCategory {
     buying
     pawn
@@ -36,7 +42,7 @@ export const schema = gql`
     longitude: String!
     latitude: String!
     threeWords: String!
-    status: String!
+    status: JobState!
     timeout: DateTime
     additionalAddressInformation: String
     categories: [JobCategory]!
@@ -50,7 +56,7 @@ export const schema = gql`
     longitude: String
     latitude: String
     threeWords: String
-    status: String
+    status: JobState
     timeout: DateTime
     additionalAddressInformation: String
     categories: [JobCategory]!
