@@ -5,16 +5,29 @@ import {
   Typography,
   Button,
 } from '@mui/material';
+import { useMutation } from '@redwoodjs/web';
 import { ExpandMore } from '@mui/icons-material';
 import { useState } from 'react';
+import { useAuth } from '@redwoodjs/auth';
 import PickJobDialog from 'src/components/General/JobDisplay/PickJobDialog';
 
+const PICK_JOB_MUTATION = gql`
+  mutation CreateJobUserPickMutation($input: CreateJobUserPickInput!) {
+    createJobUserPick(input: $input) {
+      id
+    }
+  }
+`;
+
 const JobsList = ({ jobs }) => {
-  const [expanded, setExpanded] = useState<number | false>(false);
+  const [expanded, setExpanded] = useState<number | boolean>(false);
   const [pickDialogOpen, setPickDialog] = useState<boolean>(false);
+  const [createJobUserPick] = useMutation(PICK_JOB_MUTATION);
+  const { currentUser } = useAuth();
 
   const onAccordionChange =
-    (acc: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+    (acc: number | boolean) =>
+    (event: React.SyntheticEvent, isExpanded: boolean) => {
       setExpanded(isExpanded ? acc : false);
     };
 
@@ -24,6 +37,14 @@ const JobsList = ({ jobs }) => {
 
   const pickedJob = ({ id }) => {
     console.log('picked ', id);
+    createJobUserPick({
+      variables: {
+        input: {
+          jobId: id,
+          userId: currentUser.sub,
+        },
+      },
+    });
     togglePickDialog();
   };
 
