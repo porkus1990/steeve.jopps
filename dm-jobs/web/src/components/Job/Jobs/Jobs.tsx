@@ -7,14 +7,20 @@ import {
 } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
 import { useState } from 'react';
+import PickJobDialog from 'src/components/General/JobDisplay/PickJobDialog';
 
 const JobsList = ({ jobs }) => {
   const [expanded, setExpanded] = useState<string | false>(false);
+  const [pickDialogOpen, setPickDialog] = useState<boolean>(false);
 
   const onAccordionChange =
     (acc: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
       setExpanded(isExpanded ? acc : false);
     };
+
+  const togglePickDialog = () => {
+    setPickDialog(!pickDialogOpen);
+  };
 
   return (
     <div>
@@ -44,10 +50,11 @@ const JobsList = ({ jobs }) => {
                 or show here map
               </p>
             </Typography>
-            <Button>Pick it!</Button>
+            <Button onClick={togglePickDialog}>Pick it!</Button>
           </AccordionDetails>
         </Accordion>
       ))}
+      <PickJobDialog open={pickDialogOpen} handleClose={togglePickDialog} />
     </div>
   );
 };
