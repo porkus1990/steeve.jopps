@@ -6,5 +6,7 @@
   "extra_tip": "extra Tringeld",
   "job/picking": "Ja, ich will das machen !",
   "job/do_you_want": "Willst du den Job?",
-  "job/button_yes": "Ja !"
+  "job/button_yes": "Ja !",
+  "job/pick_success": "Du hast dir den Job erfolgreich geschnappt!",
+  "job/pick_error": "Oops - da ging etwas schief :( Probiere es nocheinmal :)"
 }

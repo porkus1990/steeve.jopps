@@ -6,5 +6,7 @@
   "extra_tip": "extra tip",
   "job/picking": "By clicking \"yes\" you're guaranteeing to execute the job.",
   "job/do_you_want": "Do you want to pick the job?",
-  "job/button_yes": "Yes !"
+  "job/button_yes": "Yes !",
+  "job/pick_success": "You have the Job!",
+  "job/pick_error": "Oops - something went wrong :( Try it again :)"
 }

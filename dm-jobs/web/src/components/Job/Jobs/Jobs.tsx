@@ -2,14 +2,18 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  Typography,
+  Alert,
   Button,
+  Snackbar,
+  Typography,
+  AlertColor,
 } from '@mui/material';
 import { useMutation } from '@redwoodjs/web';
 import { ExpandMore } from '@mui/icons-material';
 import { useState } from 'react';
 import { useAuth } from '@redwoodjs/auth';
 import PickJobDialog from 'src/components/General/JobDisplay/PickJobDialog';
+import { useTranslation } from 'react-i18next';
 
 const PICK_JOB_MUTATION = gql`
   mutation CreateJobUserPickMutation($input: CreateJobUserPickInput!) {
@@ -20,8 +24,10 @@ const PICK_JOB_MUTATION = gql`
 `;
 
 const JobsList = ({ jobs }) => {
+  const { t } = useTranslation();
   const [expanded, setExpanded] = useState<number | boolean>(false);
   const [pickDialogOpen, setPickDialog] = useState<boolean>(false);
+  const [jobPickState, setJobPickState] = useState<AlertColor | null>(null);
   const [createJobUserPick] = useMutation(PICK_JOB_MUTATION);
   const { currentUser } = useAuth();
 
@@ -35,16 +41,25 @@ const JobsList = ({ jobs }) => {
     setPickDialog(!pickDialogOpen);
   };
 
+  const handleCloseAlert = () => {
+    setJobPickState(null);
+  };
+
   const pickedJob = ({ id }) => {
-    console.log('picked ', id);
-    createJobUserPick({
-      variables: {
-        input: {
-          jobId: id,
-          userId: currentUser.sub,
+    try {
+      createJobUserPick({
+        variables: {
+          input: {
+            jobId: id,
+            userId: currentUser.sub,
+          },
         },
-      },
-    });
+      });
+      setJobPickState('success');
+    } catch (e) {
+      setJobPickState('error');
+    }
+
     togglePickDialog();
   };
 
@@ -83,6 +98,19 @@ const JobsList = ({ jobs }) => {
         handleClose={togglePickDialog}
         pickJob={() => pickedJob({ id: expanded })}
       />
+      {jobPickState !== null ? (
+        <Snackbar
+          open={true}
+          autoHideDuration={6000}
+          onClose={handleCloseAlert}
+        >
+          <Alert severity={jobPickState} onClose={handleCloseAlert}>
+            {t(`job/pick_${jobPickState}`)}
+          </Alert>
+        </Snackbar>
+      ) : (
+        ''
+      )}
     </div>
   );
 };
