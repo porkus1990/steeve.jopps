@@ -10,7 +10,7 @@ import { useState } from 'react';
 import PickJobDialog from 'src/components/General/JobDisplay/PickJobDialog';
 
 const JobsList = ({ jobs }) => {
-  const [expanded, setExpanded] = useState<string | false>(false);
+  const [expanded, setExpanded] = useState<number | false>(false);
   const [pickDialogOpen, setPickDialog] = useState<boolean>(false);
 
   const onAccordionChange =
@@ -22,6 +22,11 @@ const JobsList = ({ jobs }) => {
     setPickDialog(!pickDialogOpen);
   };
 
+  const pickedJob = ({ id }) => {
+    console.log('picked ', id);
+    togglePickDialog();
+  };
+
   return (
     <div>
       === platzhalter sorting/kategorien/etc === <br />
@@ -30,8 +35,8 @@ const JobsList = ({ jobs }) => {
       {jobs.map((job) => (
         <Accordion
           key={job.id}
-          expanded={expanded === 'job' + job.id}
-          onChange={onAccordionChange('job' + job.id)}
+          expanded={expanded === job.id}
+          onChange={onAccordionChange(job.id)}
         >
           <AccordionSummary
             expandIcon={<ExpandMore />}
@@ -44,17 +49,19 @@ const JobsList = ({ jobs }) => {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              <p>{job.additionalAddressInformation}</p>
-              <p>
-                {job.longitude} - {job.latitude} - open job detail on click with
-                or show here map
-              </p>
+              {job.additionalAddressInformation}
+              {job.longitude} - {job.latitude} - open job detail on click with
+              or show here map
             </Typography>
             <Button onClick={togglePickDialog}>Pick it!</Button>
           </AccordionDetails>
         </Accordion>
       ))}
-      <PickJobDialog open={pickDialogOpen} handleClose={togglePickDialog} />
+      <PickJobDialog
+        open={pickDialogOpen}
+        handleClose={togglePickDialog}
+        pickJob={() => pickedJob({ id: expanded })}
+      />
     </div>
   );
 };

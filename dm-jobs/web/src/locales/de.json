@@ -3,5 +3,8 @@
   "categorySelect": "Kategorie",
   "pawn": "Pfand",
   "car": "Auto benötigt",
-  "extra_tip": "extra Tringeld"
+  "extra_tip": "extra Tringeld",
+  "job/picking": "Ja, ich will das machen !",
+  "job/do_you_want": "Willst du den Job?",
+  "job/button_yes": "Ja !"
 }
