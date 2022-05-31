@@ -1,4 +1,4 @@
-import { Box, CssBaseline, Grid } from '@mui/material';
+import { CssBaseline, Grid } from '@mui/material';
 import { MetaTags } from '@redwoodjs/web';
 import JobsCell from 'src/components/Job/JobsCell';
 
@@ -8,20 +8,17 @@ const PickJobPage = () => {
       <MetaTags title="Pick a job" />
       <CssBaseline />
 
-      <Box
+      <Grid
         sx={{
+          padding: 2,
+          paddingLeft: 4,
           marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
         }}
       >
-        <Box component="div" sx={{ mt: 3 }}>
-          <Grid container spacing={2}>
-            <JobsCell />
-          </Grid>
-        </Box>
-      </Box>
+        <Grid container spacing={2}>
+          <JobsCell />
+        </Grid>
+      </Grid>
     </>
   );
 };
