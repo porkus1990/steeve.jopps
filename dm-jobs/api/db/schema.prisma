@@ -54,12 +54,18 @@ model JobUser {
   id     Int  @id @default(autoincrement())
   jobId  Int
   userId String
+
+  @@unique([jobId])
+  @@unique([jobId, userId])
 }
 
 model JobUserPick {
   id     Int  @id @default(autoincrement())
   jobId  Int
   userId String
+
+  @@unique([jobId])
+  @@unique([jobId, userId])
 }
 
 enum JobCategory {
