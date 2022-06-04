@@ -76,6 +76,14 @@ const UserAddresses = () => {
     handleClickOpen();
   };
 
+  if (!addresses.length) {
+    return (
+      <Typography component="h2" variant="h5" sx={{ marginBottom: 2 }}>
+        Your do not have any addresses at the moment
+      </Typography>
+    );
+  }
+
   return (
     <>
       <Typography component="h2" variant="h5" sx={{ marginBottom: 2 }}>

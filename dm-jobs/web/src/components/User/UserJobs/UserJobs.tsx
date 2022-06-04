@@ -1,15 +1,16 @@
-import { useAuth } from '@redwoodjs/auth';
 import { Typography } from '@mui/material';
+import { useAuth } from '@redwoodjs/auth';
 import JobUsersCell from 'src/components/User/Jobs/JobsUsersCell';
 
 const UserJobs = () => {
   const { currentUser } = useAuth();
+  const userAuthId = currentUser.sub;
   return (
     <>
       <Typography component="h2" variant="h5" sx={{ marginBottom: 2 }}>
         Your announced jobs
       </Typography>
-      <JobUsersCell userAuthId={currentUser.sub} />
+      <JobUsersCell userAuthId={userAuthId} />
     </>
   );
 };

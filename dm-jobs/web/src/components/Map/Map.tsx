@@ -7,6 +7,7 @@ import {
   What3wordsAutosuggest,
   What3wordsSymbol,
 } from '@what3words/react-components';
+import JobsCell from '../Job/JobsCell';
 
 const CREATE_JOB_MUTATION = gql`
   mutation CreateJobMutation($input: CreateJobInput!) {
@@ -78,6 +79,7 @@ export const Map = () => {
 
   return (
     <div className={classes.map}>
+      <JobsCell />
       <What3wordsAutosuggest
         return_coordinates
         onCoordinates_changed={onCoordinatesChanged}

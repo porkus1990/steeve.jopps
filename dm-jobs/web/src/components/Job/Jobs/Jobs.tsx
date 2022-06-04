@@ -47,14 +47,6 @@ const JobsList = ({ jobs }) => {
 
   const pickedJob = ({ id }) => {
     try {
-      createJobUserPick({
-        variables: {
-          input: {
-            jobId: id,
-            userId: currentUser.sub,
-          },
-        },
-      });
       setJobPickState('success');
     } catch (e) {
       setJobPickState('error');

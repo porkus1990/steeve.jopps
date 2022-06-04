@@ -1,5 +1,5 @@
 import { MetaTags } from '@redwoodjs/web';
-import { Box, CssBaseline, Grid, Typography } from '@mui/material';
+import { CssBaseline, Grid, Typography } from '@mui/material';
 import UserAddresses from 'src/components/User/UserAddresses/UserAddresses';
 import UserJobs from 'src/components/User/UserJobs/UserJobs';
 
