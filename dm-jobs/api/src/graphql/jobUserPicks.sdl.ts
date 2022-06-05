@@ -8,6 +8,7 @@ export const schema = gql`
   type Query {
     jobUserPicks: [JobUserPick!]! @requireAuth
     jobUserPick(id: Int!): JobUserPick @requireAuth
+    jobUserPicksByUser(userId: String!): [JobUserPick!]! @requireAuth
   }
 
   input CreateJobUserPickInput {
@@ -17,6 +18,10 @@ export const schema = gql`
 
   input UpdateJobUserPickInput {
     jobId: Int
+    userId: String
+  }
+
+  input JobUserPickByUserInput {
     userId: String
   }
 

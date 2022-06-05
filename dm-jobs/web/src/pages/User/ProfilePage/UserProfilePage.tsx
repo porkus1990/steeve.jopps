@@ -2,8 +2,11 @@ import { MetaTags } from '@redwoodjs/web';
 import { CssBaseline, Grid, Typography } from '@mui/material';
 import UserAddresses from 'src/components/User/UserAddresses/UserAddresses';
 import UserJobs from 'src/components/User/UserJobs/UserJobs';
+import PickedJobs from 'src/components/User/PickedJobs/PickedJobsCell';
+import { useAuth } from '@redwoodjs/auth';
 
 const UserProfilePage = () => {
+  const { currentUser } = useAuth();
   return (
     <>
       <MetaTags title="Account overview" />
@@ -26,6 +29,13 @@ const UserProfilePage = () => {
           }}
         >
           <UserJobs />
+        </Grid>
+        <Grid
+          sx={{
+            marginTop: 8,
+          }}
+        >
+          <PickedJobs userAuthId={currentUser.sub} />
         </Grid>
       </Grid>
     </>
