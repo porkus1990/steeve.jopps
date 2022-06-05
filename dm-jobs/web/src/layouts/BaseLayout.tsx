@@ -1,14 +1,7 @@
 import { Fragment, useState } from 'react';
 import { Link, routes } from '@redwoodjs/router';
 import { useAuth } from '@redwoodjs/auth';
-import {
-  Box,
-  IconButton,
-  Toolbar,
-  Typography,
-  styled,
-  useTheme,
-} from '@mui/material';
+import { Box, IconButton, Toolbar, Typography, styled } from '@mui/material';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import MenuIcon from '@mui/icons-material/Menu';
 import TopMenu from '../components/User/TopMenu/TopMenu';

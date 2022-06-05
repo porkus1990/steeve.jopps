@@ -28,8 +28,8 @@ const JobsList = ({ jobs }) => {
   const [expanded, setExpanded] = useState<number | boolean>(false);
   const [pickDialogOpen, setPickDialog] = useState<boolean>(false);
   const [jobPickState, setJobPickState] = useState<AlertColor | null>(null);
-  const [createJobUserPick] = useMutation(PICK_JOB_MUTATION);
-  const { currentUser } = useAuth();
+  // const [createJobUserPick] = useMutation(PICK_JOB_MUTATION);
+  // const { currentUser } = useAuth();
 
   const onAccordionChange =
     (acc: number | boolean) =>
@@ -45,7 +45,7 @@ const JobsList = ({ jobs }) => {
     setJobPickState(null);
   };
 
-  const pickedJob = ({ id }) => {
+  const pickedJob = (/*{ id }*/) => {
     try {
       setJobPickState('success');
     } catch (e) {

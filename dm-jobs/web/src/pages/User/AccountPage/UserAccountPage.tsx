@@ -12,7 +12,6 @@ import { MetaTags, useMutation, useQuery } from '@redwoodjs/web';
 import { useAuth } from '@redwoodjs/auth';
 
 import {
-  createUserInformation,
   CreateUserInformationInput,
   CreateUserAddressInput,
 } from 'types/graphql';

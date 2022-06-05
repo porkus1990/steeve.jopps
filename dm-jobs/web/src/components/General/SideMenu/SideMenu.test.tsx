@@ -1,6 +1,6 @@
-import { render } from '@redwoodjs/testing/web'
+import { render } from '@redwoodjs/testing/web';
 
-import SideMenu from './SideMenu'
+import SideMenu from './SideMenu';
 
 //   Improve this test with help from the Redwood Testing Doc:
 //    https://redwoodjs.com/docs/testing#testing-components
@@ -8,7 +8,7 @@ import SideMenu from './SideMenu'
 describe('SideMenu', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<SideMenu />)
-    }).not.toThrow()
-  })
-})
+      render(<SideMenu />);
+    }).not.toThrow();
+  });
+});

@@ -31,7 +31,6 @@ const LoginPage = () => {
   const passwordRef = useRef<HTMLInputElement>();
 
   const onSubmit = async () => {
-
     const response = await logIn({
       email: emailRef.current.value,
       password: passwordRef.current.value,

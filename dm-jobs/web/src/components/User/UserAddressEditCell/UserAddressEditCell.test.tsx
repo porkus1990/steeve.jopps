@@ -1,5 +1,5 @@
-import { render, screen } from '@redwoodjs/testing/web';
-import { Loading, Empty, Failure, Success } from './UserAddressEditCell';
+import { render } from '@redwoodjs/testing/web';
+import { Loading, Failure, Success } from './UserAddressEditCell';
 import { standard } from './UserAddressEditCell.mock';
 
 // Generated boilerplate tests do not account for all circumstances
