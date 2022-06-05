@@ -15,6 +15,19 @@ export const job: QueryResolvers['job'] = ({ id }) => {
   });
 };
 
+export const jobsNotPicked = async () => {
+  const allJobs = await db.job.findMany({ where: { status: 'pending' } });
+  const jobPicks = await db.jobUserPick.findMany();
+  const mappedPicks = jobPicks.map((p) => {
+    delete p.id;
+    return p.jobId;
+  });
+
+  const filtered = allJobs.filter((job) => mappedPicks.indexOf(job.id) === -1);
+
+  return filtered;
+};
+
 export const createJob: MutationResolvers['createJob'] = ({ input }) => {
   return db.job.create({
     data: input,

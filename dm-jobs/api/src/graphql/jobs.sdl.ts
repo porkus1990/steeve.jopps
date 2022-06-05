@@ -33,6 +33,7 @@ export const schema = gql`
   type Query {
     jobs: [Job!]! @requireAuth
     job(id: Int!): Job @requireAuth
+    jobsNotPicked: [Job] @skipAuth
   }
 
   input CreateJobInput {
