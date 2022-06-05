@@ -19,7 +19,6 @@ export const jobsNotPicked = async () => {
   const allJobs = await db.job.findMany({ where: { status: 'pending' } });
   const jobPicks = await db.jobUserPick.findMany();
   const mappedPicks = jobPicks.map((p) => {
-    delete p.id;
     return p.jobId;
   });
 

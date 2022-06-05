@@ -41,5 +41,5 @@ export const Failure = ({ error }: CellFailureProps) => (
 );
 
 export const Success = ({ jobsNotPicked }: CellSuccessProps<FindJobs>) => {
-  return <Jobs jobs={jobsNotPicked} />;
+  return <JobsList jobs={jobsNotPicked} />;
 };
