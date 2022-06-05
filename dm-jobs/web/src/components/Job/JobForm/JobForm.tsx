@@ -90,7 +90,7 @@ const JobForm = (props) => {
 
         <Box component="div" sx={{ mt: 3 }} className="rw-form-wrapper">
           <Grid container spacing={2}>
-            <Grid item xs={6}>
+            <Grid item xs={12}>
               <TextField
                 fullWidth
                 name="title"
@@ -102,12 +102,13 @@ const JobForm = (props) => {
               />
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={12}>
               <TextField
-                fullWidth
+                multiline
+                maxRows={5}
                 name="description"
                 id="description"
-                label="Dscription"
+                label="Description"
                 defaultValue={props.job?.description}
                 className="rw-input"
                 inputRef={descriptionRef}
