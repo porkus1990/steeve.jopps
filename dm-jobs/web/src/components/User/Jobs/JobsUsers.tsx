@@ -14,7 +14,6 @@ interface JobsUsers {
 }
 
 const JobsUsers = ({ userJobs }) => {
-  console.log(userJobs);
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 600 }} size="medium">

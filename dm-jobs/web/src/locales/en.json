@@ -8,5 +8,7 @@
   "job/do_you_want": "Do you want to pick the job?",
   "job/button_yes": "Yes !",
   "job/pick_success": "You have the Job!",
-  "job/pick_error": "Oops - something went wrong :( Try it again :)"
+  "job/pick_error": "Oops - something went wrong :( Try it again :)",
+  "job/user/picks/your_picked_jobs": "Your picked jobs",
+  "job/user/picks/your_announced_jobs": "Your announced jobs"
 }

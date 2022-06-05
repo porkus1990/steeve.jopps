@@ -8,5 +8,7 @@
   "job/do_you_want": "Willst du den Job?",
   "job/button_yes": "Ja !",
   "job/pick_success": "Du hast dir den Job erfolgreich geschnappt!",
-  "job/pick_error": "Oops - da ging etwas schief :( Probiere es nocheinmal :)"
+  "job/pick_error": "Oops - da ging etwas schief :( Probiere es nocheinmal :)",
+  "job/user/picks/your_picked_jobs": "Deine angenommenen Jobs",
+  "job/user/picks/your_announced_jobs": "Deine erstellten Jobs"
 }
