@@ -8,6 +8,7 @@ import {
   TableRow,
   TableBody,
 } from '@mui/material';
+import { headerConfig } from 'src/config/jobTableHeaderConfig';
 
 interface JobsUsers {
   jobId: string;
@@ -19,15 +20,11 @@ const JobsUsers = ({ userJobs }) => {
       <Table sx={{ minWidth: 600 }} size="medium">
         <TableHead sx={{ backgroundColor: 'black' }}>
           <TableRow>
-            <TableCell sx={{ color: 'white' }}>Title</TableCell>
-            <TableCell sx={{ color: 'white' }}>Description</TableCell>
-            <TableCell sx={{ color: 'white' }}>Price</TableCell>
-            <TableCell sx={{ color: 'white' }}>Three words</TableCell>
-            <TableCell sx={{ color: 'white' }}>Status</TableCell>
-            <TableCell sx={{ color: 'white' }}>Timeout</TableCell>
-            <TableCell sx={{ color: 'white' }}>
-              Additional address information
-            </TableCell>
+            {headerConfig.map((entry) => (
+              <TableCell key={entry} sx={{ color: 'white' }}>
+                {entry}
+              </TableCell>
+            ))}
           </TableRow>
         </TableHead>
         <TableBody>
