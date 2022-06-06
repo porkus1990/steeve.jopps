@@ -1,5 +1,5 @@
 import type { JobUserPicksByUser } from 'types/graphql';
-import JobCell from 'src/components/Job/JobCell/JobCell';
+import JobCell from 'src/components/Job/JobCell';
 import { useTranslation } from 'react-i18next';
 import {
   Paper,

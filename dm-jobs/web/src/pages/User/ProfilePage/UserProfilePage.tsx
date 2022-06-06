@@ -2,7 +2,7 @@ import { MetaTags } from '@redwoodjs/web';
 import { CssBaseline, Grid, Typography } from '@mui/material';
 import UserAddresses from 'src/components/User/UserAddresses/UserAddresses';
 import UserJobs from 'src/components/User/UserJobs/UserJobs';
-import PickedJobsCell from 'src/components/User/PickedJobs/PickedJobsCell';
+import PickedJobsCell from 'src/components/User/PickedJobsCell';
 import { useAuth } from '@redwoodjs/auth';
 
 const UserProfilePage = () => {
