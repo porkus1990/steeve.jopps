@@ -1,4 +1,4 @@
-import type { FindJobs } from 'types/graphql';
+import type { FindJobs, Job } from 'types/graphql';
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web';
 import { Link, routes } from '@redwoodjs/router';
 import { Box, Container, Grid } from '@mui/material';
@@ -45,11 +45,11 @@ export const Failure = ({ error }: CellFailureProps) => (
 
 export const Success = ({ jobsNotPicked }: CellSuccessProps<FindJobs>) => {
   const [activeJobsNotPicked, setActiveJobsNotPicked] =
-    useState<Array<FindJobs>>(jobsNotPicked);
+    useState<Array<Job>>(jobsNotPicked);
 
   const filter = (category) => {
     setActiveJobsNotPicked(
-      jobsNotPicked.filter((jnp: FindJobs) => jnp.categories.includes(category))
+      jobsNotPicked.filter((jnp: Job) => jnp.categories.includes(category))
     );
   };
 

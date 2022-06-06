@@ -10,10 +10,11 @@ import {
 } from '@mui/material';
 import { useMutation } from '@redwoodjs/web';
 import { ExpandMore } from '@mui/icons-material';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { useAuth } from '@redwoodjs/auth';
 import PickJobDialog from 'src/components/General/JobDisplay/PickJobDialog';
 import { useTranslation } from 'react-i18next';
+import SpecificJobMap from 'src/components/General/SpecificJob/SpecificJobMap';
 
 const PICK_JOB_MUTATION = gql`
   mutation CreateJobUserPickMutation($input: CreateJobUserPickInput!) {
@@ -64,10 +65,7 @@ const JobsList = ({ jobs }) => {
   };
 
   return (
-    <div>
-      === platzhalter sorting/kategorien/etc === <br />
-      === display user created the job with rating (if exists with at least x
-      ratings)
+    <Fragment>
       {jobs.map((job) => (
         <Accordion
           key={job.id}
@@ -89,6 +87,12 @@ const JobsList = ({ jobs }) => {
               {job.longitude} - {job.latitude} - open job detail on click with
               or show here map
             </Typography>
+            <SpecificJobMap
+              coordinates={{
+                latitude: parseFloat(job.latitude),
+                longitude: parseFloat(job.longitude),
+              }}
+            />
             <Button onClick={togglePickDialog}>Pick it!</Button>
           </AccordionDetails>
         </Accordion>
@@ -111,7 +115,7 @@ const JobsList = ({ jobs }) => {
       ) : (
         ''
       )}
-    </div>
+    </Fragment>
   );
 };
 
