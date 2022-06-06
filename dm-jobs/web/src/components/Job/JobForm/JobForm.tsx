@@ -38,19 +38,19 @@ const JobForm = (props) => {
   const addressRef = useRef<HTMLInputElement>();
   const additionalAddressInformationRef = useRef<HTMLInputElement>();
 
-  let map;
+  const map = useRef<google.maps.Map>(null);
   let searchService: google.maps.places.PlacesService;
 
   useEffect(() => {
     if (!mapRef.current) return;
     // eslint-disable-next-line no-new
-    map = new google.maps.Map(mapRef.current, {
+    map.current = new google.maps.Map(mapRef.current, {
       center: { lat: 48.123, lng: 11.123 },
       zoom: 15,
       mapTypeId: 'roadmap',
     });
 
-    searchService = new google.maps.places.PlacesService(map);
+    searchService = new google.maps.places.PlacesService(map.current);
   }, [mapRef.current]);
 
   const searchAddress = () => {
@@ -64,12 +64,12 @@ const JobForm = (props) => {
         ) => {
           if (status === google.maps.places.PlacesServiceStatus.OK && results) {
             for (let i = 0; i < results.length; i++) {
-              createMarker(map, results[i]);
+              createMarker(map.current, results[i]);
             }
 
             console.log(results);
 
-            map.setCenter(results[0].geometry!.location!);
+            map.current.setCenter(results[0].geometry!.location!);
           }
         }
       );
