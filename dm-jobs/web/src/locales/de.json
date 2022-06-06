@@ -10,5 +10,12 @@
   "job/pick_success": "Du hast dir den Job erfolgreich geschnappt!",
   "job/pick_error": "Oops - da ging etwas schief :( Probiere es nocheinmal :)",
   "job/user/picks/your_picked_jobs": "Deine angenommenen Jobs",
-  "job/user/picks/your_announced_jobs": "Deine erstellten Jobs"
+  "job/user/picks/your_announced_jobs": "Deine erstellten Jobs",
+  "job/table/header/title": "Job name",
+  "job/table/header/description": "Was ist zu tun?",
+  "job/table/header/price": "Preis",
+  "job/table/header/three_words": "3 words location",
+  "job/table/header/status": "Status",
+  "job/table/header/timeout": "Bis wann?",
+  "job/table/header/additional_information": "Weiter Infos"
 }

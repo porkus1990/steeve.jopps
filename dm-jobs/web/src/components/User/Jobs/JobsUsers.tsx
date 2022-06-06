@@ -9,12 +9,15 @@ import {
   TableBody,
 } from '@mui/material';
 import { headerConfig } from 'src/config/jobTableHeaderConfig';
+import { useTranslation } from 'react-i18next';
 
 interface JobsUsers {
   jobId: string;
 }
 
 const JobsUsers = ({ userJobs }) => {
+  const { t } = useTranslation();
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 600 }} size="medium">
@@ -22,7 +25,7 @@ const JobsUsers = ({ userJobs }) => {
           <TableRow>
             {headerConfig.map((entry) => (
               <TableCell key={entry} sx={{ color: 'white' }}>
-                {entry}
+                {t(`job/table/header/${entry}`)}
               </TableCell>
             ))}
           </TableRow>

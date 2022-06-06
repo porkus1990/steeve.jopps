@@ -10,5 +10,12 @@
   "job/pick_success": "You have the Job!",
   "job/pick_error": "Oops - something went wrong :( Try it again :)",
   "job/user/picks/your_picked_jobs": "Your picked jobs",
-  "job/user/picks/your_announced_jobs": "Your announced jobs"
+  "job/user/picks/your_announced_jobs": "Your announced jobs",
+  "job/table/header/title": "Job name",
+  "job/table/header/description": "What to do?",
+  "job/table/header/price": "Price",
+  "job/table/header/three_words": "3 words location",
+  "job/table/header/status": "Status",
+  "job/table/header/timeout": "until?",
+  "job/table/header/additional_information": "Additional information"
 }

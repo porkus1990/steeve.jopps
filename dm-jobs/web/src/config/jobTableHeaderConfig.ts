@@ -1,4 +1,4 @@
-export const headerConfig = [
+export const headerConfig: Array<string> = [
   'title',
   'description',
   'price',

@@ -35,7 +35,7 @@ export const Success = ({ jobUserPicks }) => {
             <TableRow>
               {headerConfig.map((entry) => (
                 <TableCell key={entry} sx={{ color: 'white' }}>
-                  {entry}
+                  {t(`job/table/header/${entry}`)}
                 </TableCell>
               ))}
             </TableRow>
