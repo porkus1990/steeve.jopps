@@ -39,7 +39,7 @@ const JobForm = (props) => {
   const additionalAddressInformationRef = useRef<HTMLInputElement>();
 
   const map = useRef<google.maps.Map>(null);
-  let searchService: google.maps.places.PlacesService;
+  const searchService = useRef<google.maps.places.PlacesService>(null);
 
   useEffect(() => {
     if (!mapRef.current) return;
@@ -50,13 +50,13 @@ const JobForm = (props) => {
       mapTypeId: 'roadmap',
     });
 
-    searchService = new google.maps.places.PlacesService(map.current);
-  }, [mapRef.current]);
+    searchService.current = new google.maps.places.PlacesService(map.current);
+  }, []);
 
   const searchAddress = () => {
     const address = addressRef.current.value;
     if (searchService) {
-      searchService.findPlaceFromQuery(
+      searchService.current.findPlaceFromQuery(
         { query: address, fields: ['name', 'geometry'] },
         (
           results: google.maps.places.PlaceResult[] | null,
@@ -69,7 +69,7 @@ const JobForm = (props) => {
 
             console.log(results);
 
-            map.current.setCenter(results[0].geometry!.location!);
+            map.current.setCenter(results[0]!.geometry!.location!);
           }
         }
       );
