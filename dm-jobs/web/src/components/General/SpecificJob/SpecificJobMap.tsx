@@ -1,4 +1,6 @@
 import { Fragment, useEffect } from 'react';
+import { Grid } from '@mui/material';
+import { setGrid } from './gridData';
 
 const SpecificJobMap = ({ coordinates }) => {
   const mapRef = React.useRef<HTMLDivElement>(null);
@@ -12,6 +14,8 @@ const SpecificJobMap = ({ coordinates }) => {
       mapTypeId: 'roadmap',
     });
 
+    setGrid(map);
+
     // eslint-disable-next-line no-new
     new google.maps.Marker({
       position,
@@ -20,12 +24,19 @@ const SpecificJobMap = ({ coordinates }) => {
   }, [mapRef.current]);
   return (
     <Fragment>
-      <div
-        ref={mapRef}
-        style={{
-          height: '500px',
+      <Grid
+        sx={{
+          marginTop: 2,
+          border: '1px dashed gray',
         }}
-      />
+      >
+        <div
+          ref={mapRef}
+          style={{
+            height: '500px',
+          }}
+        />
+      </Grid>
     </Fragment>
   );
 };

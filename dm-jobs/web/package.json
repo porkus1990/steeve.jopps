@@ -31,6 +31,7 @@
     "react-i18next": "^11.16.9"
   },
   "devDependencies": {
+    "@types/google.maps": "^3.49.1",
     "sass": "^1.52.1",
     "sass-loader": "^13.0.0"
   }

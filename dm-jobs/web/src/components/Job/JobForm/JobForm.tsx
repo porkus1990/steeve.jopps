@@ -8,10 +8,11 @@ import {
   Typography,
 } from '@mui/material';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { SelectChangeEvent } from '@mui/material';
 
+import { createMarker } from 'src/components/General/MapHelper/createMarker';
 import JobCategory from 'src/components/JobCategory/JobCategory';
 import JobTag from 'src/components/JobTag/JobTag';
 
@@ -25,6 +26,7 @@ const JobForm = (props) => {
   const [jobCategory, setJobCategory] = useState<string[]>([]);
   const [jobTags, updateTags] = useState<number[]>([]);
 
+  const mapRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLInputElement>();
   const descriptionRef = useRef<HTMLInputElement>();
   const priceRef = useRef<HTMLInputElement>();
@@ -33,7 +35,46 @@ const JobForm = (props) => {
   const threeWordsRef = useRef<HTMLInputElement>();
   const timeoutRef = useRef<HTMLInputElement>();
   const statusRef = useRef<HTMLInputElement>();
+  const addressRef = useRef<HTMLInputElement>();
   const additionalAddressInformationRef = useRef<HTMLInputElement>();
+
+  let map;
+  let searchService: google.maps.places.PlacesService;
+
+  useEffect(() => {
+    if (!mapRef.current) return;
+    // eslint-disable-next-line no-new
+    map = new google.maps.Map(mapRef.current, {
+      center: { lat: 48.123, lng: 11.123 },
+      zoom: 15,
+      mapTypeId: 'roadmap',
+    });
+
+    searchService = new google.maps.places.PlacesService(map);
+  }, [mapRef.current]);
+
+  const searchAddress = () => {
+    const address = addressRef.current.value;
+    if (searchService) {
+      searchService.findPlaceFromQuery(
+        { query: address, fields: ['name', 'geometry'] },
+        (
+          results: google.maps.places.PlaceResult[] | null,
+          status: google.maps.places.PlacesServiceStatus
+        ) => {
+          if (status === google.maps.places.PlacesServiceStatus.OK && results) {
+            for (let i = 0; i < results.length; i++) {
+              createMarker(map, results[i]);
+            }
+
+            console.log(results);
+
+            map.setCenter(results[0].geometry!.location!);
+          }
+        }
+      );
+    }
+  };
 
   const handleTagClick = (id) => {
     if (!jobTags.includes(id)) {
@@ -74,7 +115,7 @@ const JobForm = (props) => {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="md">
       <CssBaseline />
       <Box
         sx={{
@@ -112,6 +153,32 @@ const JobForm = (props) => {
                 defaultValue={props.job?.description}
                 className="rw-input"
                 inputRef={descriptionRef}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                name="Address"
+                id="address"
+                label="Addresse"
+                className="rw-input"
+                inputRef={addressRef}
+              />
+              <Button
+                type="button"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                onClick={searchAddress}
+              >
+                Search location
+              </Button>
+            </Grid>
+            <Grid item xs={12}>
+              <div
+                ref={mapRef}
+                style={{
+                  height: '500px',
+                }}
               />
             </Grid>
             <Grid item xs={6}>

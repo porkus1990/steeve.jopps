@@ -7,7 +7,7 @@ const NewJobPage = () => {
     <>
       <MetaTags title="New job" />
 
-      <Container component="main" maxWidth="sm">
+      <Container component="main" maxWidth="md">
         <NewJob />
       </Container>
     </>
