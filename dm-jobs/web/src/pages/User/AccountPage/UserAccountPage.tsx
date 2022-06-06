@@ -178,9 +178,7 @@ const UserAccountPage = () => {
                 <TextField
                   required
                   disabled={
-                    userInformationData?.data?.userInformation?.lastName
-                      ? true
-                      : false
+                    !!userInformationData?.data?.userInformation?.lastName
                   }
                   fullWidth
                   id="lastName"

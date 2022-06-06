@@ -26,7 +26,6 @@ const Routes = () => {
             <Route path="/jobs/new" page={JobNewJobPage} name="newJob" />
             <Route path="/jobs/{id:Int}/edit" page={JobEditJobPage} name="editJob" />
             <Route path="/user/profile" page={UserProfilePage} name="userProfile" />
-            <Route path="/user/jobs" page={User} name="jobsPage" />
             <Route path="/user/account" page={UserAccountPage} name="userAccount" />
             <Route path="/user/settings" page={UserSettingsPage} name="userSettings" />
           </Private>
