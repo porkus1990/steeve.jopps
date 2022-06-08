@@ -7,7 +7,6 @@ const HomePage = () => {
     <>
       <MetaTags title="Home" description="Home page" />
       <p />
-      <Map />
     </>
   );
 };

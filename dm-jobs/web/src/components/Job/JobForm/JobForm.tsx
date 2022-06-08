@@ -43,7 +43,6 @@ const JobForm = (props) => {
 
   useEffect(() => {
     if (!mapRef.current) return;
-    // eslint-disable-next-line no-new
     map.current = new google.maps.Map(mapRef.current, {
       center: { lat: 48.123, lng: 11.123 },
       zoom: 15,
@@ -69,6 +68,7 @@ const JobForm = (props) => {
 
             console.log(results);
 
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             map.current.setCenter(results[0]!.geometry!.location!);
           }
         }
