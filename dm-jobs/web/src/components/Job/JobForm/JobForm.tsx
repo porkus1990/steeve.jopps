@@ -15,6 +15,7 @@ import { SelectChangeEvent } from '@mui/material';
 import { createMarker } from 'src/components/General/MapHelper/createMarker';
 import JobCategory from 'src/components/JobCategory/JobCategory';
 import JobTag from 'src/components/JobTag/JobTag';
+import { threeWordsFromCoords } from 'src/components/General/MapHelper/threeWords';
 
 const formatDatetime = (value) => {
   if (value) {
@@ -30,9 +31,6 @@ const JobForm = (props) => {
   const titleRef = useRef<HTMLInputElement>();
   const descriptionRef = useRef<HTMLInputElement>();
   const priceRef = useRef<HTMLInputElement>();
-  const longitudeRef = useRef<HTMLInputElement>();
-  const latitudeRef = useRef<HTMLInputElement>();
-  const threeWordsRef = useRef<HTMLInputElement>();
   const timeoutRef = useRef<HTMLInputElement>();
   const statusRef = useRef<HTMLInputElement>();
   const addressRef = useRef<HTMLInputElement>();
@@ -40,6 +38,10 @@ const JobForm = (props) => {
 
   const map = useRef<google.maps.Map>(null);
   const searchService = useRef<google.maps.places.PlacesService>(null);
+
+  const [longitude, setLongitude] = useState<string>(null);
+  const [latitude, setLatitude] = useState<string>(null);
+  const [threeWords, setThreeWords] = useState<string>(null);
 
   useEffect(() => {
     if (!mapRef.current) return;
@@ -63,7 +65,22 @@ const JobForm = (props) => {
         ) => {
           if (status === google.maps.places.PlacesServiceStatus.OK && results) {
             for (let i = 0; i < results.length; i++) {
-              createMarker(map.current, results[i]);
+              createMarker(
+                map.current,
+                results[i],
+                async (marker: google.maps.Marker) => {
+                  const lng = marker.position.lng();
+                  const lat = marker.position.lat();
+                  setLongitude(lng);
+                  setLatitude(lat);
+
+                  const threeWords = await threeWordsFromCoords({
+                    lat,
+                    lng,
+                  });
+                  setThreeWords(threeWords.words);
+                }
+              );
             }
 
             console.log(results);
@@ -98,9 +115,9 @@ const JobForm = (props) => {
       title: titleRef.current.value,
       price: parseInt(priceRef.current.value),
       description: descriptionRef.current.value,
-      longitude: longitudeRef.current.value,
-      latitude: latitudeRef.current.value,
-      threeWords: threeWordsRef.current.value,
+      longitude: longitude.toString(),
+      latitude: latitude.toString(),
+      threeWords,
       status: statusRef.current.value,
       timeout: timeoutRef.current?.value ?? null,
       additionalAddressInformation:
@@ -190,41 +207,6 @@ const JobForm = (props) => {
                 defaultValue={props.job?.price}
                 required
                 inputRef={priceRef}
-              />
-            </Grid>
-
-            <Grid item xs={6}>
-              <TextField
-                fullWidth
-                name="threeWords"
-                id="threeWords"
-                label="threeWords"
-                defaultValue={props.job?.threeWords}
-                required
-                inputRef={threeWordsRef}
-              />
-            </Grid>
-
-            <Grid item xs={6}>
-              <TextField
-                fullWidth
-                name="longitude"
-                id="longitude"
-                label="longitude"
-                defaultValue={props.job?.longitude}
-                required
-                inputRef={longitudeRef}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                fullWidth
-                name="latitude"
-                id="laitude"
-                label="laitude"
-                defaultValue={props.job?.latitude}
-                required
-                inputRef={latitudeRef}
               />
             </Grid>
 

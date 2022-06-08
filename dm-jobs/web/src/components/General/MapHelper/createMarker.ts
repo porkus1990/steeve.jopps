@@ -1,8 +1,13 @@
 const infowindow: google.maps.InfoWindow = new google.maps.InfoWindow();
 
+export interface MarkerCallbackInterface {
+  (marker: google.maps.Marker): void;
+}
+
 export const createMarker = (
   map: google.maps.Map,
-  place: google.maps.places.PlaceResult
+  place: google.maps.places.PlaceResult,
+  customCallback: MarkerCallbackInterface | null = null
 ) => {
   if (!place.geometry || !place.geometry.location) return;
 
@@ -12,6 +17,11 @@ export const createMarker = (
   });
 
   google.maps.event.addListener(marker, 'click', () => {
+    if (customCallback) {
+      customCallback(marker);
+      return;
+    }
+
     infowindow.setContent(place.name || '');
     infowindow.open(map);
   });

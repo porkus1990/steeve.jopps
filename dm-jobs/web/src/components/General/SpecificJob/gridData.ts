@@ -33,7 +33,7 @@ export const setGrid = (map: google.maps.Map) => {
         .catch(console.error);
     }
 
-    // Set the grid display style
+    // Set the grid display style/workspace/dm-jobs/web/src/components/Job/JobsList
     map.data.setStyle({
       visible: loadFeatures,
       strokeColor: '#777',
