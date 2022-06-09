@@ -1,5 +1,5 @@
-import { JobCategory as JobCategoryType } from '@prisma/client';
 import * as React from 'react';
+
 import {
   FormControl,
   InputLabel,
@@ -7,6 +7,7 @@ import {
   OutlinedInput,
   Select,
 } from '@mui/material';
+import { JobCategory as JobCategoryType } from '@prisma/client';
 import { useTranslation } from 'react-i18next';
 
 const JobCategory = ({ handleChange, value }) => {

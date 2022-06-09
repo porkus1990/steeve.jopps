@@ -1,3 +1,6 @@
+import { Fragment, useState } from 'react';
+
+import { ExpandMore } from '@mui/icons-material';
 import {
   Accordion,
   AccordionSummary,
@@ -8,12 +11,12 @@ import {
   Typography,
   AlertColor,
 } from '@mui/material';
-import { useMutation } from '@redwoodjs/web';
-import { ExpandMore } from '@mui/icons-material';
-import { Fragment, useState } from 'react';
-import { useAuth } from '@redwoodjs/auth';
-import PickJobDialog from 'src/components/General/JobDisplay/PickJobDialog';
 import { useTranslation } from 'react-i18next';
+
+import { useAuth } from '@redwoodjs/auth';
+import { useMutation } from '@redwoodjs/web';
+
+import PickJobDialog from 'src/components/General/JobDisplay/PickJobDialog';
 import SpecificJobMap from 'src/components/General/SpecificJob/SpecificJobMap';
 
 const PICK_JOB_MUTATION = gql`

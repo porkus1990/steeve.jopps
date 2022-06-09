@@ -1,13 +1,16 @@
-import { useMutation } from '@redwoodjs/web';
-import { useAuth } from '@redwoodjs/auth';
-import { toast } from '@redwoodjs/web/toast';
-import * as classes from './Map.css';
 import {
   What3wordsAddress,
   What3wordsAutosuggest,
   What3wordsSymbol,
 } from '@what3words/react-components';
+
+import { useAuth } from '@redwoodjs/auth';
+import { useMutation } from '@redwoodjs/web';
+import { toast } from '@redwoodjs/web/toast';
+
 import JobsCell from '../Job/JobsCell';
+
+import * as classes from './Map.css';
 
 const CREATE_JOB_MUTATION = gql`
   mutation CreateJobMutation($input: CreateJobInput!) {

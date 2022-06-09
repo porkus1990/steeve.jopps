@@ -1,6 +1,8 @@
 import { Typography } from '@mui/material';
-import { useAuth } from '@redwoodjs/auth';
 import { useTranslation } from 'react-i18next';
+
+import { useAuth } from '@redwoodjs/auth';
+
 import JobUsersCell from 'src/components/User/Jobs/JobsUsersCell';
 
 const UserJobs = () => {

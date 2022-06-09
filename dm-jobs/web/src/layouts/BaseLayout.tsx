@@ -1,11 +1,14 @@
 import { Fragment, useState } from 'react';
-import { Link, routes } from '@redwoodjs/router';
-import { useAuth } from '@redwoodjs/auth';
+
+import MenuIcon from '@mui/icons-material/Menu';
 import { Box, IconButton, Toolbar, Typography, styled } from '@mui/material';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
-import MenuIcon from '@mui/icons-material/Menu';
-import TopMenu from '../components/User/TopMenu/TopMenu';
+
+import { useAuth } from '@redwoodjs/auth';
+import { Link, routes } from '@redwoodjs/router';
+
 import SideMenu from '../components/General/SideMenu';
+import TopMenu from '../components/User/TopMenu/TopMenu';
 
 const drawerWidth = 240;
 

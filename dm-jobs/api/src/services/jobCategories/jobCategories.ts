@@ -1,9 +1,10 @@
-import { db } from 'src/lib/db';
 import type {
   QueryResolvers,
   MutationResolvers,
   JobCategoryResolvers,
 } from 'types/graphql';
+
+import { db } from 'src/lib/db';
 
 export const jobCategories: QueryResolvers['jobCategories'] = () => {
   return db.jobCategory.findMany();

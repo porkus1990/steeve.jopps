@@ -1,6 +1,3 @@
-import type { JobUserPicksByUser } from 'types/graphql';
-import JobCell from 'src/components/Job/JobCell';
-import { useTranslation } from 'react-i18next';
 import {
   Paper,
   Table,
@@ -11,6 +8,10 @@ import {
   TableBody,
   Typography,
 } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+import type { JobUserPicksByUser } from 'types/graphql';
+
+import JobCell from 'src/components/Job/JobCell';
 import { headerConfig } from 'src/config/jobTableHeaderConfig';
 
 export const QUERY = gql`

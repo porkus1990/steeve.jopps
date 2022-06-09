@@ -1,7 +1,10 @@
-import { Private, Set, Router, Route } from '@redwoodjs/router';
-import BaseLayout from 'src/layouts/BaseLayout';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { orange } from '@mui/material/colors';
+
+import { Private, Set, Router, Route } from '@redwoodjs/router';
+
+import BaseLayout from 'src/layouts/BaseLayout';
+
 import PickJobPage from './pages/Job/PickJobPage/PickJobPage';
 
 const theme = createTheme({

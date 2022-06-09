@@ -1,4 +1,3 @@
-import JobCell from 'src/components/Job/JobCell/JobCell';
 import {
   Paper,
   Table,
@@ -8,8 +7,10 @@ import {
   TableRow,
   TableBody,
 } from '@mui/material';
-import { headerConfig } from 'src/config/jobTableHeaderConfig';
 import { useTranslation } from 'react-i18next';
+
+import JobCell from 'src/components/Job/JobCell/JobCell';
+import { headerConfig } from 'src/config/jobTableHeaderConfig';
 
 interface JobsUsers {
   jobId: string;

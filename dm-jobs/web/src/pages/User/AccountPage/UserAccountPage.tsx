@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+
 import {
   Box,
   Button,
@@ -7,14 +9,13 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { useRef } from 'react';
-import { MetaTags, useMutation, useQuery } from '@redwoodjs/web';
-import { useAuth } from '@redwoodjs/auth';
-
 import {
   CreateUserInformationInput,
   CreateUserAddressInput,
 } from 'types/graphql';
+
+import { useAuth } from '@redwoodjs/auth';
+import { MetaTags, useMutation, useQuery } from '@redwoodjs/web';
 
 const CREATE_NAME_MUTATION = gql`
   mutation CreateUserInformation($input: CreateUserInformationInput!) {

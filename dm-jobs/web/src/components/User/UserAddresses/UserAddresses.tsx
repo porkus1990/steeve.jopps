@@ -1,3 +1,6 @@
+import { useEffect, useState } from 'react';
+
+import { useLazyQuery } from '@apollo/client';
 import {
   Button,
   Paper,
@@ -9,9 +12,9 @@ import {
   TableBody,
   Typography,
 } from '@mui/material';
+
 import { useAuth } from '@redwoodjs/auth';
-import { useLazyQuery } from '@apollo/client';
-import { useEffect, useState } from 'react';
+
 import UserAddressEditCell from 'src/components/User/UserAddressEditCell/UserAddressEditCell';
 
 const GET_USER_ADDRESSES_QUERY = gql`

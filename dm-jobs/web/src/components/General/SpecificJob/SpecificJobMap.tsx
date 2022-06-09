@@ -1,5 +1,7 @@
 import { Fragment, useEffect } from 'react';
+
 import { Grid } from '@mui/material';
+
 import { setGrid } from './gridData';
 
 const SpecificJobMap = ({ coordinates }) => {

@@ -1,6 +1,5 @@
-import { JobTag as JobTagType } from '@prisma/client';
-
 import { Chip, ListItem, Paper, Tooltip } from '@mui/material';
+import { JobTag as JobTagType } from '@prisma/client';
 import { useTranslation } from 'react-i18next';
 
 const JobTag = ({ handleClick, tags }) => {

@@ -1,6 +1,6 @@
 import { Fragment, useState } from 'react';
-import { Link, routes } from '@redwoodjs/router';
-import { useAuth } from '@redwoodjs/auth';
+
+import { Logout, Settings } from '@mui/icons-material';
 import {
   Avatar,
   Divider,
@@ -9,7 +9,9 @@ import {
   Menu,
   MenuItem,
 } from '@mui/material';
-import { Logout, Settings } from '@mui/icons-material';
+
+import { useAuth } from '@redwoodjs/auth';
+import { Link, routes } from '@redwoodjs/router';
 
 const TopMenu = () => {
   const { logOut } = useAuth();

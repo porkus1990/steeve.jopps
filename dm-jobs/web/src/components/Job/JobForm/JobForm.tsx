@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from 'react';
+
 import {
   Button,
   Box,
@@ -7,15 +9,12 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-
-import { useEffect, useRef, useState } from 'react';
-
 import { SelectChangeEvent } from '@mui/material';
 
 import { createMarker } from 'src/components/General/MapHelper/createMarker';
+import { threeWordsFromCoords } from 'src/components/General/MapHelper/threeWords';
 import JobCategory from 'src/components/JobCategory/JobCategory';
 import JobTag from 'src/components/JobTag/JobTag';
-import { threeWordsFromCoords } from 'src/components/General/MapHelper/threeWords';
 
 const formatDatetime = (value) => {
   if (value) {

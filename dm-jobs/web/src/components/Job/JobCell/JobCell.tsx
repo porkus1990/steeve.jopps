@@ -1,4 +1,5 @@
 import type { FindJobById } from 'types/graphql';
+
 import type { CellSuccessProps } from '@redwoodjs/web';
 
 import Job from 'src/components/Job/Job';

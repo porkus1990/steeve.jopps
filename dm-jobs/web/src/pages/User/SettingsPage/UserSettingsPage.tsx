@@ -1,4 +1,5 @@
 import { Box, Container, CssBaseline, Typography } from '@mui/material';
+
 import { MetaTags } from '@redwoodjs/web';
 
 const UserSettingsPage = () => {

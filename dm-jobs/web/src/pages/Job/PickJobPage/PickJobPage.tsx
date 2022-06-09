@@ -1,5 +1,7 @@
 import { CssBaseline, Grid } from '@mui/material';
+
 import { MetaTags } from '@redwoodjs/web';
+
 import JobsCell from 'src/components/Job/JobsCell';
 
 const PickJobPage = () => {

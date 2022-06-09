@@ -1,5 +1,5 @@
-import { JobCategory as JobCategoryType } from '@prisma/client';
 import { Chip, ListItem, Paper, Tooltip } from '@mui/material';
+import { JobCategory as JobCategoryType } from '@prisma/client';
 
 const JobCategoryFilter = ({ filter }) => {
   const categories = Object.values(JobCategoryType);

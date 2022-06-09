@@ -1,3 +1,4 @@
+import { ChevronLeft } from '@mui/icons-material';
 import {
   Divider,
   Drawer,
@@ -8,8 +9,9 @@ import {
   ListItemIcon,
   styled,
 } from '@mui/material';
+
 import { Link } from '@redwoodjs/router';
-import { ChevronLeft } from '@mui/icons-material';
+
 import { config, SideMenuConfigInterface } from './SideMenuConfig';
 
 const drawerWidth = 240;

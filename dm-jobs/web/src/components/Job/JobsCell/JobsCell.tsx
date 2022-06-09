@@ -1,10 +1,13 @@
-import type { FindJobs, Job } from 'types/graphql';
-import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web';
-import { Link, routes } from '@redwoodjs/router';
-import { Box, Container, Grid } from '@mui/material';
-import JobsList from 'src/components/Job/JobsList';
-import JobCategoryFilter from 'src/components/General/Filter/CategoryFilter';
 import { useState } from 'react';
+
+import { Box, Container, Grid } from '@mui/material';
+import type { FindJobs, Job } from 'types/graphql';
+
+import { Link, routes } from '@redwoodjs/router';
+import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web';
+
+import JobCategoryFilter from 'src/components/General/Filter/CategoryFilter';
+import JobsList from 'src/components/Job/JobsList';
 
 export const QUERY = gql`
   query FindJobs {

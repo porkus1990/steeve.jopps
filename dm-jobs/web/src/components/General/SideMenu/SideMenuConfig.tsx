@@ -1,4 +1,5 @@
 import { LocationSearching, ShoppingBasket } from '@mui/icons-material';
+
 import { routes } from '@redwoodjs/router';
 
 export interface SideMenuConfigInterface {

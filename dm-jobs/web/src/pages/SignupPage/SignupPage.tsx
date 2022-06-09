@@ -1,5 +1,6 @@
-import { Link, navigate, routes } from '@redwoodjs/router';
 import { useRef } from 'react';
+import { useEffect } from 'react';
+
 import {
   Button,
   Box,
@@ -9,10 +10,11 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
+
 import { useAuth } from '@redwoodjs/auth';
+import { Link, navigate, routes } from '@redwoodjs/router';
 import { MetaTags } from '@redwoodjs/web';
 import { toast, Toaster } from '@redwoodjs/web/toast';
-import { useEffect } from 'react';
 
 const SignupPage = () => {
   const { isAuthenticated, signUp } = useAuth();
