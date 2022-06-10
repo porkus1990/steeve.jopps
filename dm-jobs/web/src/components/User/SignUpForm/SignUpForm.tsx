@@ -15,6 +15,7 @@ import {
   Typography,
 } from '@mui/material';
 import { AccountType } from '@prisma/client';
+import { useTranslation } from 'react-i18next';
 
 import { useAuth } from '@redwoodjs/auth';
 import { Link, navigate, routes } from '@redwoodjs/router';
@@ -32,6 +33,7 @@ const USER_SETUP_MUTATION = gql`
 const SignUpForm = () => {
   const { isAuthenticated, signUp } = useAuth();
   const [userSetupMutation] = useMutation(USER_SETUP_MUTATION);
+  const { t } = useTranslation();
 
   const [accountType, setAccountType] = useState<AccountType>(
     AccountType.execute
@@ -125,7 +127,9 @@ const SignUpForm = () => {
             </Grid>
             <Grid item xs={12}>
               <FormControl>
-                <FormLabel id="account-type">Account type</FormLabel>
+                <FormLabel id="account-type">
+                  {t('job/user/signUp/account_type_choose')}
+                </FormLabel>
                 <RadioGroup
                   aria-labelledby="account-type"
                   value={accountType}
@@ -135,12 +139,16 @@ const SignUpForm = () => {
                   <FormControlLabel
                     value={AccountType.execute}
                     control={<Radio />}
-                    label={AccountType.execute}
+                    label={t(
+                      `job/user/signUp/account_type_${AccountType.execute}`
+                    )}
                   />
                   <FormControlLabel
                     value={AccountType.provide}
                     control={<Radio />}
-                    label={AccountType.provide}
+                    label={t(
+                      `job/user/signUp/account_type_${AccountType.provide}`
+                    )}
                   />
                 </RadioGroup>
               </FormControl>
