@@ -12,9 +12,11 @@ import Job from 'src/models/Job';
 import JobCategory from 'src/models/JobCategory';
 import JobUser from 'src/models/JobUser';
 import JobUserPick from 'src/models/JobUserPick';
+import User from 'src/models/User';
 
 Job.requiredModels = [];
 JobUser.requiredModels = [];
 JobUserPick.requiredModels = [];
+User.requiredModels = [];
 
-export { Job, JobCategory, JobUser, JobUserPick };
+export { Job, JobCategory, JobUser, JobUserPick, User };

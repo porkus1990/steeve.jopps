@@ -68,6 +68,19 @@ model JobUserPick {
   @@unique([jobId, userId])
 }
 
+model User {
+  id          Int  @id @default(autoincrement())
+  userId      String
+  accountType AccountType @default(execute)
+
+  @@unique([userId, accountType])
+}
+
+enum AccountType {
+  provide
+  execute
+}
+
 enum JobCategory {
   buying
   pawn
