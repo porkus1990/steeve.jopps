@@ -1,11 +1,16 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import {
   Box,
   Button,
   Container,
   CssBaseline,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
   Grid,
+  Radio,
+  RadioGroup,
   TextField,
   Typography,
 } from '@mui/material';
@@ -27,6 +32,16 @@ const USER_SETUP_MUTATION = gql`
 const SignUpForm = () => {
   const { isAuthenticated, signUp } = useAuth();
   const [userSetupMutation] = useMutation(USER_SETUP_MUTATION);
+
+  const [accountType, setAccountType] = useState<AccountType>(
+    AccountType.execute
+  );
+
+  const handleAccountTypeChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setAccountType((event.target as HTMLInputElement).value as AccountType);
+  };
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -53,12 +68,12 @@ const SignUpForm = () => {
     } else if (response.error) {
       toast.error(response.error);
     } else {
-      console.log(response);
+      console.log(accountType);
       const userResp = await userSetupMutation({
         variables: {
           input: {
             userId: response.user.id,
-            accountType: AccountType.execute,
+            accountType,
           },
         },
       });
@@ -107,6 +122,28 @@ const SignUpForm = () => {
                 autoComplete="new-password"
                 inputRef={passwordRef}
               />
+            </Grid>
+            <Grid item xs={12}>
+              <FormControl>
+                <FormLabel id="account-type">Account type</FormLabel>
+                <RadioGroup
+                  aria-labelledby="account-type"
+                  value={accountType}
+                  name="radio-buttons-group"
+                  onChange={handleAccountTypeChange}
+                >
+                  <FormControlLabel
+                    value={AccountType.execute}
+                    control={<Radio />}
+                    label={AccountType.execute}
+                  />
+                  <FormControlLabel
+                    value={AccountType.provide}
+                    control={<Radio />}
+                    label={AccountType.provide}
+                  />
+                </RadioGroup>
+              </FormControl>
             </Grid>
             <Grid item xs={12}>
               <Button
