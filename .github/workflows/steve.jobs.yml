@@ -40,10 +40,15 @@ jobs:
           export NODE_OPTIONS="--max-old-space-size=6144"
           yarn install
 
-      - name: test
+      - name: test backend
         run: |
           cd dm-jobs
-          yarn rw test --ci --outputFile=test_result.json --json
+          yarn rw test api --no-watch --ci --outputFile=test_result.json --json
+
+      - name: test frontend
+        run: |
+          cd dm-jobs
+          yarn rw test web --no-watch --ci --outputFile=test_result.json --json
 
       - name: lint
         if: always()
