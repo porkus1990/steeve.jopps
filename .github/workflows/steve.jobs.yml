@@ -11,6 +11,9 @@ on:
 concurrency:
   group: steve-jobs-${{ github.head_ref }}
   cancel-in-progress: true
+  
+env:
+  NODE_OPTIONS: "--max-old-space-size=8192"
 
 jobs:
   build:
@@ -42,13 +45,11 @@ jobs:
       - name: test backend
         run: |
           cd dm-jobs
-          export NODE_OPTIONS="--max-old-space-size=6144"
           yarn rw test api --no-watch --ci --outputFile=test_result.json --json
 
       - name: test frontend
         run: |
           cd dm-jobs
-          export NODE_OPTIONS="--max-old-space-size=6144"
           yarn rw test web --no-watch --ci --outputFile=test_result.json --json
 
       - name: lint
