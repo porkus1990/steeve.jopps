@@ -1,6 +1,18 @@
 checkoutLocation: .
 workspaceLocation: ./dm-jobs
 
+vscode:
+  extensions:
+    - mgmcdermott.vscode-language-babel
+    - ms-azuretools.vscode-docker
+    - EditorConfig.EditorConfig
+    - dbaeumer.vscode-eslint
+    - eamodio.gitlens
+    - GraphQL.vscode-graphql
+    - Prisma.prisma
+    - Prisma.prisma-insider
+    - pflannery.vscode-versionlens
+
 image:
   file: .gitpod.Dockerfile
 github:
