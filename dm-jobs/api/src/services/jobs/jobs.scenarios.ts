@@ -1,25 +1,26 @@
 import type { Prisma } from '@prisma/client';
+import { JobState as JobStateType } from '@prisma/client';
 
 export const standard = defineScenario<Prisma.JobCreateArgs>({
   job: {
     one: {
       data: {
-        title: 'String',
+        title: 'first title',
         price: 7319315,
-        longitude: 'String',
-        latitude: 'String',
-        threeWords: 'String',
-        status: 'String',
+        longitude: '12.2',
+        latitude: '12.3',
+        threeWords: 'a.b.c',
+        status: JobStateType.pending,
       },
     },
     two: {
       data: {
-        title: 'String',
-        price: 6457299,
-        longitude: 'String',
-        latitude: 'String',
-        threeWords: 'String',
-        status: 'String',
+        title: 'second title',
+        price: 7319315,
+        longitude: '12.5',
+        latitude: '12.6',
+        threeWords: 'a.b.d',
+        status: JobStateType.in_progress,
       },
     },
   },

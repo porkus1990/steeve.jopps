@@ -1,3 +1,5 @@
+import { AccountType as AccountTypeType } from '@prisma/client';
+
 import { users, user, createUser, updateUser, deleteUser } from './users';
 import type { StandardScenario } from './users.scenarios';
 
@@ -22,10 +24,10 @@ describe('users', () => {
 
   scenario('creates a user', async () => {
     const result = await createUser({
-      input: { userId: 'String' },
+      input: { userId: 'String1', accountType: AccountTypeType.execute },
     });
 
-    expect(result.userId).toEqual('String');
+    expect(result.userId).toEqual('String1');
   });
 
   scenario('updates a user', async (scenario: StandardScenario) => {

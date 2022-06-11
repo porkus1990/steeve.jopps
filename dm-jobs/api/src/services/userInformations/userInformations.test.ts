@@ -38,12 +38,16 @@ describe('userInformations', () => {
 
   scenario('creates a userInformation', async () => {
     const result = await createUserInformation({
-      input: { userAuthId: 'String', firstName: 'String', lastName: 'String' },
+      input: {
+        userAuthId: '222-333',
+        firstName: 'namename',
+        lastName: 'lastnamaname',
+      },
     });
 
-    expect(result.userAuthId).toEqual('String');
-    expect(result.firstName).toEqual('String');
-    expect(result.lastName).toEqual('String');
+    expect(result.userAuthId).toEqual('222-333');
+    expect(result.firstName).toEqual('namename');
+    expect(result.lastName).toEqual('lastnamaname');
   });
 
   scenario('updates a userInformation', async (scenario: StandardScenario) => {
@@ -52,10 +56,10 @@ describe('userInformations', () => {
     });
     const result = await updateUserInformation({
       id: original.id,
-      input: { userAuthId: 'String2' },
+      input: { userAuthId: '123-456' },
     });
 
-    expect(result.userAuthId).toEqual('String2');
+    expect(result.userAuthId).toEqual('123-456');
   });
 
   scenario('deletes a userInformation', async (scenario: StandardScenario) => {
