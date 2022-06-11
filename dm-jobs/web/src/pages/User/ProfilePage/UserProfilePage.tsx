@@ -37,7 +37,7 @@ const UserProfilePage = () => {
             marginTop: 8,
           }}
         >
-          <PickedJobsCell userAuthId={currentUser.sub} />
+          <PickedJobsCell userAuthId={currentUser.sub as string} />
         </Grid>
       </Grid>
     </>

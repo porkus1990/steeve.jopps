@@ -36,19 +36,23 @@ const UserAddresses = () => {
   const [open, setOpen] = useState(false);
   const [editAddressId, setAddressEditId] = useState(0);
 
-  const [loadAddresses, { loading, data }] = useLazyQuery(
+  const [loadAddresses, { called, data }] = useLazyQuery(
     GET_USER_ADDRESSES_QUERY
   );
 
   useEffect(() => {
-    loadAddresses({
-      variables: {
-        userAuthId: currentUserId,
-      },
-    });
-  });
+    if (!called) {
+      loadAddresses({
+        variables: {
+          userAuthId: currentUserId,
+        },
+      });
+    }
+  }, [called, currentUserId, loadAddresses]);
 
-  if (loading) return <p>Loading ... replace me with a spinner</p>;
+  if (!data) {
+    return <p>no addresses</p>;
+  }
 
   if (data && data.userAddresses && !addresses.length) {
     setAddresses(data.userAddresses);
