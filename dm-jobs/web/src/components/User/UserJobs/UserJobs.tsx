@@ -9,7 +9,7 @@ const UserJobs = () => {
   const { currentUser } = useAuth();
   const { t } = useTranslation();
 
-  const userAuthId = currentUser.sub;
+  const userAuthId = currentUser?.sub;
   return (
     <>
       <Typography component="h2" variant="h5" sx={{ marginBottom: 2 }}>
