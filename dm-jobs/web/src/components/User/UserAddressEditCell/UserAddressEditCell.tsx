@@ -10,10 +10,7 @@ import {
   Grid,
   TextField,
 } from '@mui/material';
-import type {
-  FindUserAddressEditQuery,
-  FindUserAddressEditQueryVariables,
-} from 'types/graphql';
+import type { FindUserAddressEditQueryVariables } from 'types/graphql';
 
 import {
   CellSuccessProps,

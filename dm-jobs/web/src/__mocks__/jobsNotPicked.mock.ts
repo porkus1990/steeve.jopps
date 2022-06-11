@@ -15,5 +15,5 @@ export const mock = {
       status: 'pending',
       additionalAddressInformation: 'additionalAddressInformation',
     },
-  ]
+  ],
 };

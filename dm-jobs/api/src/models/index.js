@@ -4,15 +4,14 @@ import { RedwoodRecord } from '@redwoodjs/record';
 
 import { db } from 'src/lib/db';
 import datamodel from 'src/models/datamodel';
-
-RedwoodRecord.db = db;
-RedwoodRecord.schema = datamodel;
-
 import Job from 'src/models/Job';
 import JobCategory from 'src/models/JobCategory';
 import JobUser from 'src/models/JobUser';
 import JobUserPick from 'src/models/JobUserPick';
 import User from 'src/models/User';
+
+RedwoodRecord.db = db;
+RedwoodRecord.schema = datamodel;
 
 Job.requiredModels = [];
 JobUser.requiredModels = [];

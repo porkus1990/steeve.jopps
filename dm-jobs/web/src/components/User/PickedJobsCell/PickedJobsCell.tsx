@@ -9,7 +9,6 @@ import {
   Typography,
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import type { JobUserPicksByUser } from 'types/graphql';
 
 import JobCell from 'src/components/Job/JobCell';
 import { headerConfig } from 'src/config/jobTableHeaderConfig';

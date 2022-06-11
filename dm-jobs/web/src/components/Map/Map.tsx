@@ -1,7 +1,6 @@
 import {
   What3wordsAddress,
   What3wordsAutosuggest,
-  What3wordsSymbol,
 } from '@what3words/react-components';
 
 import { useAuth } from '@redwoodjs/auth';
@@ -10,7 +9,7 @@ import { toast } from '@redwoodjs/web/toast';
 
 import JobsCell from '../Job/JobsCell';
 
-import * as classes from './Map.css';
+import './Map.css';
 
 const CREATE_JOB_MUTATION = gql`
   mutation CreateJobMutation($input: CreateJobInput!) {
@@ -29,7 +28,7 @@ const CREATE_JOB_USER_MUTATION = gql`
 `;
 
 export const Map = () => {
-  const [createJob, { loading, error }] = useMutation(CREATE_JOB_MUTATION, {
+  const [createJob] = useMutation(CREATE_JOB_MUTATION, {
     onError: (error) => {
       toast.error(error.message);
     },
@@ -42,9 +41,9 @@ export const Map = () => {
     setValue(event.currentTarget.value);
   };
 
-  let map;
   if (google.maps?.Map) {
-    map = new google.maps.Map(document.getElementById('map'), {
+    // eslint-disable-next-line no-new
+    new google.maps.Map(document.getElementById('map'), {
       center: { lat: 51.52086, lng: -0.195499 },
       zoom: 13,
       mapTypeId: 'roadmap',
@@ -81,7 +80,7 @@ export const Map = () => {
   }, []);
 
   return (
-    <div className={classes.map}>
+    <div>
       <JobsCell />
       <What3wordsAutosuggest
         return_coordinates

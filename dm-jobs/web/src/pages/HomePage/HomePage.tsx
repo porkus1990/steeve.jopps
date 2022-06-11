@@ -1,6 +1,5 @@
 import { MetaTags } from '@redwoodjs/web';
 
-import { Map } from '../../components/Map';
 import './homepage.scss';
 
 const HomePage = () => {
