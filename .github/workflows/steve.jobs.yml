@@ -37,6 +37,7 @@ jobs:
         if: steps.cache-dep.outputs.cache-hit != 'true'
         run: |
           cd dm-jobs
+          export NODE_OPTIONS="--max-old-space-size=6144"
           yarn install
 
       - name: test
