@@ -34,7 +34,7 @@ const ResetPasswordPage = ({ resetToken }) => {
       }
     };
     validateToken();
-  }, []);
+  });
 
   const passwordRef = useRef<HTMLInputElement>();
   useEffect(() => {

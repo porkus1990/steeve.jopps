@@ -15,7 +15,7 @@ import {
 
 import { useAuth } from '@redwoodjs/auth';
 
-import UserAddressEditCell from 'src/components/User/UserAddressEditCell/UserAddressEditCell';
+import UserAddressEditCell from 'src/components/User/UserAddressEditCell';
 
 const GET_USER_ADDRESSES_QUERY = gql`
   query userAddressesByUserAuthProfile($userAuthId: String!) {
@@ -46,7 +46,7 @@ const UserAddresses = () => {
         userAuthId: currentUserId,
       },
     });
-  }, []);
+  });
 
   if (loading) return <p>Loading ... replace me with a spinner</p>;
 

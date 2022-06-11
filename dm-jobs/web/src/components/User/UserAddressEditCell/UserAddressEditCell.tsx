@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { Fragment, useRef } from 'react';
 
 import {
   Box,
@@ -38,7 +38,7 @@ const UPDATE_USER_ADDRESS_QUERY = gql`
   }
 `;
 
-export const Loading = () => '';
+export const Loading = () => <Fragment></Fragment>;
 
 export const Failure = ({
   error,
@@ -51,7 +51,7 @@ export const Success = ({
   open,
   callback,
   handleClose,
-}: CellSuccessProps<any>) => {
+}: CellSuccessProps) => {
   const townRef = useRef<HTMLInputElement>();
   const streetRef = useRef<HTMLInputElement>();
   const numberRef = useRef<HTMLInputElement>();
@@ -60,7 +60,7 @@ export const Success = ({
   const [updateUserAddress] = useMutation(UPDATE_USER_ADDRESS_QUERY);
 
   if (!userAddressEdit) {
-    return '';
+    return <Fragment></Fragment>;
   }
 
   const onUpdate = async () => {

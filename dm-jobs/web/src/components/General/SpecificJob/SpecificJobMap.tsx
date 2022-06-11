@@ -23,7 +23,7 @@ const SpecificJobMap = ({ coordinates }) => {
       position,
       map,
     });
-  }, [mapRef.current]);
+  });
   return (
     <Fragment>
       <Grid
