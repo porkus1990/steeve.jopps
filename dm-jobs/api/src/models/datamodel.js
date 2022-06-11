@@ -1,6 +1,20 @@
 module.exports = {
   enums: [
     {
+      name: 'AccountType',
+      values: [
+        {
+          name: 'provide',
+          dbName: null,
+        },
+        {
+          name: 'execute',
+          dbName: null,
+        },
+      ],
+      dbName: null,
+    },
+    {
       name: 'JobCategory',
       values: [
         {
@@ -507,7 +521,7 @@ module.exports = {
           kind: 'scalar',
           isList: false,
           isRequired: true,
-          isUnique: false,
+          isUnique: true,
           isId: false,
           isReadOnly: false,
           hasDefaultValue: false,
@@ -530,8 +544,17 @@ module.exports = {
         },
       ],
       primaryKey: null,
-      uniqueFields: [],
-      uniqueIndexes: [],
+      uniqueFields: [['jobId'], ['jobId', 'userId']],
+      uniqueIndexes: [
+        {
+          name: null,
+          fields: ['jobId'],
+        },
+        {
+          name: null,
+          fields: ['jobId', 'userId'],
+        },
+      ],
       isGenerated: false,
     },
     {
@@ -560,7 +583,7 @@ module.exports = {
           kind: 'scalar',
           isList: false,
           isRequired: true,
-          isUnique: false,
+          isUnique: true,
           isId: false,
           isReadOnly: false,
           hasDefaultValue: false,
@@ -583,8 +606,76 @@ module.exports = {
         },
       ],
       primaryKey: null,
-      uniqueFields: [],
-      uniqueIndexes: [],
+      uniqueFields: [['jobId'], ['jobId', 'userId']],
+      uniqueIndexes: [
+        {
+          name: null,
+          fields: ['jobId'],
+        },
+        {
+          name: null,
+          fields: ['jobId', 'userId'],
+        },
+      ],
+      isGenerated: false,
+    },
+    {
+      name: 'User',
+      dbName: null,
+      fields: [
+        {
+          name: 'id',
+          kind: 'scalar',
+          isList: false,
+          isRequired: true,
+          isUnique: false,
+          isId: true,
+          isReadOnly: false,
+          hasDefaultValue: true,
+          type: 'Int',
+          default: {
+            name: 'autoincrement',
+            args: [],
+          },
+          isGenerated: false,
+          isUpdatedAt: false,
+        },
+        {
+          name: 'userId',
+          kind: 'scalar',
+          isList: false,
+          isRequired: true,
+          isUnique: false,
+          isId: false,
+          isReadOnly: false,
+          hasDefaultValue: false,
+          type: 'String',
+          isGenerated: false,
+          isUpdatedAt: false,
+        },
+        {
+          name: 'accountType',
+          kind: 'enum',
+          isList: false,
+          isRequired: true,
+          isUnique: false,
+          isId: false,
+          isReadOnly: false,
+          hasDefaultValue: true,
+          type: 'AccountType',
+          default: 'execute',
+          isGenerated: false,
+          isUpdatedAt: false,
+        },
+      ],
+      primaryKey: null,
+      uniqueFields: [['userId', 'accountType']],
+      uniqueIndexes: [
+        {
+          name: null,
+          fields: ['userId', 'accountType'],
+        },
+      ],
       isGenerated: false,
     },
   ],

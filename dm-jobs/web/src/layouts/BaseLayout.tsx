@@ -1,8 +1,12 @@
 import { Fragment, useState } from 'react';
 
-import MenuIcon from '@mui/icons-material/Menu';
+import {
+  Language as LanguageIcon,
+  Menu as MenuIcon,
+} from '@mui/icons-material';
 import { Box, IconButton, Toolbar, Typography, styled } from '@mui/material';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
+import { useTranslation } from 'react-i18next';
 
 import { useAuth } from '@redwoodjs/auth';
 import { Link, routes } from '@redwoodjs/router';
@@ -53,7 +57,9 @@ const AppBar = styled(MuiAppBar, {
 
 const BaseLayout = ({ children }) => {
   const { isAuthenticated } = useAuth();
+  const { i18n } = useTranslation();
   const [sideMenuOpen, setSideMenuOpen] = useState<boolean>(false);
+  const [language, setLanguage] = useState<string>('de');
 
   const handleSideMenuOpen = () => {
     setSideMenuOpen(true);
@@ -61,6 +67,11 @@ const BaseLayout = ({ children }) => {
 
   const handleSideMenuClose = () => {
     setSideMenuOpen(false);
+  };
+
+  const switchLanguage = () => {
+    setLanguage(language == 'de' ? 'en' : 'de');
+    i18n.changeLanguage(language);
   };
 
   return (
@@ -81,6 +92,14 @@ const BaseLayout = ({ children }) => {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Steeve.jopps
             </Typography>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              onClick={switchLanguage}
+            >
+              <LanguageIcon />
+            </IconButton>
             {isAuthenticated ? (
               <TopMenu />
             ) : (
