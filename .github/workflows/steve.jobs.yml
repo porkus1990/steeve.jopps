@@ -43,7 +43,7 @@ jobs:
       - name: test
         run: |
           cd dm-jobs
-          yarn rw test --no-watch --outputFile=test_result.json --json
+          yarn rw test --ci --outputFile=test_result.json --json
 
       - name: lint
         if: always()
