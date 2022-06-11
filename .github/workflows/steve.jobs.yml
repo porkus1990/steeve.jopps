@@ -24,10 +24,6 @@ jobs:
         with:
           node-version: '16.14.0'
       
-      - name: node options
-        shell: bash
-        run: export NODE_OPTIONS="--max-old-space-size=6144"
-      
       - name: 💿 Cache
         id: cache-dep
         uses: actions/cache@v2
@@ -46,11 +42,13 @@ jobs:
       - name: test backend
         run: |
           cd dm-jobs
+          export NODE_OPTIONS="--max-old-space-size=6144"
           yarn rw test api --no-watch --ci --outputFile=test_result.json --json
 
       - name: test frontend
         run: |
           cd dm-jobs
+          export NODE_OPTIONS="--max-old-space-size=6144"
           yarn rw test web --no-watch --ci --outputFile=test_result.json --json
 
       - name: lint
