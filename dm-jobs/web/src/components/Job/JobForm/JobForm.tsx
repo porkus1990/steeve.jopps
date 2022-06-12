@@ -15,6 +15,8 @@ import {
 } from '@mui/material';
 import { SelectChangeEvent } from '@mui/material';
 
+import { navigate, routes } from '@redwoodjs/router';
+
 import { createMarker } from 'src/components/General/MapHelper/createMarker';
 import { threeWordsFromCoords } from 'src/components/General/MapHelper/threeWords';
 import JobCategory from 'src/components/JobCategory/JobCategory';
@@ -137,7 +139,12 @@ const JobForm = (props) => {
     if (!dataWithCategories.timeout) {
       delete dataWithCategories.timeout;
     }
-    props.onSave(dataWithCategories, props?.job?.id);
+    try {
+      props.onSave(dataWithCategories, props?.job?.id);
+      navigate(routes.pickJob());
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
