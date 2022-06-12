@@ -4,7 +4,7 @@ export const schema = gql`
     createdAt: DateTime!
     title: String!
     description: String
-    price: Int!
+    price: Float!
     longitude: String!
     latitude: String!
     threeWords: String!
@@ -39,7 +39,7 @@ export const schema = gql`
   input CreateJobInput {
     title: String!
     description: String
-    price: Int!
+    price: Float!
     longitude: String!
     latitude: String!
     threeWords: String!
@@ -53,7 +53,7 @@ export const schema = gql`
   input UpdateJobInput {
     title: String
     description: String
-    price: Int
+    price: Float
     longitude: String
     latitude: String
     threeWords: String

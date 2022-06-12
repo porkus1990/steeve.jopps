@@ -39,7 +39,7 @@ model Job {
   createdAt                    DateTime @default(now())
   title                        String
   description                  String?
-  price                        Int
+  price                        Float
   longitude                    String
   latitude                     String
   threeWords                   String

@@ -5,9 +5,13 @@ import {
   Box,
   Container,
   CssBaseline,
+  FormControl,
   Grid,
+  InputAdornment,
+  InputLabel,
   TextField,
   Typography,
+  OutlinedInput,
 } from '@mui/material';
 import { SelectChangeEvent } from '@mui/material';
 
@@ -112,7 +116,7 @@ const JobForm = (props) => {
   const onSubmit = () => {
     const dataWithCategories = {
       title: titleRef.current.value,
-      price: parseInt(priceRef.current.value),
+      price: parseFloat(priceRef.current.value),
       description: descriptionRef.current.value,
       longitude: longitude.toString(),
       latitude: latitude.toString(),
@@ -148,46 +152,52 @@ const JobForm = (props) => {
         <Box component="div" sx={{ mt: 3 }} className="rw-form-wrapper">
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <TextField
-                fullWidth
-                name="title"
-                id="title"
-                label="Jobtitle"
-                defaultValue={props.job?.title}
-                required
-                inputRef={titleRef}
-              />
+              <FormControl fullWidth sx={{ m: 1 }}>
+                <TextField
+                  fullWidth
+                  name="title"
+                  id="title"
+                  label="Jobtitle"
+                  defaultValue={props.job?.title}
+                  required
+                  inputRef={titleRef}
+                />
+              </FormControl>
             </Grid>
 
             <Grid item xs={12}>
-              <TextField
-                multiline
-                maxRows={5}
-                name="description"
-                id="description"
-                label="Description"
-                defaultValue={props.job?.description}
-                className="rw-input"
-                inputRef={descriptionRef}
-              />
+              <FormControl fullWidth sx={{ m: 1 }}>
+                <TextField
+                  multiline
+                  maxRows={5}
+                  name="description"
+                  id="description"
+                  label="Description"
+                  defaultValue={props.job?.description}
+                  className="rw-input"
+                  inputRef={descriptionRef}
+                />
+              </FormControl>
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                name="Address"
-                id="address"
-                label="Addresse"
-                className="rw-input"
-                inputRef={addressRef}
-              />
-              <Button
-                type="button"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-                onClick={searchAddress}
-              >
-                Search location
-              </Button>
+              <FormControl fullWidth sx={{ m: 1 }}>
+                <TextField
+                  name="Address"
+                  id="address"
+                  label="Addresse"
+                  className="rw-input"
+                  inputRef={addressRef}
+                />
+                <Button
+                  type="button"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                  onClick={searchAddress}
+                >
+                  Search location
+                </Button>
+              </FormControl>
             </Grid>
             <Grid item xs={12}>
               <div
@@ -198,52 +208,64 @@ const JobForm = (props) => {
               />
             </Grid>
             <Grid item xs={6}>
-              <TextField
-                fullWidth
-                name="price"
-                id="price"
-                label="Price"
-                defaultValue={props.job?.price}
-                required
-                inputRef={priceRef}
-              />
+              <FormControl fullWidth sx={{ m: 1 }}>
+                <InputLabel htmlFor="outlined-adornment-price">
+                  Price
+                </InputLabel>
+                <OutlinedInput
+                  id="outlined-adornment-price"
+                  endAdornment={
+                    <InputAdornment position="end">€</InputAdornment>
+                  }
+                  label="Price"
+                  inputRef={priceRef}
+                />
+              </FormControl>
             </Grid>
 
             <Grid item xs={6}>
-              <TextField
-                fullWidth
-                name="status"
-                id="status"
-                label="status"
-                defaultValue={props.job?.status}
-                required
-                inputRef={statusRef}
-              />
+              <FormControl fullWidth sx={{ m: 1 }}>
+                <TextField
+                  fullWidth
+                  name="status"
+                  id="status"
+                  label="status"
+                  defaultValue={props.job?.status}
+                  required
+                  inputRef={statusRef}
+                />
+              </FormControl>
             </Grid>
 
             <Grid item xs={6}>
-              <TextField
-                fullWidth
-                name="timeout"
-                id="timeout"
-                label="timeout"
-                defaultValue={formatDatetime(props.job?.timeout)}
-                inputRef={timeoutRef}
-              />
+              <FormControl fullWidth sx={{ m: 1 }}>
+                <TextField
+                  fullWidth
+                  name="timeout"
+                  id="timeout"
+                  label="timeout"
+                  defaultValue={formatDatetime(props.job?.timeout)}
+                  inputRef={timeoutRef}
+                />
+              </FormControl>
             </Grid>
 
             <Grid item xs={6}>
-              <TextField
-                fullWidth
-                name="additionalAddressInformation"
-                id="additionalAddressInformation"
-                label="additionalAddressInformation"
-                defaultValue={props.job?.additionalAddressInformation}
-                inputRef={additionalAddressInformationRef}
-              />
+              <FormControl fullWidth sx={{ m: 1 }}>
+                <TextField
+                  fullWidth
+                  name="additionalAddressInformation"
+                  id="additionalAddressInformation"
+                  label="additionalAddressInformation"
+                  defaultValue={props.job?.additionalAddressInformation}
+                  inputRef={additionalAddressInformationRef}
+                />
+              </FormControl>
             </Grid>
             <Grid item xs={6}>
-              <JobCategory handleChange={handleChange} value={jobCategory} />
+              <FormControl fullWidth sx={{ m: 1 }}>
+                <JobCategory handleChange={handleChange} value={jobCategory} />
+              </FormControl>
             </Grid>
             <Grid item xs={12}>
               <JobTag handleClick={handleTagClick} tags={jobTags} />
