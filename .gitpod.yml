@@ -13,6 +13,7 @@ vscode:
     - Prisma.prisma-insider
     - pflannery.vscode-versionlens
     - bungcip.better-toml
+    - mikestead.dotenv
 
 image:
   file: .gitpod.Dockerfile
