@@ -17,6 +17,7 @@
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.8.0",
     "@mui/material": "^5.7.0",
+    "@mui/x-date-pickers": "5.0.0-alpha.6",
     "@redwoodjs/auth": "^2.0.0-rc.118",
     "@redwoodjs/forms": "^2.0.0-rc.118",
     "@redwoodjs/router": "^2.0.0-rc.118",

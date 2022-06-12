@@ -14,6 +14,10 @@ import {
   OutlinedInput,
 } from '@mui/material';
 import { SelectChangeEvent } from '@mui/material';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { JobState as JobStateType } from '@prisma/client';
 
 import { navigate, routes } from '@redwoodjs/router';
 
@@ -21,12 +25,6 @@ import { createMarker } from 'src/components/General/MapHelper/createMarker';
 import { threeWordsFromCoords } from 'src/components/General/MapHelper/threeWords';
 import JobCategory from 'src/components/JobCategory/JobCategory';
 import JobTag from 'src/components/JobTag/JobTag';
-
-const formatDatetime = (value) => {
-  if (value) {
-    return value.replace(/:\d{2}\.\d{3}\w/, '');
-  }
-};
 
 const JobForm = (props) => {
   const [jobCategory, setJobCategory] = useState<string[]>([]);
@@ -37,7 +35,6 @@ const JobForm = (props) => {
   const descriptionRef = useRef<HTMLInputElement>();
   const priceRef = useRef<HTMLInputElement>();
   const timeoutRef = useRef<HTMLInputElement>();
-  const statusRef = useRef<HTMLInputElement>();
   const addressRef = useRef<HTMLInputElement>();
   const additionalAddressInformationRef = useRef<HTMLInputElement>();
   const searchAddressButtonRef = useRef<HTMLButtonElement>();
@@ -48,6 +45,14 @@ const JobForm = (props) => {
   const [longitude, setLongitude] = useState<string>(null);
   const [latitude, setLatitude] = useState<string>(null);
   const [threeWords, setThreeWords] = useState<string>(null);
+
+  const [value, setValue] = React.useState<Date | null>(
+    new Date('2014-08-18T21:11:54')
+  );
+
+  const handleChangeDateTime = (newValue: Date | null) => {
+    setValue(newValue);
+  };
 
   useEffect(() => {
     if (!mapRef.current) return;
@@ -122,6 +127,10 @@ const JobForm = (props) => {
   };
 
   const onSubmit = () => {
+    let timeout;
+    if (timeoutRef.current?.value) {
+      timeout = new Date(timeoutRef!.current!.value).toISOString();
+    }
     const dataWithCategories = {
       title: titleRef.current.value,
       price: parseFloat(priceRef.current.value),
@@ -129,8 +138,8 @@ const JobForm = (props) => {
       longitude: longitude.toString(),
       latitude: latitude.toString(),
       threeWords,
-      status: statusRef.current.value,
-      timeout: timeoutRef.current?.value ?? null,
+      status: JobStateType.pending,
+      timeout: timeout ?? null,
       additionalAddressInformation:
         additionalAddressInformationRef.current.value,
       categories: [...jobCategory],
@@ -141,7 +150,11 @@ const JobForm = (props) => {
     }
     try {
       props.onSave(dataWithCategories, props?.job?.id);
-      navigate(routes.pickJob());
+
+      // wait for job to exist in db
+      setTimeout(() => {
+        navigate(routes.pickJob());
+      }, 600);
     } catch (e) {
       console.error(e);
     }
@@ -215,12 +228,14 @@ const JobForm = (props) => {
               </FormControl>
             </Grid>
             <Grid item xs={12}>
-              <div
-                ref={mapRef}
-                style={{
-                  height: '500px',
-                }}
-              />
+              <FormControl fullWidth sx={{ m: 1 }}>
+                <div
+                  ref={mapRef}
+                  style={{
+                    height: '500px',
+                  }}
+                />
+              </FormControl>
             </Grid>
             <Grid item xs={6}>
               <FormControl fullWidth sx={{ m: 1 }}>
@@ -240,28 +255,16 @@ const JobForm = (props) => {
 
             <Grid item xs={6}>
               <FormControl fullWidth sx={{ m: 1 }}>
-                <TextField
-                  fullWidth
-                  name="status"
-                  id="status"
-                  label="status"
-                  defaultValue={props.job?.status}
-                  required
-                  inputRef={statusRef}
-                />
-              </FormControl>
-            </Grid>
-
-            <Grid item xs={6}>
-              <FormControl fullWidth sx={{ m: 1 }}>
-                <TextField
-                  fullWidth
-                  name="timeout"
-                  id="timeout"
-                  label="timeout"
-                  defaultValue={formatDatetime(props.job?.timeout)}
-                  inputRef={timeoutRef}
-                />
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DateTimePicker
+                    onChange={handleChangeDateTime}
+                    value={value}
+                    id="timeout"
+                    label="timeout"
+                    inputRef={timeoutRef}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+                </LocalizationProvider>
               </FormControl>
             </Grid>
 
