@@ -1,3 +1,7 @@
+import { mockRedwoodDirective } from '@redwoodjs/testing/api';
+
+import requireAuth from 'src/directives/requireAuth/requireAuth';
+
 import {
   jobUsers,
   jobUser,
@@ -14,6 +18,9 @@ import type { StandardScenario } from './jobUsers.scenarios';
 // https://redwoodjs.com/docs/testing#jest-expect-type-considerations
 
 describe('jobUsers', () => {
+  mockRedwoodDirective(requireAuth, {
+    context: { currentUser: { id: 1 } },
+  });
   scenario('returns all jobUsers', async (scenario: StandardScenario) => {
     const result = await jobUsers();
 
