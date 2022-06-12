@@ -38,6 +38,7 @@ const JobForm = (props) => {
   const statusRef = useRef<HTMLInputElement>();
   const addressRef = useRef<HTMLInputElement>();
   const additionalAddressInformationRef = useRef<HTMLInputElement>();
+  const searchAddressButtonRef = useRef<HTMLButtonElement>();
 
   const map = useRef<google.maps.Map>(null);
   const searchService = useRef<google.maps.places.PlacesService>(null);
@@ -72,8 +73,8 @@ const JobForm = (props) => {
                 map.current,
                 results[i],
                 async (marker: google.maps.Marker) => {
-                  const lng = marker.position.lng();
-                  const lat = marker.position.lat();
+                  const lng = marker?.position?.lng();
+                  const lat = marker?.position?.lat();
                   setLongitude(lng);
                   setLatitude(lat);
 
@@ -113,6 +114,11 @@ const JobForm = (props) => {
       typeof value === 'string' ? value.split(',') : value
     );
   };
+
+  const handleChangeAddress = () => {
+    searchAddressButtonRef?.current?.focus();
+  };
+
   const onSubmit = () => {
     const dataWithCategories = {
       title: titleRef.current.value,
@@ -187,6 +193,7 @@ const JobForm = (props) => {
                   label="Addresse"
                   className="rw-input"
                   inputRef={addressRef}
+                  onChange={handleChangeAddress}
                 />
                 <Button
                   type="button"
@@ -194,6 +201,7 @@ const JobForm = (props) => {
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
                   onClick={searchAddress}
+                  ref={searchAddressButtonRef}
                 >
                   Search location
                 </Button>

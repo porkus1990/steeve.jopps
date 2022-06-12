@@ -22,8 +22,12 @@ export const schema = gql`
     canceled
   }
   enum JobCategory {
+    all
     buying
     pawn
+    delivery
+    lawn
+    snow
   }
   enum JobTag {
     car

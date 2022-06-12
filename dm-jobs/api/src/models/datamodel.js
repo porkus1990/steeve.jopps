@@ -25,6 +25,22 @@ module.exports = {
           name: 'pawn',
           dbName: null,
         },
+        {
+          name: 'all',
+          dbName: null,
+        },
+        {
+          name: 'delivery',
+          dbName: null,
+        },
+        {
+          name: 'lawn',
+          dbName: null,
+        },
+        {
+          name: 'snow',
+          dbName: null,
+        },
       ],
       dbName: null,
     },
