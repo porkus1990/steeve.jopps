@@ -6140,9 +6140,9 @@ __metadata:
   linkType: hard
 
 "@types/google.maps@npm:^3.49.1":
-  version: 3.49.2
-  resolution: "@types/google.maps@npm:3.49.2"
-  checksum: 81525ed61bbe78a80bf234cb086b800011340fa214bef25507c4f8c09e87ea0a0940e8389bd6c87617e9fff2f2aef67857532b7bc48b691400b62e22cbb06e55
+  version: 3.49.1
+  resolution: "@types/google.maps@npm:3.49.1"
+  checksum: 90761a1113bd3da261be6529c221b8e54f7b6b37893a812e03975efd01e26d76669cad8b280b909084a08d0d26e78260637aeb8caa29d7dd51c2fb8c72b5190f
   languageName: node
   linkType: hard
 
@@ -21286,6 +21286,7 @@ __metadata:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@redwoodjs/core": ^2.0.0-rc.118
+    "@types/google.maps": ^3.49.1
     "@what3words/react-components": ^4.0.6
   languageName: unknown
   linkType: soft
