@@ -2,13 +2,14 @@ import {
   What3wordsAddress,
   What3wordsAutosuggest,
 } from '@what3words/react-components';
-import JobsCell from '../Job/JobsCell';
+import JobsCell, { QUERY } from '../Job/JobsCell';
 
 import { useAuth } from '@redwoodjs/auth';
-import { useMutation } from '@redwoodjs/web';
+import { CellSuccessProps, useMutation, useQuery } from '@redwoodjs/web';
 import { toast } from '@redwoodjs/web/toast';
 
 import './Map.css';
+import { FindJobs, Job } from 'types/graphql';
 
 // const CREATE_JOB_MUTATION = gql`
 //   mutation CreateJobMutation($input: CreateJobInput!) {
@@ -27,7 +28,9 @@ import './Map.css';
 // `;
 
 export const Map = () => {
-   // const [createJob, { loading, error }] = useMutation(CREATE_JOB_MUTATION, {
+  const { data } = useQuery<CellSuccessProps<FindJobs>>(QUERY);
+
+  // const [createJob, { loading, error }] = useMutation(CREATE_JOB_MUTATION, {
   //   onError: (error) => {
   //     toast.error(error.message);
   //   },
@@ -44,10 +47,18 @@ export const Map = () => {
 
   React.useEffect(() => {
     if (!mapRef.current) return;
-    new google.maps.Map(mapRef.current, {
-      center: { lat: 51.52086, lng: -0.195499 },
+    const map = new google.maps.Map(mapRef.current, {
+      center: { lat: 48, lng: 10 },
       zoom: 13,
       mapTypeId: 'roadmap',
+    });
+
+    (data?.jobsNotPicked || []).map((openJob) => {
+      new google.maps.Marker({
+        position: { lat: Number(openJob.latitude), lng: Number(openJob.longitude) },
+        map,
+        title: "Job",
+      });
     });
   }, [mapRef.current]);
   // const onCoordinatesChanged = React.useCallback(async ({ detail }) => {
@@ -80,9 +91,12 @@ export const Map = () => {
   // }, []);
 
   return (
-    <div>
-      <JobsCell />
-      {/* <What3wordsAutosuggest
+      <div ref={mapRef} style={{ height: '500px'}} />
+  );
+};
+
+
+{/* <What3wordsAutosuggest
         return_coordinates
         onCoordinates_changed={onCoordinatesChanged}
         api_key="O29MMPI1"
@@ -96,6 +110,3 @@ export const Map = () => {
           onChange={onChange}
         />
       </What3wordsAutosuggest> */}
-    </div>
-  );
-};
