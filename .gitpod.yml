@@ -12,6 +12,7 @@ vscode:
     - Prisma.prisma
     - Prisma.prisma-insider
     - pflannery.vscode-versionlens
+    - bungcip.better-toml
 
 image:
   file: .gitpod.Dockerfile
