@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 
-import SwipeableViews from 'react-swipeable-views';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import {
@@ -18,12 +17,11 @@ import {
   Typography,
   OutlinedInput,
 } from '@mui/material';
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { JobState as JobStateType } from '@prisma/client';
-import { autoPlay } from 'react-swipeable-views-utils';
+import SwipeableViews from 'react-swipeable-views';
 
 import { navigate, routes } from '@redwoodjs/router';
 
@@ -153,7 +151,7 @@ const JobForm = (props) => {
     setValue(newValue);
   };
   const formdata = [
-    <FormControl key="title" fullWidth sx={{ m: 1 }}>
+    <FormControl key="title" fullWidth>
       <TextField
         fullWidth
         name="title"
@@ -164,35 +162,7 @@ const JobForm = (props) => {
         inputRef={titleRef}
       />
     </FormControl>,
-    <FormControl key="address" fullWidth sx={{ m: 1 }}>
-      <TextField
-        name="Address"
-        id="address"
-        label="Addresse"
-        className="rw-input"
-        inputRef={addressRef}
-        onChange={handleChangeAddress}
-      />
-      <Button
-        type="button"
-        fullWidth
-        variant="contained"
-        sx={{ mt: 3, mb: 2 }}
-        onClick={searchAddress}
-        ref={searchAddressButtonRef}
-      >
-        Search location
-      </Button>
-    </FormControl>,
-    <FormControl key="address-map" fullWidth sx={{ m: 1 }}>
-      <div
-        ref={mapRef}
-        style={{
-          height: '500px',
-        }}
-      />
-    </FormControl>,
-    <FormControl key="price" fullWidth sx={{ m: 1 }}>
+    <FormControl key="price" fullWidth>
       <InputLabel htmlFor="outlined-adornment-price">Price</InputLabel>
       <OutlinedInput
         id="outlined-adornment-price"
@@ -201,7 +171,7 @@ const JobForm = (props) => {
         inputRef={priceRef}
       />
     </FormControl>,
-    <FormControl key="timeout" fullWidth sx={{ m: 1 }}>
+    <FormControl key="timeout" fullWidth>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DateTimePicker
           onChange={handleChangeDateTime}
@@ -213,7 +183,7 @@ const JobForm = (props) => {
         />
       </LocalizationProvider>
     </FormControl>,
-    <FormControl key="additional-info" fullWidth sx={{ m: 1 }}>
+    <FormControl key="additional-info" fullWidth>
       <TextField
         fullWidth
         name="additionalAddressInformation"
@@ -223,10 +193,10 @@ const JobForm = (props) => {
         inputRef={additionalAddressInformationRef}
       />
     </FormControl>,
-    <FormControl key="category" fullWidth sx={{ m: 1 }}>
+    <FormControl key="category" fullWidth>
       <JobCategory handleChange={handleChange} value={jobCategory} />
     </FormControl>,
-    <FormControl key="tags" fullWidth sx={{ m: 1 }}>
+    <FormControl key="tags" fullWidth>
       <JobTag handleClick={handleTagClick} tags={jobTags} />
     </FormControl>,
   ];
@@ -274,16 +244,50 @@ const JobForm = (props) => {
         <Box component="div" sx={{ mt: 3 }} className="rw-form-wrapper">
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <AutoPlaySwipeableViews
+              <FormControl key="address" fullWidth sx={{ m: 1 }}>
+                <TextField
+                  name="Address"
+                  id="address"
+                  label="Addresse"
+                  className="rw-input"
+                  inputRef={addressRef}
+                  onChange={handleChangeAddress}
+                />
+                <Button
+                  type="button"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                  onClick={searchAddress}
+                  ref={searchAddressButtonRef}
+                >
+                  Search location
+                </Button>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12}>
+              <FormControl key="address-map" fullWidth sx={{ m: 1 }}>
+                <div
+                  ref={mapRef}
+                  style={{
+                    height: '500px',
+                  }}
+                />
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} sx={{ mt: 1 }}>
+              <SwipeableViews
                 axis="x"
                 index={activeStep}
                 onChangeIndex={handleStepChange}
                 enableMouseEvents
+                sx={{ m: 1 }}
               >
-                {formdata.map((component) => {
-                  return component;
+                {formdata.map((component, index) => {
+                  return <p key={index}>{component}</p>;
                 })}
-              </AutoPlaySwipeableViews>
+              </SwipeableViews>
+
               <MobileStepper
                 steps={maxSteps}
                 position="static"
@@ -310,17 +314,17 @@ const JobForm = (props) => {
                 }
               />
             </Grid>
-            <Grid item xs={12}>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-                onClick={onSubmit}
-              >
-                Submit new job
-              </Button>
-            </Grid>
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              onClick={onSubmit}
+            >
+              Submit new job
+            </Button>
           </Grid>
         </Box>
       </Box>
