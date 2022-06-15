@@ -12,6 +12,14 @@ export const user: QueryResolvers['user'] = ({ id }) => {
   });
 };
 
+export const userByUserAuthId: QueryResolvers['userByUserAuthId'] = ({
+  userId,
+}) => {
+  return db.user.findMany({
+    where: { userId },
+  });
+};
+
 export const createUser: MutationResolvers['createUser'] = ({ input }) => {
   return db.user.create({
     data: input,

@@ -72,6 +72,7 @@ model User {
   id          Int  @id @default(autoincrement())
   userId      String
   accountType AccountType @default(execute)
+  rating      Int @default(0)
 
   @@unique([userId, accountType])
 }
