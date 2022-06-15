@@ -74,6 +74,7 @@ model User {
   accountType AccountType @default(execute)
   rating      Int @default(0)
 
+  @@unique([userId])
   @@unique([userId, accountType])
 }
 

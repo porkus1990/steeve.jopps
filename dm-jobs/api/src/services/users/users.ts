@@ -15,7 +15,7 @@ export const user: QueryResolvers['user'] = ({ id }) => {
 export const userByUserAuthId: QueryResolvers['userByUserAuthId'] = ({
   userId,
 }) => {
-  return db.user.findMany({
+  return db.user.findUnique({
     where: { userId },
   });
 };
