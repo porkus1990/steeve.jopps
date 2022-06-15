@@ -29,7 +29,9 @@
     "prop-types": "15.8.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-i18next": "^11.16.9"
+    "react-i18next": "^11.16.9",
+    "react-swipeable-views": "0.14.0",
+    "react-swipeable-views-utils": "0.14.0"
   },
   "devDependencies": {
     "@types/google.maps": "^3.49.1",

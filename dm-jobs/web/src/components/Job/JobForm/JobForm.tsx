@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import {
   Button,
   Box,
@@ -9,15 +11,17 @@ import {
   Grid,
   InputAdornment,
   InputLabel,
+  MobileStepper,
+  SelectChangeEvent,
   TextField,
   Typography,
   OutlinedInput,
 } from '@mui/material';
-import { SelectChangeEvent } from '@mui/material';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { JobState as JobStateType } from '@prisma/client';
+import SwipeableViews from 'react-swipeable-views';
 
 import { navigate, routes } from '@redwoodjs/router';
 
@@ -49,22 +53,6 @@ const JobForm = (props) => {
   const [value, setValue] = React.useState<Date | null>(
     new Date('2014-08-18T21:11:54')
   );
-
-  const handleChangeDateTime = (newValue: Date | null) => {
-    setValue(newValue);
-  };
-
-  useEffect(() => {
-    if (!mapRef.current) return;
-    map.current = new google.maps.Map(mapRef.current, {
-      center: { lat: 48.123, lng: 11.123 },
-      zoom: 15,
-      mapTypeId: 'roadmap',
-    });
-
-    searchService.current = new google.maps.places.PlacesService(map.current);
-  }, []);
-
   const searchAddress = () => {
     const address = addressRef.current.value;
     if (searchService) {
@@ -159,6 +147,84 @@ const JobForm = (props) => {
       console.error(e);
     }
   };
+  const handleChangeDateTime = (newValue: Date | null) => {
+    setValue(newValue);
+  };
+  const formdata = [
+    <FormControl key="title" fullWidth>
+      <TextField
+        fullWidth
+        name="title"
+        id="title"
+        label="Jobtitle"
+        defaultValue={props.job?.title}
+        required
+        inputRef={titleRef}
+      />
+    </FormControl>,
+    <FormControl key="price" fullWidth>
+      <InputLabel htmlFor="outlined-adornment-price">Price</InputLabel>
+      <OutlinedInput
+        id="outlined-adornment-price"
+        endAdornment={<InputAdornment position="end">€</InputAdornment>}
+        label="Price"
+        inputRef={priceRef}
+      />
+    </FormControl>,
+    <FormControl key="timeout" fullWidth>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <DateTimePicker
+          onChange={handleChangeDateTime}
+          value={value}
+          id="timeout"
+          label="timeout"
+          inputRef={timeoutRef}
+          renderInput={(params) => <TextField {...params} />}
+        />
+      </LocalizationProvider>
+    </FormControl>,
+    <FormControl key="additional-info" fullWidth>
+      <TextField
+        fullWidth
+        name="additionalAddressInformation"
+        id="additionalAddressInformation"
+        label="additionalAddressInformation"
+        defaultValue={props.job?.additionalAddressInformation}
+        inputRef={additionalAddressInformationRef}
+      />
+    </FormControl>,
+    <FormControl key="category" fullWidth>
+      <JobCategory handleChange={handleChange} value={jobCategory} />
+    </FormControl>,
+    <FormControl key="tags" fullWidth>
+      <JobTag handleClick={handleTagClick} tags={jobTags} />
+    </FormControl>,
+  ];
+  const [activeStep, setActiveStep] = React.useState(0);
+  const maxSteps = formdata.length;
+
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleStepChange = (step: number) => {
+    setActiveStep(step);
+  };
+
+  useEffect(() => {
+    if (!mapRef.current) return;
+    map.current = new google.maps.Map(mapRef.current, {
+      center: { lat: 48.123, lng: 11.123 },
+      zoom: 15,
+      mapTypeId: 'roadmap',
+    });
+
+    searchService.current = new google.maps.places.PlacesService(map.current);
+  }, []);
 
   return (
     <Container component="main" maxWidth="md">
@@ -178,35 +244,7 @@ const JobForm = (props) => {
         <Box component="div" sx={{ mt: 3 }} className="rw-form-wrapper">
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <FormControl fullWidth sx={{ m: 1 }}>
-                <TextField
-                  fullWidth
-                  name="title"
-                  id="title"
-                  label="Jobtitle"
-                  defaultValue={props.job?.title}
-                  required
-                  inputRef={titleRef}
-                />
-              </FormControl>
-            </Grid>
-
-            <Grid item xs={12}>
-              <FormControl fullWidth sx={{ m: 1 }}>
-                <TextField
-                  multiline
-                  maxRows={5}
-                  name="description"
-                  id="description"
-                  label="Description"
-                  defaultValue={props.job?.description}
-                  className="rw-input"
-                  inputRef={descriptionRef}
-                />
-              </FormControl>
-            </Grid>
-            <Grid item xs={12}>
-              <FormControl fullWidth sx={{ m: 1 }}>
+              <FormControl key="address" fullWidth sx={{ m: 1 }}>
                 <TextField
                   name="Address"
                   id="address"
@@ -228,7 +266,7 @@ const JobForm = (props) => {
               </FormControl>
             </Grid>
             <Grid item xs={12}>
-              <FormControl fullWidth sx={{ m: 1 }}>
+              <FormControl key="address-map" fullWidth sx={{ m: 1 }}>
                 <div
                   ref={mapRef}
                   style={{
@@ -237,56 +275,44 @@ const JobForm = (props) => {
                 />
               </FormControl>
             </Grid>
-            <Grid item xs={6}>
-              <FormControl fullWidth sx={{ m: 1 }}>
-                <InputLabel htmlFor="outlined-adornment-price">
-                  Price
-                </InputLabel>
-                <OutlinedInput
-                  id="outlined-adornment-price"
-                  endAdornment={
-                    <InputAdornment position="end">€</InputAdornment>
-                  }
-                  label="Price"
-                  inputRef={priceRef}
-                />
-              </FormControl>
-            </Grid>
+            <Grid item xs={12} sx={{ mt: 1 }}>
+              <SwipeableViews
+                axis="x"
+                index={activeStep}
+                onChangeIndex={handleStepChange}
+                enableMouseEvents
+                sx={{ m: 1 }}
+              >
+                {formdata.map((component, index) => {
+                  return <p key={index}>{component}</p>;
+                })}
+              </SwipeableViews>
 
-            <Grid item xs={6}>
-              <FormControl fullWidth sx={{ m: 1 }}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DateTimePicker
-                    onChange={handleChangeDateTime}
-                    value={value}
-                    id="timeout"
-                    label="timeout"
-                    inputRef={timeoutRef}
-                    renderInput={(params) => <TextField {...params} />}
-                  />
-                </LocalizationProvider>
-              </FormControl>
-            </Grid>
-
-            <Grid item xs={6}>
-              <FormControl fullWidth sx={{ m: 1 }}>
-                <TextField
-                  fullWidth
-                  name="additionalAddressInformation"
-                  id="additionalAddressInformation"
-                  label="additionalAddressInformation"
-                  defaultValue={props.job?.additionalAddressInformation}
-                  inputRef={additionalAddressInformationRef}
-                />
-              </FormControl>
-            </Grid>
-            <Grid item xs={6}>
-              <FormControl fullWidth sx={{ m: 1 }}>
-                <JobCategory handleChange={handleChange} value={jobCategory} />
-              </FormControl>
-            </Grid>
-            <Grid item xs={12}>
-              <JobTag handleClick={handleTagClick} tags={jobTags} />
+              <MobileStepper
+                steps={maxSteps}
+                position="static"
+                activeStep={activeStep}
+                nextButton={
+                  <Button
+                    size="small"
+                    onClick={handleNext}
+                    disabled={activeStep === maxSteps - 1}
+                  >
+                    Next
+                    <KeyboardArrowRight />
+                  </Button>
+                }
+                backButton={
+                  <Button
+                    size="small"
+                    onClick={handleBack}
+                    disabled={activeStep === 0}
+                  >
+                    <KeyboardArrowLeft />
+                    Back
+                  </Button>
+                }
+              />
             </Grid>
           </Grid>
           <Grid item xs={12}>
