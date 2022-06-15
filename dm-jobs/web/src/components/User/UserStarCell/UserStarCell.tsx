@@ -1,3 +1,8 @@
+import { Fragment } from 'react';
+
+import StarIcon from '@mui/icons-material/Star';
+import { Grid } from '@mui/material';
+
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web';
 
 export const QUERY = gql`
@@ -18,6 +23,15 @@ export const Failure = ({ error }: CellFailureProps) => (
 );
 
 export const Success = ({ userStar }: CellSuccessProps) => {
-  console.log(userStar);
-  return <div>{JSON.stringify(userStar)}</div>;
+  const { rating } = userStar;
+  return (
+    <Fragment>
+      <Grid container>
+        <Grid item>{rating}</Grid>
+        <Grid item>
+          <StarIcon sx={{ color: 'gold' }} />
+        </Grid>
+      </Grid>
+    </Fragment>
+  );
 };
