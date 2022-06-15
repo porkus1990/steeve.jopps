@@ -2,7 +2,7 @@ import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web';
 
 export const QUERY = gql`
   query FindUser($userId: String!) {
-    userByUserAuthId: userByUserAuthId(userId: $userId) {
+    userStar: userByUserAuthId(userId: $userId) {
       id
       rating
     }
@@ -18,5 +18,6 @@ export const Failure = ({ error }: CellFailureProps) => (
 );
 
 export const Success = ({ userStar }: CellSuccessProps) => {
+  console.log(userStar);
   return <div>{JSON.stringify(userStar)}</div>;
 };
