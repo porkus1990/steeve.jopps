@@ -50,6 +50,7 @@ model Job {
   tags                         JobTag[]
 }
 
+// who created the job?
 model JobUser {
   id     Int  @id @default(autoincrement())
   jobId  Int
@@ -59,6 +60,7 @@ model JobUser {
   @@unique([jobId, userId])
 }
 
+// who picked the job?
 model JobUserPick {
   id     Int  @id @default(autoincrement())
   jobId  Int
