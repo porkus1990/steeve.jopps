@@ -18,6 +18,12 @@ export const jobUserPicksByUser: QueryResolvers['jobUserPicksByUser'] = ({
   return db.jobUserPick.findMany({ where: { userId: userId } });
 };
 
+export const jobUserPicksByJob: QueryResolvers['jobUserPicksByJob'] = ({
+  jobId,
+}) => {
+  return db.jobUserPick.findUnique({ where: { jobId: jobId } });
+};
+
 export const createJobUserPick: MutationResolvers['createJobUserPick'] = ({
   input,
 }) => {

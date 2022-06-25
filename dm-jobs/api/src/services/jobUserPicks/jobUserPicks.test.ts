@@ -1,6 +1,7 @@
 import {
   jobUserPicks,
   jobUserPick,
+  jobUserPicksByJob,
   createJobUserPick,
   updateJobUserPick,
   deleteJobUserPick,
@@ -55,5 +56,13 @@ describe('jobUserPicks', () => {
     const result = await jobUserPick({ id: original.id });
 
     expect(result).toEqual(null);
+  });
+
+  scenario('finds job by jobId', async (scenario: StandardScenario) => {
+    const result = scenario.jobUserPick.one;
+
+    const found = await jobUserPicksByJob({ jobId: result.jobId });
+
+    expect(result).toEqual(found);
   });
 });
