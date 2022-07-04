@@ -29,6 +29,8 @@ const GET_USER_ADDRESSES_QUERY = gql`
   }
 `;
 
+export const Empty = () => <>empty</>;
+
 const UserAddresses = () => {
   const { currentUser } = useAuth();
   const [addresses, setAddresses] = useState([]);
@@ -39,14 +41,16 @@ const UserAddresses = () => {
   const [loadAddresses, { called, data }] = useLazyQuery(
     GET_USER_ADDRESSES_QUERY
   );
+  let tryCounter = 0;
 
   useEffect(() => {
-    if (!called) {
+    if (!called && tryCounter < 4) {
       loadAddresses({
         variables: {
           userAuthId: currentUserId,
         },
       });
+      tryCounter++;
     }
   }, [called, currentUserId, loadAddresses]);
 

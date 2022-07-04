@@ -21,6 +21,14 @@ export const QUERY = gql`
   }
 `;
 
+export const Failure = () => {
+  return <>failure</>;
+};
+
+export const Empty = () => {
+  return <>no jobs</>;
+};
+
 export const Success = ({ jobUserPicks }) => {
   const { t } = useTranslation();
 
