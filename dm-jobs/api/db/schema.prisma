@@ -16,7 +16,7 @@ model RW_DataMigration {
 }
 
 model UserInformation {
-  id         Int  @id @default(autoincrement())
+  id         Int      @id @default(autoincrement())
   userAuthId String
   firstName  String
   lastName   String
@@ -26,7 +26,7 @@ model UserInformation {
 }
 
 model UserAddress {
-  id         Int  @id @default(autoincrement())
+  id         Int    @id @default(autoincrement())
   town       String
   street     String
   number     String
@@ -35,8 +35,8 @@ model UserAddress {
 }
 
 model Job {
-  id                           Int  @id @default(autoincrement())
-  createdAt                    DateTime @default(now())
+  id                           Int           @id @default(autoincrement())
+  createdAt                    DateTime      @default(now())
   title                        String
   description                  String?
   price                        Float
@@ -48,11 +48,13 @@ model Job {
   additionalAddressInformation String?
   categories                   JobCategory[]
   tags                         JobTag[]
+  pickedBy                     JobUserPick?   @relation(fields: [jobUserPickId], references: [id])
+  jobUserPickId                Int?
 }
 
 // who created the job?
 model JobUser {
-  id     Int  @id @default(autoincrement())
+  id     Int    @id @default(autoincrement())
   jobId  Int
   userId String
 
@@ -62,16 +64,17 @@ model JobUser {
 
 // who picked the job?
 model JobUserPick {
-  id     Int  @id @default(autoincrement())
+  id     Int    @id @default(autoincrement())
   jobId  Int
   userId String
+  Job Job[]
 
   @@unique([jobId])
   @@unique([jobId, userId])
 }
 
 model User {
-  id          Int  @id @default(autoincrement())
+  id          Int         @id @default(autoincrement())
   userId      String
   accountType AccountType @default(execute)
 
