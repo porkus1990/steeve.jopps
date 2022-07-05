@@ -29,6 +29,8 @@ const GET_USER_ADDRESSES_QUERY = gql`
   }
 `;
 
+export const Empty = () => <>empty</>;
+
 const UserAddresses = () => {
   const { currentUser } = useAuth();
   const [addresses, setAddresses] = useState([]);
@@ -41,13 +43,11 @@ const UserAddresses = () => {
   );
 
   useEffect(() => {
-    if (!called) {
-      loadAddresses({
-        variables: {
-          userAuthId: currentUserId,
-        },
-      });
-    }
+    loadAddresses({
+      variables: {
+        userAuthId: currentUserId,
+      },
+    });
   }, [called, currentUserId, loadAddresses]);
 
   if (!data) {

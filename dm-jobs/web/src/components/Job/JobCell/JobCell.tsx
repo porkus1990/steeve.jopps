@@ -18,9 +18,20 @@ export const QUERY = gql`
       status
       timeout
       additionalAddressInformation
+      pickedBy {
+        userId
+      }
     }
   }
 `;
+
+export const Empty = () => (
+  <tr>
+    <td>
+      <span>No jobs announced</span>
+    </td>
+  </tr>
+);
 
 export const Loading = () => (
   <tr>
@@ -31,5 +42,6 @@ export const Loading = () => (
 );
 
 export const Success = ({ job }: CellSuccessProps<FindJobById>) => {
+  console.log(job.pickedBy);
   return <Job job={job} />;
 };

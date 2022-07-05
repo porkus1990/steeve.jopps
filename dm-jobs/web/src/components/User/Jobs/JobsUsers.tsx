@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
-import JobCell from 'src/components/Job/JobCell/JobCell';
+import JobCell from 'src/components/Job/JobCell';
 import { headerConfig } from 'src/config/jobTableHeaderConfig';
 
 interface JobsUsers {

@@ -162,6 +162,17 @@ const JobForm = (props) => {
         inputRef={titleRef}
       />
     </FormControl>,
+    <FormControl key="description" fullWidth>
+      <TextField
+        fullWidth
+        name="description"
+        id="description"
+        label="JobDescription"
+        defaultValue={props.job?.description}
+        required
+        inputRef={descriptionRef}
+      />
+    </FormControl>,
     <FormControl key="price" fullWidth>
       <InputLabel htmlFor="outlined-adornment-price">Price</InputLabel>
       <OutlinedInput

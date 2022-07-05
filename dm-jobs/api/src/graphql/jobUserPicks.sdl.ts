@@ -9,6 +9,7 @@ export const schema = gql`
     jobUserPicks: [JobUserPick!]! @requireAuth
     jobUserPick(id: Int!): JobUserPick @requireAuth
     jobUserPicksByUser(userId: String!): [JobUserPick!]! @requireAuth
+    jobUserPicksByJob(jobId: Int!): JobUserPick! @requireAuth
   }
 
   input CreateJobUserPickInput {

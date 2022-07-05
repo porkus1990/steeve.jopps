@@ -13,6 +13,8 @@ export const schema = gql`
     additionalAddressInformation: String
     categories: [JobCategory]!
     tags: [JobTag]!
+    pickedBy: JobUserPick
+    jobUserPickId: Int
   }
 
   enum JobState {
@@ -52,6 +54,7 @@ export const schema = gql`
     additionalAddressInformation: String
     categories: [JobCategory]!
     tags: [JobTag]!
+    jobUserPickId: Int
   }
 
   input UpdateJobInput {
@@ -66,11 +69,17 @@ export const schema = gql`
     additionalAddressInformation: String
     categories: [JobCategory]!
     tags: [JobTag]!
+    jobUserPickId: Int
+  }
+
+  input UpdateJobPickedByInput {
+    jobUserPickId: Int!
   }
 
   type Mutation {
     createJob(input: CreateJobInput!): Job! @requireAuth
     updateJob(id: Int!, input: UpdateJobInput!): Job! @requireAuth
+    updateJobPickedBy(id: Int!, input: UpdateJobPickedByInput!): Job! @requireAuth
     deleteJob(id: Int!): Job! @requireAuth
   }
 `;

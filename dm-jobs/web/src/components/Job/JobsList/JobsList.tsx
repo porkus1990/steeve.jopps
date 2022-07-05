@@ -27,12 +27,21 @@ const PICK_JOB_MUTATION = gql`
   }
 `;
 
+const UPDATE_JOB_PICKED_BY_MUTATION = gql`
+  mutation UpdateJobPickedByMutation($jobId: Int!, $input: UpdateJobPickedByInput!) {
+    updateJobPickedBy(id: $jobId, input: $input) {
+      id
+    }
+  }
+`;
+
 const JobsList = ({ jobs }) => {
   const { t } = useTranslation();
   const [expanded, setExpanded] = useState<number | boolean>(false);
   const [pickDialogOpen, setPickDialog] = useState<boolean>(false);
   const [jobPickState, setJobPickState] = useState<AlertColor | null>(null);
   const [createJobUserPick] = useMutation(PICK_JOB_MUTATION);
+  const [updateJobPickedBy] = useMutation(UPDATE_JOB_PICKED_BY_MUTATION);
   const { currentUser } = useAuth();
 
   const onAccordionChange =
@@ -49,13 +58,22 @@ const JobsList = ({ jobs }) => {
     setJobPickState(null);
   };
 
-  const pickedJob = ({ id }) => {
+  const pickedJob = async ({ id }) => {
     try {
-      createJobUserPick({
+      const jobUserPick = await createJobUserPick({
         variables: {
           input: {
             jobId: id,
             userId: currentUser.sub,
+          },
+        },
+      });
+
+      updateJobPickedBy({
+        variables: {
+          jobId: id,
+          input: {
+            jobUserPickId: jobUserPick.data.createJobUserPick.id
           },
         },
       });
