@@ -41,6 +41,16 @@ export const updateJob: MutationResolvers['updateJob'] = ({ id, input }) => {
   });
 };
 
+export const updateJobPickedBy: MutationResolvers['updateJobPickedBy'] = ({
+  id,
+  input,
+}) => {
+  return db.job.update({
+    data: input,
+    where: { id },
+  });
+};
+
 export const deleteJob: MutationResolvers['deleteJob'] = ({ id }) => {
   return db.job.delete({
     where: { id },

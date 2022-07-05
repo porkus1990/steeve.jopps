@@ -72,9 +72,14 @@ export const schema = gql`
     jobUserPickId: Int
   }
 
+  input UpdateJobPickedByInput {
+    jobUserPickId: Int!
+  }
+
   type Mutation {
     createJob(input: CreateJobInput!): Job! @requireAuth
     updateJob(id: Int!, input: UpdateJobInput!): Job! @requireAuth
+    updateJobPickedBy(id: Int!, input: UpdateJobPickedByInput!): Job! @requireAuth
     deleteJob(id: Int!): Job! @requireAuth
   }
 `;

@@ -20,7 +20,7 @@ const Job = ({ job }) => {
       <TableCell>{job.status}</TableCell>
       <TableCell>{timeTag(job.timeout)}</TableCell>
       <TableCell>
-        {job.additionalAddressInformation} {job.pickedBy}
+        {job.additionalAddressInformation} {job.pickedBy.userId}
       </TableCell>
     </TableRow>
   );
