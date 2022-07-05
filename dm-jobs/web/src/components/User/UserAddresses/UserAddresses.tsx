@@ -41,17 +41,13 @@ const UserAddresses = () => {
   const [loadAddresses, { called, data }] = useLazyQuery(
     GET_USER_ADDRESSES_QUERY
   );
-  let tryCounter = 0;
 
   useEffect(() => {
-    if (!called && tryCounter < 4) {
-      loadAddresses({
-        variables: {
-          userAuthId: currentUserId,
-        },
-      });
-      tryCounter++;
-    }
+    loadAddresses({
+      variables: {
+        userAuthId: currentUserId,
+      },
+    });
   }, [called, currentUserId, loadAddresses]);
 
   if (!data) {

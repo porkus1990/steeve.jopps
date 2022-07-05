@@ -21,6 +21,8 @@ export const QUERY = gql`
   }
 `;
 
+export const Loading = () => <>Loading ...</>;
+
 export const Failure = () => {
   return <>failure</>;
 };

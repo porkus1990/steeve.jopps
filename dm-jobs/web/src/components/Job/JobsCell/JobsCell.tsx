@@ -34,7 +34,7 @@ export const Loading = () => <div>Loading...</div>;
 export const Empty = () => {
   return (
     <div className="rw-text-center">
-      {'No open gitjobs yet. '}
+      {'No open jobs yet. '}
       <Link to={routes.newJob()} className="rw-link">
         {'Create one?'}
       </Link>

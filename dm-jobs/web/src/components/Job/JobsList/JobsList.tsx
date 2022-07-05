@@ -49,9 +49,9 @@ const JobsList = ({ jobs }) => {
     setJobPickState(null);
   };
 
-  const pickedJob = ({ id }) => {
+  const pickedJob = async ({ id }) => {
     try {
-      createJobUserPick({
+      const jobUserPick = await createJobUserPick({
         variables: {
           input: {
             jobId: id,
@@ -59,6 +59,8 @@ const JobsList = ({ jobs }) => {
           },
         },
       });
+      console.log(jobUserPick);
+      // TODO insert jobUserPick.data.createJobUserPick.id in jobuser table
       setJobPickState('success');
     } catch (e) {
       setJobPickState('error');

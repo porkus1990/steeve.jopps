@@ -48,7 +48,6 @@ export const deleteJob: MutationResolvers['deleteJob'] = ({ id }) => {
 };
 
 export const Job: JobResolvers = {
-  //categories: (_obj, { root }) =>
-  //  db.job.findUnique({ where: { id: root.id } }).categories,
-  // tags: (_obj, { root }) => db.job.findUnique({ where: { id: root.id } }).tags,
+  pickedBy: (_obj, { root }) =>
+    db.job.findUnique({ where: { id: root.id } }).pickedBy(),
 };
