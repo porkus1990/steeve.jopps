@@ -25,14 +25,6 @@ export const QUERY = gql`
   }
 `;
 
-export const Empty = () => (
-  <tr>
-    <td>
-      <span>No jobs announced</span>
-    </td>
-  </tr>
-);
-
 export const Loading = () => (
   <tr>
     <td>
@@ -42,6 +34,5 @@ export const Loading = () => (
 );
 
 export const Success = ({ job }: CellSuccessProps<FindJobById>) => {
-  console.log(job.pickedBy);
   return <Job job={job} />;
 };

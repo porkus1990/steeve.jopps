@@ -10,8 +10,6 @@ export const QUERY = gql`
 
 export const Loading = () => <div>Loading your jobs ...</div>;
 
-export const Empty = () => <>Empty - no jobs</>;
-
 export const Success = ({ jobUsersByUser }) => {
   return <JobsUsers userJobs={jobUsersByUser} />;
 };
