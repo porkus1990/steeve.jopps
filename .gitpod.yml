@@ -15,6 +15,7 @@ vscode:
     - bungcip.better-toml
     - mikestead.dotenv
     - wix.vscode-import-cost
+    - akosyakov.gitpod-monitor
 
 image:
   file: .gitpod.Dockerfile
