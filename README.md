@@ -18,6 +18,7 @@
 
 implementation:
  - authentication 
+   -  think about https://clerk.dev/
  - what3words.com
  - jobs are marked on the map
    - customizinng?
