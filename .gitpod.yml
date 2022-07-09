@@ -19,15 +19,15 @@ vscode:
 
 image:
   file: .gitpod.Dockerfile
+
 github:
   prebuilds:
-    master: true
+    main: true
     branches: true
     pullRequests: true
     addCheck: true
     addComment: true
     addBadge: true
-    main: true
 
 tasks:
   - name: Init project
