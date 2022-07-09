@@ -22,12 +22,13 @@ image:
 
 github:
   prebuilds:
-    main: true
+    master: true
     branches: true
     pullRequests: true
     addCheck: true
     addComment: true
     addBadge: true
+    addLabel: prebuilt-in-gitpod
 
 tasks:
   - name: Init project
