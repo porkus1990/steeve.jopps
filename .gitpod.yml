@@ -1,3 +1,35 @@
+image:
+  file: .gitpod.Dockerfile
+
+github:
+  prebuilds:
+    master: true
+    branches: false
+    pullRequests: true
+    addCheck: true
+    addComment: true
+    addBadge: true
+    addLabel: prebuilt-in-gitpod
+
+ports:
+  - port: 8910
+    onOpen: open-preview
+  - port: 8911-9999
+    onOpen: ignore
+  - port: 5555
+    onOpen: open-browser
+
+tasks:
+  - name: Init project
+    openMode: split-left
+    command: |
+      echo "======= wait for init ... =============="
+
+  - name: Start devserver
+    openMode: split-right
+    init: yarn install && yarn rw generate types
+    command: yarn rw dev
+
 checkoutLocation: .
 workspaceLocation: ./dm-jobs
 
@@ -16,36 +48,3 @@ vscode:
     - mikestead.dotenv
     - wix.vscode-import-cost
     - akosyakov.gitpod-monitor
-
-image:
-  file: .gitpod.Dockerfile
-
-github:
-  prebuilds:
-    master: true
-    branches: false
-    pullRequests: true
-    addCheck: true
-    addComment: true
-    addBadge: true
-    addLabel: prebuilt-in-gitpod
-
-tasks:
-  - name: Init project
-    openMode: split-left
-    command: |
-      echo "======= wait for init ... =============="
-
-  - name: Start devserver
-    openMode: split-right
-    init: yarn install && yarn rw generate types
-    command: yarn rw dev
-
-
-ports:
-  - port: 8910
-    onOpen: open-preview
-  - port: 8911-9999
-    onOpen: ignore
-  - port: 5555
-    onOpen: open-browser
