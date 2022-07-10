@@ -23,7 +23,7 @@ image:
 github:
   prebuilds:
     master: true
-    branches: true
+    branches: false
     pullRequests: true
     addCheck: true
     addComment: true
