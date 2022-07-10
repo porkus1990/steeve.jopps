@@ -30,7 +30,6 @@ tasks:
     init: yarn install && yarn rw generate types
     command: yarn rw dev
 
-checkoutLocation: .
 workspaceLocation: ./dm-jobs
 
 vscode:
