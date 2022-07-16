@@ -24,13 +24,14 @@ tasks:
     openMode: split-left
     command: |
       echo "======= wait for init ... =============="
+      cd ./dm-jobs
 
   - name: Start devserver
     openMode: split-right
-    init: yarn install && yarn rw generate types
+    init: cd ./dm-jobs && yarn install && yarn rw generate types
     command: yarn rw dev
 
-workspaceLocation: ./dm-jobs
+workspaceLocation: /workspace/steeve.jopps
 
 vscode:
   extensions:
