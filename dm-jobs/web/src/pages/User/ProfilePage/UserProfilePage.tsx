@@ -6,6 +6,7 @@ import { MetaTags } from '@redwoodjs/web';
 import PickedJobsCell from 'src/components/User/PickedJobsCell';
 import UserAddresses from 'src/components/User/UserAddresses/UserAddresses';
 import UserJobs from 'src/components/User/UserJobs/UserJobs';
+import UserStarCell from 'src/components/User/UserStarCell';
 
 const UserProfilePage = () => {
   const { currentUser } = useAuth();
@@ -22,6 +23,9 @@ const UserProfilePage = () => {
         <Typography component="h1" variant="h5" sx={{ marginBottom: 2 }}>
           Account overview
         </Typography>
+        <Grid>
+          <UserStarCell userId={currentUser.sub} />
+        </Grid>
         <Grid>
           <UserAddresses />
         </Grid>

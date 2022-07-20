@@ -24,7 +24,11 @@ describe('users', () => {
 
   scenario('creates a user', async () => {
     const result = await createUser({
-      input: { userId: 'String1', accountType: AccountTypeType.execute },
+      input: {
+        userId: 'String1',
+        accountType: AccountTypeType.execute,
+        rating: 0,
+      },
     });
 
     expect(result.userId).toEqual('String1');
