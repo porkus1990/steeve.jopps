@@ -18,6 +18,9 @@ export const QUERY = gql`
       status
       timeout
       additionalAddressInformation
+      pickedBy {
+        userId
+      }
     }
   }
 `;

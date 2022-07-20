@@ -25,8 +25,7 @@ import SwipeableViews from 'react-swipeable-views';
 
 import { navigate, routes } from '@redwoodjs/router';
 
-import { createMarker } from 'src/components/General/MapHelper/createMarker';
-import { threeWordsFromCoords } from 'src/components/General/MapHelper/threeWords';
+import { searchAddress } from 'src/address/searchAddress';
 import JobCategory from 'src/components/JobCategory/JobCategory';
 import JobTag from 'src/components/JobTag/JobTag';
 
@@ -53,44 +52,16 @@ const JobForm = (props) => {
   const [value, setValue] = React.useState<Date | null>(
     new Date('2014-08-18T21:11:54')
   );
-  const searchAddress = () => {
-    const address = addressRef.current.value;
-    if (searchService) {
-      searchService.current.findPlaceFromQuery(
-        { query: address, fields: ['name', 'geometry'] },
-        (
-          results: google.maps.places.PlaceResult[] | null,
-          status: google.maps.places.PlacesServiceStatus
-        ) => {
-          if (status === google.maps.places.PlacesServiceStatus.OK && results) {
-            for (let i = 0; i < results.length; i++) {
-              createMarker(
-                map.current,
-                results[i],
-                async (marker: google.maps.Marker) => {
-                  const lng = marker?.position?.lng();
-                  const lat = marker?.position?.lat();
-                  setLongitude(lng);
-                  setLatitude(lat);
 
-                  const threeWords = await threeWordsFromCoords({
-                    lat,
-                    lng,
-                  });
-                  setThreeWords(threeWords.words);
-                }
-              );
-            }
-
-            console.log(results);
-
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            map.current.setCenter(results[0]!.geometry!.location!);
-          }
-        }
-      );
-    }
-  };
+  const callSearchAddress = () =>
+    searchAddress({
+      addressRef,
+      map,
+      searchService,
+      setLongitude,
+      setLatitude,
+      setThreeWords,
+    });
 
   const handleTagClick = (id) => {
     if (!jobTags.includes(id)) {
@@ -160,6 +131,17 @@ const JobForm = (props) => {
         defaultValue={props.job?.title}
         required
         inputRef={titleRef}
+      />
+    </FormControl>,
+    <FormControl key="description" fullWidth>
+      <TextField
+        fullWidth
+        name="description"
+        id="description"
+        label="JobDescription"
+        defaultValue={props.job?.description}
+        required
+        inputRef={descriptionRef}
       />
     </FormControl>,
     <FormControl key="price" fullWidth>
@@ -258,7 +240,7 @@ const JobForm = (props) => {
                   fullWidth
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
-                  onClick={searchAddress}
+                  onClick={callSearchAddress}
                   ref={searchAddressButtonRef}
                 >
                   Search location

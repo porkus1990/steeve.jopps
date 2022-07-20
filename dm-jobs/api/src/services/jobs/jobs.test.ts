@@ -1,9 +1,3 @@
-import {
-  JobState as JobStateType,
-  JobCategory as JobCategoryType,
-  JobTag as JobTagType,
-} from '@prisma/client';
-
 import { jobs, job, createJob, updateJob, deleteJob } from './jobs';
 import type { StandardScenario } from './jobs.scenarios';
 
@@ -29,35 +23,35 @@ describe('jobs', () => {
   scenario('creates a job', async () => {
     const result = await createJob({
       input: {
-        title: 'third title',
-        price: 341302,
-        longitude: '34.56',
-        latitude: '56.78',
-        threeWords: 'fist.second.third',
-        status: JobStateType.in_progress,
+        title: 'String',
+        price: 7126381.784424101,
+        longitude: 'String',
+        latitude: 'String',
+        threeWords: 'String',
+        status: 'pending',
+        categories: ['all'],
+        tags: ['car'],
       },
     });
 
-    expect(result.title).toEqual('third title');
-    expect(result.price).toEqual(341302);
-    expect(result.longitude).toEqual('34.56');
-    expect(result.latitude).toEqual('56.78');
-    expect(result.threeWords).toEqual('fist.second.third');
-    expect(result.status).toEqual(JobStateType.in_progress);
+    expect(result.title).toEqual('String');
+    expect(result.price).toEqual(7126381.784424101);
+    expect(result.longitude).toEqual('String');
+    expect(result.latitude).toEqual('String');
+    expect(result.threeWords).toEqual('String');
+    expect(result.status).toEqual('pending');
+    expect(result.categories).toEqual(['all']);
+    expect(result.tags).toEqual(['car']);
   });
 
   scenario('updates a job', async (scenario: StandardScenario) => {
     const original = await job({ id: scenario.job.one.id });
     const result = await updateJob({
       id: original.id,
-      input: {
-        title: 'third title',
-        categories: [JobCategoryType.buying],
-        tags: [JobTagType.car],
-      },
+      input: { title: 'String2' },
     });
 
-    expect(result.title).toEqual('third title');
+    expect(result.title).toEqual('String2');
   });
 
   scenario('deletes a job', async (scenario: StandardScenario) => {
