@@ -3,8 +3,20 @@ import { AccountType as AccountTypeType } from '@prisma/client';
 
 export const standard = defineScenario<Prisma.UserCreateArgs>({
   user: {
-    one: { data: { userId: 'String', accountType: AccountTypeType.execute } },
-    two: { data: { userId: 'String', accountType: AccountTypeType.provide } },
+    one: {
+      data: {
+        userId: '89234753',
+        accountType: AccountTypeType.execute,
+        rating: 2,
+      },
+    },
+    two: {
+      data: {
+        userId: 'sdgjdfghd',
+        accountType: AccountTypeType.provide,
+        rating: 0,
+      },
+    },
   },
 });
 
